@@ -9,7 +9,7 @@
 <meta name="author" content="Ralf Gabriels">
 <meta name="dcterms.date" content="2022-09-12">
 
-<title>ProteomicsML.org - NIST (part 1): Parsing the spectral library</title>
+<title>ProteomicsML - NIST (part 1): Parsing the spectral library</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,10 +140,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="ProteomicsML.org - NIST (part 1): Parsing the spectral library">
+<meta property="og:title" content="ProteomicsML - NIST (part 1): Parsing the spectral library">
 <meta property="og:description" content="In bottom-up proteomics, a peptide fragmentation spectrum (MS2) is the most central source of information to identify a peptide (and the original protein by extend).">
-<meta property="og:site-name" content="ProteomicsML.org">
-<meta name="twitter:title" content="ProteomicsML.org - NIST (part 1): Parsing the spectral library">
+<meta property="og:site-name" content="ProteomicsML">
+<meta name="twitter:title" content="ProteomicsML - NIST (part 1): Parsing the spectral library">
 <meta name="twitter:description" content="In bottom-up proteomics, a peptide fragmentation spectrum (MS2) is the most central source of information to identify a peptide (and the original protein by extend).">
 <meta name="twitter:card" content="summary">
 </head>
@@ -156,7 +156,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">ProteomicsML.org</span>
+    <span class="navbar-title">ProteomicsML</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -1019,7 +1019,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp(/https:\/\/proteomicsml\.org/);
+      var filterRegex = new RegExp(/https:\/\/www\.proteomicsml\.org/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

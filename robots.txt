@@ -1,1 +1,1 @@
-Sitemap: https://proteomicsml.org/sitemap.xml
+Sitemap: https://www.proteomicsml.org/sitemap.xml
