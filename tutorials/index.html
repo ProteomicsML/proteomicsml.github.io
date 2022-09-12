@@ -171,7 +171,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -228,12 +228,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -249,12 +244,20 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Fragmentation</a>
+            <a href="../tutorials/index.html" class="sidebar-item-text sidebar-link active">Tutorials</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -277,14 +280,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
@@ -292,14 +295,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Retention time</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Retention time</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/retentiontime/dlomix-prosit.html" class="sidebar-item-text sidebar-link">DLOmix Prosit</a>
@@ -312,15 +315,25 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
+      </ul>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Fragmentation</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a href="../datasets/index.html" class="sidebar-item-text sidebar-link">Datasets</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../datasets/fragmentation/NIST.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
@@ -333,14 +346,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Ion mobility</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../datasets/ionmobility/Meier_TIMS.html" class="sidebar-item-text sidebar-link">Meier et al.&nbsp;TIMS</a>
@@ -353,14 +366,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Retention time</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">Retention time</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
@@ -378,6 +391,8 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
       </ul>
   </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -391,7 +406,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <li><a href="#ion-mobility" id="toc-ion-mobility" class="nav-link" data-scroll-target="#ion-mobility">Ion mobility</a></li>
   <li><a href="#retention-time" id="toc-retention-time" class="nav-link" data-scroll-target="#retention-time">Retention time</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/tutorials/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/tutorials/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -432,7 +447,7 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212677" data-listing-reading-time-sort="9.645" data-listing-title-sort="NIST (part 1): Parsing the spectral library" data-listing-filename-sort="nist-1-parsing-spectral-library.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416875" data-listing-reading-time-sort="9.645" data-listing-title-sort="NIST (part 1): Parsing the spectral library" data-listing-filename-sort="nist-1-parsing-spectral-library.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="title">NIST (part 1): Parsing the spectral library</a>
@@ -444,7 +459,7 @@ Ralf Gabriels
 Sep 12, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212677" data-listing-reading-time-sort="0.715" data-listing-title-sort="NIST (part 2): Traditional ML: Gradient boosting" data-listing-filename-sort="nist-2-traditional-ml-gradient-boosting.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416875" data-listing-reading-time-sort="0.715" data-listing-title-sort="NIST (part 2): Traditional ML: Gradient boosting" data-listing-filename-sort="nist-2-traditional-ml-gradient-boosting.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="title">NIST (part 2): Traditional ML: Gradient boosting</a>
@@ -456,7 +471,7 @@ Ralf Gabriels
 Sep 12, 2022
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212677" data-listing-reading-time-sort="0.015" data-listing-title-sort="NIST (part 3): Deep learning: BiLSTM" data-listing-filename-sort="nist-3-deep-learning-lstm.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416875" data-listing-reading-time-sort="0.015" data-listing-title-sort="NIST (part 3): Deep learning: BiLSTM" data-listing-filename-sort="nist-3-deep-learning-lstm.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="title">NIST (part 3): Deep learning: BiLSTM</a>
@@ -468,7 +483,7 @@ Ralf Gabriels
 Sep 12, 2022
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212677" data-listing-reading-time-sort="0.07" data-listing-title-sort="Prosit-style GRU with ProteomeTools data" data-listing-filename-sort="proteometools-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416875" data-listing-reading-time-sort="0.07" data-listing-title-sort="Prosit-style GRU with ProteomeTools data" data-listing-filename-sort="proteometools-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/proteometools-prosit.html" class="title">Prosit-style GRU with ProteomeTools data</a>
@@ -506,7 +521,7 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212681" data-listing-reading-time-sort="7.72" data-listing-title-sort="Predicting CCS values for TIMS data" data-listing-filename-sort="meier-tims-ccs.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416879" data-listing-reading-time-sort="7.72" data-listing-title-sort="Predicting CCS values for TIMS data" data-listing-filename-sort="meier-tims-ccs.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="title">Predicting CCS values for TIMS data</a>
@@ -545,7 +560,7 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212681" data-listing-reading-time-sort="0.015" data-listing-title-sort="DLOmix Prosit" data-listing-filename-sort="dlomix-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416879" data-listing-reading-time-sort="0.015" data-listing-title-sort="DLOmix Prosit" data-listing-filename-sort="dlomix-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/retentiontime/dlomix-prosit.html" class="title">DLOmix Prosit</a>
@@ -556,7 +571,7 @@ Date
 Sep 12, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1662994212000" data-listing-file-modified-sort="1662994212681" data-listing-reading-time-sort="0.015" data-listing-title-sort="ProteomeTools: Manual embedding" data-listing-filename-sort="proteometools-manual-embedding.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1663001416000" data-listing-file-modified-sort="1663001416879" data-listing-reading-time-sort="0.015" data-listing-title-sort="ProteomeTools: Manual embedding" data-listing-filename-sort="proteometools-manual-embedding.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/retentiontime/proteometools-manual-embedding.html" class="title">ProteomeTools: Manual embedding</a>
