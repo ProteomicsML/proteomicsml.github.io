@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.proteomicsml.org/index.html</loc>
-    <lastmod>2022-09-21T14:09:54.515Z</lastmod>
+    <lastmod>2022-09-21T14:18:47.902Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/code-of-conduct.html</loc>
-    <lastmod>2022-09-21T14:09:55.371Z</lastmod>
+    <lastmod>2022-09-21T14:18:48.702Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/contributing.html</loc>
-    <lastmod>2022-09-21T14:09:56.599Z</lastmod>
+    <lastmod>2022-09-21T14:18:49.890Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/publication.html</loc>
-    <lastmod>2022-09-21T14:09:56.979Z</lastmod>
+    <lastmod>2022-09-21T14:18:50.238Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/ionmobility/meier-tims-ccs.html</loc>
-    <lastmod>2022-09-21T14:09:58.339Z</lastmod>
+    <lastmod>2022-09-21T14:18:51.490Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/retentiontime/proteometools-manual-embedding.html</loc>
-    <lastmod>2022-09-21T14:09:59.211Z</lastmod>
+    <lastmod>2022-09-21T14:18:52.298Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/retentiontime/dlomix-prosit.html</loc>
-    <lastmod>2022-09-21T14:09:59.663Z</lastmod>
+    <lastmod>2022-09-21T14:18:52.734Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-1-parsing-spectral-library.html</loc>
-    <lastmod>2022-09-21T14:10:00.519Z</lastmod>
+    <lastmod>2022-09-21T14:18:53.482Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html</loc>
-    <lastmod>2022-09-21T14:10:01.531Z</lastmod>
+    <lastmod>2022-09-21T14:18:54.454Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/proteometools-prosit.html</loc>
-    <lastmod>2022-09-21T14:10:02.027Z</lastmod>
+    <lastmod>2022-09-21T14:18:54.922Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-3-deep-learning-lstm.html</loc>
-    <lastmod>2022-09-21T14:10:02.431Z</lastmod>
+    <lastmod>2022-09-21T14:18:55.358Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/index.html</loc>
-    <lastmod>2022-09-21T14:10:03.003Z</lastmod>
+    <lastmod>2022-09-21T14:18:55.814Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/ionmobility/VanPuyvelde_TWIMS.html</loc>
-    <lastmod>2022-09-21T14:10:03.855Z</lastmod>
+    <lastmod>2022-09-21T14:18:56.618Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/ionmobility/Meier_TIMS.html</loc>
-    <lastmod>2022-09-21T14:10:04.295Z</lastmod>
+    <lastmod>2022-09-21T14:18:57.018Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/Sharma_HeLa_RT.html</loc>
-    <lastmod>2022-09-21T14:10:04.671Z</lastmod>
+    <lastmod>2022-09-21T14:18:57.394Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/ProteomeTools_RT.html</loc>
-    <lastmod>2022-09-21T14:10:05.447Z</lastmod>
+    <lastmod>2022-09-21T14:18:58.142Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/DLOmix.html</loc>
-    <lastmod>2022-09-21T14:10:05.827Z</lastmod>
+    <lastmod>2022-09-21T14:18:58.498Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/fragmentation/NIST.html</loc>
-    <lastmod>2022-09-21T14:10:06.571Z</lastmod>
+    <lastmod>2022-09-21T14:18:59.274Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/fragmentation/ProteomeTools_FI.html</loc>
-    <lastmod>2022-09-21T14:10:06.979Z</lastmod>
+    <lastmod>2022-09-21T14:18:59.654Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/index.html</loc>
-    <lastmod>2022-09-21T14:10:07.479Z</lastmod>
+    <lastmod>2022-09-21T14:19:00.118Z</lastmod>
   </url>
 </urlset>
