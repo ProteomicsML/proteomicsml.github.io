@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robbin Bouwmeester">
-<meta name="dcterms.date" content="2022-09-12">
+<meta name="dcterms.date" content="2022-09-21">
 
 <title>ProteomicsML - Predicting CCS values for TIMS data</title>
 <style>
@@ -144,6 +144,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="../../static/custom-styles.css">
 <meta property="og:title" content="ProteomicsML - Predicting CCS values for TIMS data">
 <meta property="og:description" content="Ion mobility is a technique to separate ionized analytes based on their size, shape, and physicochemical properties.">
 <meta property="og:site-name" content="ProteomicsML">
@@ -182,6 +183,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../contributing.html">Contributing</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../code-of-conduct.html">Code of Conduct</a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ProteomicsML"><i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
@@ -222,7 +229,6 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <a href="../../publication.html" class="sidebar-item-text sidebar-link">Publication</a>
   </div>
 </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../tutorials/index.html" class="sidebar-item-text sidebar-link">Tutorials</a>
@@ -298,15 +304,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
       </ul>
   </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../datasets/index.html" class="sidebar-item-text sidebar-link">Datasets</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">Fragmentation</a>
@@ -374,6 +379,16 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../contributing.html" class="sidebar-item-text sidebar-link">Contributing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../code-of-conduct.html" class="sidebar-item-text sidebar-link">Code of Conduct</a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -390,7 +405,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <li><a href="#training-a-xgboost-non-linear-regression-model-for-ccs-prediction" id="toc-training-a-xgboost-non-linear-regression-model-for-ccs-prediction" class="nav-link" data-scroll-target="#training-a-xgboost-non-linear-regression-model-for-ccs-prediction">Training a XGBoost (non-linear) regression model for CCS prediction</a></li>
   <li><a href="#training-a-deep-learning-lstm-model-for-ccs-prediction" id="toc-training-a-deep-learning-lstm-model-for-ccs-prediction" class="nav-link" data-scroll-target="#training-a-deep-learning-lstm-model-for-ccs-prediction">Training a deep learning LSTM model for CCS prediction</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.dev/ProteomicsML/ProteomicsML/blob/main/tutorials/ionmobility/meier-tims-ccs.ipynb" class="toc-action">Edit this page</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/tutorials/ionmobility/meier-tims-ccs.ipynb" class="toc-action">View source</a></p><p><a href="https://github.dev/ProteomicsML/ProteomicsML/blob/main/tutorials/ionmobility/meier-tims-ccs.ipynb" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -424,7 +439,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 12, 2022</p>
+      <p class="date">September 21, 2022</p>
     </div>
   </div>
     
@@ -433,7 +448,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 </header>
 
-<div class="quarto-figure quarto-figure-left">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/ionmobility/_meier-tims-ccs.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
 </figure>
@@ -1118,7 +1133,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <style>#sk-container-id-13 {color: black;background-color: white;}#sk-container-id-13 pre{padding: 0;}#sk-container-id-13 div.sk-toggleable {background-color: white;}#sk-container-id-13 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-13 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-13 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-13 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-13 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-13 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-13 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-13 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-13 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-13 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-13 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-13 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-13 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-13 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-13 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-13 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-13 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-13 div.sk-item {position: relative;z-index: 1;}#sk-container-id-13 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-13 div.sk-item::before, #sk-container-id-13 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-13 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-13 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-13 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-13 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-13 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-13 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-13 div.sk-label-container {text-align: center;}#sk-container-id-13 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-13 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-13" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" checked=""><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div>
 </div>
 </div>
-<p>Now we can have a look at the coefficients ($_1) learned. These should be highly correlated with the previous experimentally determined volumetric observations for each amino acid:</p>
+<p>Now we can have a look at the coefficients <span class="math inline">\(\beta_1\)</span> learned. These should be highly correlated with the previous experimentally determined volumetric observations for each amino acid:</p>
 <div class="cell" data-execution_count="196">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot the coefficients of each amino acid against their experimentally determined volumes</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(</span>

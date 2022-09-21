@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.90">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ProteomicsML – contributing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VVRMZHT2W2"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+ 
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="static/custom-styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">ProteomicsML</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./publication.html">Publication</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tutorials/index.html">Tutorials</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./datasets/index.html">Datasets</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./contributing.html">Contributing</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./code-of-conduct.html">Code of Conduct</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ProteomicsML"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ProteomicsML"><i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./publication.html" class="sidebar-item-text sidebar-link">Publication</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorials/index.html" class="sidebar-item-text sidebar-link">Tutorials</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="sidebar-item-text sidebar-link">NIST (part 2): Traditional ML: Gradient boosting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="sidebar-item-text sidebar-link">NIST (part 3): Deep learning: BiLSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/proteometools-prosit.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with ProteomeTools data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Retention time</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/retentiontime/dlomix-prosit.html" class="sidebar-item-text sidebar-link">DLOmix Prosit</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/retentiontime/proteometools-manual-embedding.html" class="sidebar-item-text sidebar-link">ProteomeTools: Manual embedding</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./datasets/index.html" class="sidebar-item-text sidebar-link">Datasets</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/fragmentation/NIST.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/fragmentation/ProteomeTools_FI.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Ion mobility</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/ionmobility/Meier_TIMS.html" class="sidebar-item-text sidebar-link">Meier et al.&nbsp;TIMS</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/ionmobility/VanPuyvelde_TWIMS.html" class="sidebar-item-text sidebar-link">Van Puyvelde et al.&nbsp;TWIMS</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">Retention time</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/retentiontime/Sharma_HeLa_RT.html" class="sidebar-item-text sidebar-link">Sharma et al.&nbsp;HeLa</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing.html" class="sidebar-item-text sidebar-link active">Contributing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code-of-conduct.html" class="sidebar-item-text sidebar-link">Code of Conduct</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#contributing" id="toc-contributing" class="nav-link active" data-scroll-target="#contributing">Contributing</a>
+  <ul>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#the-proteomicsml-infrastructure" id="toc-the-proteomicsml-infrastructure" class="nav-link" data-scroll-target="#the-proteomicsml-infrastructure">The ProteomicsML infrastructure</a></li>
+  <li><a href="#how-to-contribute" id="toc-how-to-contribute" class="nav-link" data-scroll-target="#how-to-contribute">How to contribute</a>
+  <ul class="collapse">
+  <li><a href="#development-setup" id="toc-development-setup" class="nav-link" data-scroll-target="#development-setup">Development setup</a></li>
+  <li><a href="#addingupdating-a-tutorial" id="toc-addingupdating-a-tutorial" class="nav-link" data-scroll-target="#addingupdating-a-tutorial">Adding/updating a tutorial</a></li>
+  <li><a href="#addingupdating-a-dataset" id="toc-addingupdating-a-dataset" class="nav-link" data-scroll-target="#addingupdating-a-dataset">Adding/updating a dataset</a></li>
+  <li><a href="#opening-a-pull-request-to-add-your-contributions" id="toc-opening-a-pull-request-to-add-your-contributions" class="nav-link" data-scroll-target="#opening-a-pull-request-to-add-your-contributions">Opening a pull request to add your contributions</a></li>
+  </ul></li>
+  <li><a href="#website-deployment" id="toc-website-deployment" class="nav-link" data-scroll-target="#website-deployment">Website deployment</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/CONTRIBUTING.md" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/CONTRIBUTING.md" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="contributing" class="level1">
+<h1>Contributing</h1>
+<p>This document describes how to contribute to the <a href="https://github.com/proteomicsml/proteomicsml">ProteomicsML</a> resource by adding new or updating existing tutorials and/or datasets.</p>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p>At ProteomicsML, we pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community. By interacting with or contributing to ProteomicsML at <a href="https://github.com/ProteomicsML">https://github.com/ProteomicsML</a> or at <a href="https://proteomicsml.org">https://proteomicsml.org</a>, you agree to our Code of Conduct. Violation of our Code of Conduct may ultimately lead to a permanent ban from any sort of public interaction within the community.<br> 🤝 Read the <a href="./code-of-conduct.html">Code of Conduct</a><br></p>
+<p>If you have an idea for a new tutorial or dataset, or found a mistake, you are welcome to communicate it with the community by opening a discussion thread in GitHub Discussions or by creating an issue.<br> 💬 Start a <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a><br> 💡 Open an <a href="https://github.com/ProteomicsML/ProteomicsML/issues/new/choose">issue</a><br></p>
+</section>
+<section id="the-proteomicsml-infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="the-proteomicsml-infrastructure">The ProteomicsML infrastructure</h2>
+<p>ProteomicsML uses the <a href="https://quarto.org/">Quarto</a> system to publish a static website from markdown and Jupyter IPython notebook files. All source files are maintained at <a href="https://github.com/proteomicsml/proteomicsml">ProteomicsML/ProteomicsML</a>. Upon each commit on the main branch (after merging a pull request), the website is rebuilt on GitHub Actions and pushed to the <a href="https://github.com/ProteomicsML/proteomicsml.github.io">ProteomicsML/proteomicsml.github.io</a> repository, where it is hosted with GitHub Pages on the <a href="https://proteomicsml.org">ProteomicsML.org</a> website. See <a href="#website-deployment">Website deployment</a> for the full deployment workflow.</p>
+</section>
+<section id="how-to-contribute" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-contribute">How to contribute</h2>
+<section id="development-setup" class="level3">
+<h3 class="anchored" data-anchor-id="development-setup">Development setup</h3>
+<ol type="1">
+<li>Fork <a href="https://github.com/proteomicsml/proteomicsml">ProteomicsML/ProteomicsML</a> on GitHub to make your changes.</li>
+<li>Clone your fork of the repository to your local machine.</li>
+<li>Install <a href="https://quarto.org/docs/get-started/">Quarto</a> to build the website on your machine.</li>
+<li>To preview the website while editing, run: <code>quarto preview . --render html</code></li>
+</ol>
+<p>Maintainers with write access to the repository can skip the first two steps and make a new local branch instead. Direct commits to the <code>main</code> branch are not allowed.</p>
+</section>
+<section id="addingupdating-a-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="addingupdating-a-tutorial">Adding/updating a tutorial</h3>
+<p>ProteomicsML tutorials are educational Jupyter notebooks that combine fully functional code cells and descriptive text cells. The end result should be a notebook that is easy to comprehend to anyone with a basic understanding of proteomics, programming, and machine learning. When adding or updating a tutorial, please follow these rules and conventions:</p>
+<ol type="1">
+<li><p>Title, filename, metadata, and subheadings</p>
+<ol type="a">
+<li><p>Tutorials are grouped by data type: <code>Fragmentation</code>, <code>Ion mobility</code>, or <code>Retention time</code>. Place your tutorial notebook in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your tutorial is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
+<li><p>The filename should be an abbreviated version of the tutorial title, formatted in kebab case (lowercase with <code>-</code> replacing spaces), for instance <code>title-of-tutorial.ipynb</code>.</p></li>
+<li><p>The following front matter metadata items are required (see the <a href="https://quarto.org/docs/tools/jupyter-lab.html#yaml-front-matter">Quarto Documentation</a> for more info):</p>
+<ul>
+<li><code>title</code>: A descriptive sentence-like title</li>
+<li><code>authors</code>: All authors that significantly contributed to the tutorial</li>
+<li><code>date</code>: Use <code>last-modified</code> to automatically render the correct date</li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unfortunately, YAML front matter is not rendered by Google Colab. Instead it is interpreted as plain markdown and the first cell of the notebook might look out of place when loaded into Google Colab. Nevertheless, the front matter results in a clean header on ProteomicsML.org, the primary platform for viewing tutorials.</p>
+</div>
+</div></li>
+<li><p>Quarto will render the title automatically from the metadata. Therefore, only subheadings should be included as markdown, starting at the second heading level (<code>##</code>).</p></li>
+<li><p>Add an <code>Open with Colab</code> badge directly after the front matter metadata. The badge should be hyperlinked to open the notebook in Colab directly from GitHub. This can be achieved by replacing <code>https://github.com/</code> with <code>https://colab.research.google.com/github/</code> in the full URL to the file on GitHub. Additionally, in this URL the filename should be prefixed with an underscore (<code>_</code>); see point 2 in <a href="#website-deployment">Website deployment</a> for more info on notebook copies for Colab.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.oogle.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/fragmentation/nist-1-parsing-spectral-library.ipynb)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>renders as</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://colab.research.oogle.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/fragmentation/nist-1-parsing-spectral-library.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The URL will not work (or be updated) until the pull request adding or updating the notebook is merged into the main branch.</p>
+</div>
+</div></li>
+</ol></li>
+<li><p>Subject and contents</p>
+<ol type="a">
+<li><p>Each tutorial should clearly show and describe one or more steps in a certain machine learning workflow for proteomics.</p></li>
+<li><p>Sufficiently describe each code cell and each step in the workflow.</p></li>
+<li><p>Tutorials should ideally be linked to a single ProteomicsML dataset from the same group.</p></li>
+<li><p>While multiple tutorials can be added for a single data type, make sure that each tutorial is sufficiently different from the others in terms of methodology and/or datasets used.</p></li>
+<li><p>References</p></li>
+</ol></li>
+<li><p>Code cells and programming language</p>
+<ol type="a">
+<li><p>Tutorials should work on all major platforms (Linux, Windows, macOS). An exception to this rule can be made if one or more tools central to the tutorial is not cross-platform.</p></li>
+<li><p>Per ProteomicsML convention, tutorials should use the Python programming language. Exceptions may be allowed if the other language is essential to the tutorial or methodology.</p></li>
+<li><p>ProteomicsML recommends Google Colab to interactively use tutorial notebooks. Therefore, all code should be backwards compatible with the Python version used by Google Colab. At time of writing, this is Python 3.7.</p></li>
+<li><p>Dependencies should ideally be installable with pip. A first code cell can be used to install all requirements using the Jupyter shell prefix <code>!</code>. For instance: <code>! pip install pandas</code>.</p></li>
+<li><p>Code should be easy to read. For Python, follow the PEP8 style guide where possible.</p></li>
+<li><p>Upon pull request (PR) creation, all expected output cells should be present. When rendering the ProteomicsML website, notebooks are not rerun. Therefore, as a final step before submitting your PR, restart the kernel, run all cells from start to finish, and save the notebook. See point 2 in <a href="#website-deployment">Website deployment</a> for more info on notebook copies for Colab.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="addingupdating-a-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="addingupdating-a-dataset">Adding/updating a dataset</h3>
+<p>ProteomicsML datasets are community-curated proteomics datasets fit for machine learning. Ideally, each dataset is accompanied by a tutorial. When adding or updating a dataset, please follow these rules and conventions:</p>
+<ol type="1">
+<li><p>Dataset description and data files:</p>
+<ol type="a">
+<li><p>Each dataset is represented as a single markdown file describing the dataset.</p></li>
+<li><p>The data itself can be added in one of three ways:</p>
+<ol type="i">
+<li><p>If the dataset itself consists of one or more files, each smaller than 50 MB, they can be added in a subfolder with the same name as the markdown file. These files should be individually gzipped to save space and to prevent line-by-line tracking by Git.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Gzipped CSV files can very easily be read by Pandas into a DataFrame. Simply use the filename with the <code>.gz</code> suffix in the <code>pandas.read_csv()</code> function and Pandas will automatically unzip the file while reading.</p>
+</div>
+</div></li>
+<li><p>Larger files can be added to the ProteomicsML FTP file server by the project maintainers. Please request this in your pull request.</p></li>
+<li><p>Files that are already publicly and persistently stored elsewhere, can be represented by solely the markdown file. In this case, all tutorials using this dataset should start from the file(s) as is and include any required preprocessing steps.</p></li>
+</ol></li>
+</ol></li>
+<li><p>Title, filename, and metadata:</p>
+<ol type="a">
+<li><p>Datasets are grouped by data type: <code>Fragmentation</code>, <code>Ion mobility</code>, or <code>Retention time</code>. Place your dataset and markdown description in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your dataset is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
+<li><p>The filename / directory name should be an abbreviated version of the dataset title, formatted in kebab case (lowercase with <code>-</code> replacing spaces), for instance <code>title-of-dataset.md</code> / <code>title-of-dataset/</code>.</p></li>
+<li><p>The following front matter metadata items are required (see the <a href="https://quarto.org/docs/tools/jupyter-lab.html#yaml-front-matter">Quarto Documentation</a> for more info):</p>
+<ul>
+<li><code>title</code>: A descriptive sentence-like title</li>
+<li><code>date</code>: Use <code>last-modified</code> to automatically render the correct date</li>
+</ul></li>
+<li><p>Quarto will render the title automatically from the metadata. Therefore, only subheadings should be included as markdown, starting at the second heading level (<code>##</code>).</p></li>
+</ol></li>
+<li><p>Dataset description</p>
+<ol type="a">
+<li><p>Attributes [TODO]</p></li>
+<li><p>Description categories [TODO]</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="opening-a-pull-request-to-add-your-contributions" class="level3">
+<h3 class="anchored" data-anchor-id="opening-a-pull-request-to-add-your-contributions">Opening a pull request to add your contributions</h3>
+<ul>
+<li>Commit and push your changes to your <a href="https://help.github.com/articles/pushing-to-a-remote/">fork</a>.</li>
+<li>Open a <a href="https://help.github.com/articles/creating-a-pull-request/">pull request</a> with these changes. Choose the pull request template that fits your changes best.</li>
+<li>The pull request should pass all the continuous integration tests which are automatically run by <a href="https://github.com/proteomicsml/proteomicsml/actions">GitHub Actions</a>.</li>
+</ul>
+</section>
+</section>
+<section id="website-deployment" class="level2">
+<h2 class="anchored" data-anchor-id="website-deployment">Website deployment</h2>
+<p>When a pull request is merged with the <code>main</code> branch, the following GitHub Actions are triggered:</p>
+<ol type="1">
+<li><strong>Test website rendering</strong>: The full website is rendered to check that no errors occur. This action should already have been run successfully for the pull request that implemented the changes. Nevertheless, merging could also introduce new issues.</li>
+<li><strong>Update notebook copies</strong>: A script is run to make copies of all tutorial notebooks with all output removed. The filenames of these copies are prepended with an underscore and should be used to open the notebooks interactively, e.g., in Google Colab.</li>
+<li><strong>Publish website</strong>: Quarto is used to render the static website, which is then force-pushed to the <a href="https://github.com/ProteomicsML/proteomicsml.github.io">ProteomicsML/proteomicsml.github.io</a> repository. This repository is served on <a href="https://www.proteomicsml.org/">proteomicsml.org</a> through GitHub Pages.</li>
+</ol>
+
+
+</section>
+</section>
+
+<p><small><i>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY 4.0</a> license.</i></small></p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/www\.proteomicsml\.org/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

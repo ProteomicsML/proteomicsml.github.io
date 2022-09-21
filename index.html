@@ -75,11 +75,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="static/custom-styles.css">
 <meta property="og:title" content="ProteomicsML - Home">
-<meta property="og:description" content="[TODO]">
+<meta property="og:description" content="ProteomicsML provides ready-made datasets for machine learning models accompanied by tutorials on how to work with even the most complex data types in the field of proteomics.">
 <meta property="og:site-name" content="ProteomicsML">
 <meta name="twitter:title" content="ProteomicsML - Home">
-<meta name="twitter:description" content="[TODO]">
+<meta name="twitter:description" content="ProteomicsML provides ready-made datasets for machine learning models accompanied by tutorials on how to work with even the most complex data types in the field of proteomics.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -113,6 +114,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./contributing.html">Contributing</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./code-of-conduct.html">Code of Conduct</a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ProteomicsML"><i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
@@ -153,15 +160,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <a href="./publication.html" class="sidebar-item-text sidebar-link">Publication</a>
   </div>
 </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./tutorials/index.html" class="sidebar-item-text sidebar-link">Tutorials</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
@@ -229,15 +235,14 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
       </ul>
   </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./datasets/index.html" class="sidebar-item-text sidebar-link">Datasets</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">Fragmentation</a>
@@ -305,6 +310,16 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contributing.html" class="sidebar-item-text sidebar-link">Contributing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code-of-conduct.html" class="sidebar-item-text sidebar-link">Code of Conduct</a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -331,7 +346,11 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 </header>
 
-<p>[TODO]</p>
+<p>ProteomicsML provides ready-made datasets for machine learning models accompanied by tutorials on how to work with even the most complex data types in the field of proteomics. The resource is setup to evolve together with the field, and we welcome everyone to contribute to the project by adding new datasets and accompanying notebooks.</p>
+<p>ProteomicsML was set up as a joint effort of <a href="https://www.sdu.dk/">SDU</a>, <a href="https://compomics.com">CompOmics</a>, <a href="https://www.lumc.nl/?setlanguage=English&amp;setcountry=en">LUMC</a>, <a href="http://www.peptideatlas.org/">PeptideAtlas</a>, <a href="https://www.nist.gov/">NIST</a>, <a href="https://www.ebi.ac.uk/pride/">PRIDE</a>, and <a href="https://www.msaid.de/">MSAID</a>. We believe that ProteomicsML is solid step for the field towards more open and reproducible science!</p>
+<p><strong>Learn</strong><br> 📒 Explore all <a href="./tutorials">tutorials</a> and <a href="./datasets">datasets</a><br> 🙏 Ask or answer questions about the tutorials in <a href="https://github.com/ProteomicsML/ProteomicsML/discussions/categories/tutorials-q-a">Tutorials Q&amp;A</a></p>
+<p><strong>Discuss</strong><br> 📄 Discuss the existing datasets or the addition of a new dataset in <a href="https://github.com/ProteomicsML/ProteomicsML/discussions/categories/dataset-discussions">Dataset Discussions</a><br> 💬 Join the ProteomicsML <a href="https://github.com/ProteomicsML/ProteomicsML/discussions/categories/general">General Discussions</a><br></p>
+<p><strong>Contribute</strong><br> 💡 Have an idea on how to improve the project? <a href="https://github.com/ProteomicsML/ProteomicsML/issues">Open an issue</a><br> 🧑‍🔧 Learn how to <a href="https://www.proteomicsml.org/contributing.html">Contribute</a><br> 🤝 Read the <a href="https://www.proteomicsml.org/code-of-conduct.html">Code of Conduct</a><br></p>
 
 
 
