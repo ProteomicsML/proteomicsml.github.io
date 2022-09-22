@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Tobias Greisager Rehfeldt">
 <meta name="dcterms.date" content="2022-09-22">
 
-<title>ProteomicsML - ProteomeTools: Manual embedding</title>
+<title>ProteomicsML - Manual embedding of Bi-LSTM model on ProteomeTools data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,10 +141,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../static/custom-styles.css">
-<meta property="og:title" content="ProteomicsML - ProteomeTools: Manual embedding">
+<meta property="og:title" content="ProteomicsML - Manual embedding of Bi-LSTM model on ProteomeTools data">
 <meta property="og:description" content="This work is licensed under a Creative Commons CC-BY 4.0 license.">
 <meta property="og:site-name" content="ProteomicsML">
-<meta name="twitter:title" content="ProteomicsML - ProteomeTools: Manual embedding">
+<meta name="twitter:title" content="ProteomicsML - Manual embedding of Bi-LSTM model on ProteomeTools data">
 <meta name="twitter:description" content="This work is licensed under a Creative Commons CC-BY 4.0 license.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -201,7 +202,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">ProteomeTools: Manual embedding</h1>
+      <h1 class="quarto-secondary-nav-title">Manual embedding of Bi-LSTM model on ProteomeTools data</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -257,7 +258,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/fragmentation/proteometools-prosit.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with ProteomeTools data</a>
+  <a href="../../tutorials/fragmentation/manual-prosit-int.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with pre-annotated ProteomeTools data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">Raw file processing with PROSIT style annotation</a>
   </div>
 </li>
       </ul>
@@ -302,12 +308,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/retentiontime/dlomix-prosit.html" class="sidebar-item-text sidebar-link">DLOmix Prosit</a>
+  <a href="../../tutorials/retentiontime/dlomix-prosit-rt.html" class="sidebar-item-text sidebar-link">DLOmix embedding of Prosit model on ProteomeTools data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/retentiontime/proteometools-manual-embedding.html" class="sidebar-item-text sidebar-link active">ProteomeTools: Manual embedding</a>
+  <a href="../../tutorials/retentiontime/manual-prosit-rt.html" class="sidebar-item-text sidebar-link active">Manual embedding of Bi-LSTM model on ProteomeTools data</a>
   </div>
 </li>
       </ul>
@@ -411,14 +417,30 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">ProteomeTools: Manual embedding</h1>
+<h1 class="title d-none d-lg-block">Manual embedding of Bi-LSTM model on ProteomeTools data</h1>
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    Tobias Greisager Rehfeldt <a href="https://orcid.org/0000-0002-1190-9485" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Southern Denmark, Odense
+          </p>
+        <p class="affiliation">
+            Department of Natural Science, Institute for Mathematics and Computer Science
+          </p>
+      </div>
+    </div>
 
 <div class="quarto-title-meta">
 
-    
+      
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
@@ -433,32 +455,26 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/retentiontime/_proteometools-manual-embedding.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/retentiontime/_dlomix_prosit.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Open In Colab</figcaption><p></p>
 </figure>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="op">%%</span>capture</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install sklearn</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install tensorflow</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dlomix</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install numpy</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install matplotlib</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas sklearn tensorflow dlomix numpy matplotlib requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and normalize/standarize data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and normalize the data</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/ProteomicsML/RetentionTime/main/datasets/ProteomeTools/Small.csv'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/retentiontime/ProteomeTools/Small.csv.gz?raw=true'</span>, compression<span class="op">=</span><span class="st">'gzip'</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># shuffle and split dataset into internal (80%) and external (20%) datasets</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(frac<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> data[<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>):]</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[:<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="389981c7-7794-4807-c07e-b0c92e8befdc">
+<div class="cell" data-outputid="389981c7-7794-4807-c07e-b0c92e8befdc" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the internal dataset into training and validation</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We have to split the data based on Sequences, to make sure we dont have cross-over sequences in the training and validation splits.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>unique_sequences <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(data[<span class="st">'Sequence'</span>]))</span>
@@ -477,7 +493,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <pre><code>Training data points: 64613   Validation data points: 15387   Testing data points: 20000</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="c1f2d7d7-59bc-4015-98cb-acab6f29cb44">
+<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>normalize <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> normalize:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalize</span></span>
@@ -491,69 +507,47 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  train[<span class="st">'Retention time'</span>] <span class="op">=</span> (train[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  validation[<span class="st">'Retention time'</span>] <span class="op">=</span> (validation[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  test_data[<span class="st">'Retention time'</span>] <span class="op">=</span> (test_data[<span class="st">'Retention time'</span>] <span class="op">-</span> np.mean(test_data[<span class="st">'Retention time'</span>])) <span class="op">/</span> np.std(test_data[<span class="st">'Retention time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  """
-/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:6: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  </code></pre>
 </div>
+<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup parameters</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>epochs<span class="op">=</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup parameters</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>epochs<span class="op">=</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual sequence embedding</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove sequences longer than our maximum sequence length</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> train[train[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> validation[validation[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> test_data[test_data[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an alphabet to convert from string to numeric</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>AA_alphabet <span class="op">=</span> {<span class="st">"A"</span>: <span class="dv">1</span>, <span class="st">"C"</span>: <span class="dv">2</span>, <span class="st">"D"</span>: <span class="dv">3</span>, <span class="st">"E"</span>: <span class="dv">4</span>, <span class="st">"F"</span>: <span class="dv">5</span>, <span class="st">"G"</span>: <span class="dv">6</span>, <span class="st">"H"</span>: <span class="dv">7</span>, <span class="st">"I"</span>: <span class="dv">8</span>, <span class="st">"K"</span>: <span class="dv">9</span>, <span class="st">"L"</span>: <span class="dv">10</span>, <span class="st">"M"</span>: <span class="dv">11</span>, <span class="st">"N"</span>: <span class="dv">12</span>, <span class="st">"P"</span>: <span class="dv">13</span>, <span class="st">"Q"</span>: <span class="dv">14</span>, <span class="st">"R"</span>: <span class="dv">15</span>, <span class="st">"S"</span>: <span class="dv">16</span>, <span class="st">"T"</span>: <span class="dv">17</span>, <span class="st">"V"</span>: <span class="dv">18</span>, <span class="st">"W"</span>: <span class="dv">19</span>, <span class="st">"Y"</span>: <span class="dv">20</span>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert sequences from string to numberic</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>embedded_sequences_train <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> train[<span class="st">'Sequence'</span>]]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>embedded_sequences_validation <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> validation[<span class="st">'Sequence'</span>]]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>embedded_sequences_test <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> test_data[<span class="st">'Sequence'</span>]]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure every sequence is the same length</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.preprocessing.sequence <span class="im">import</span> pad_sequences</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>embedded_sequences_train <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_train, maxlen<span class="op">=</span>sequence_length)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>embedded_sequences_validation <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_validation, maxlen<span class="op">=</span>sequence_length)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>embedded_sequences_test <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_test, maxlen<span class="op">=</span>sequence_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual sequence embedding</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove sequences longer than our maximum sequence length</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> train[train[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> validation[validation[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> test_data[test_data[<span class="st">'Sequence'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">&lt;=</span>sequence_length]</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an alphabet to convert from string to numeric</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>AA_alphabet <span class="op">=</span> {<span class="st">"A"</span>: <span class="dv">1</span>, <span class="st">"C"</span>: <span class="dv">2</span>, <span class="st">"D"</span>: <span class="dv">3</span>, <span class="st">"E"</span>: <span class="dv">4</span>, <span class="st">"F"</span>: <span class="dv">5</span>, <span class="st">"G"</span>: <span class="dv">6</span>, <span class="st">"H"</span>: <span class="dv">7</span>, <span class="st">"I"</span>: <span class="dv">8</span>, <span class="st">"K"</span>: <span class="dv">9</span>, <span class="st">"L"</span>: <span class="dv">10</span>, <span class="st">"M"</span>: <span class="dv">11</span>, <span class="st">"N"</span>: <span class="dv">12</span>, <span class="st">"P"</span>: <span class="dv">13</span>, <span class="st">"Q"</span>: <span class="dv">14</span>, <span class="st">"R"</span>: <span class="dv">15</span>, <span class="st">"S"</span>: <span class="dv">16</span>, <span class="st">"T"</span>: <span class="dv">17</span>, <span class="st">"V"</span>: <span class="dv">18</span>, <span class="st">"W"</span>: <span class="dv">19</span>, <span class="st">"Y"</span>: <span class="dv">20</span>}</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert sequences from string to numberic</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>embedded_sequences_train <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> train[<span class="st">'Sequence'</span>]]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>embedded_sequences_validation <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> validation[<span class="st">'Sequence'</span>]]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>embedded_sequences_test <span class="op">=</span> [[AA_alphabet[g] <span class="cf">for</span> g <span class="kw">in</span> f] <span class="cf">for</span> f <span class="kw">in</span> test_data[<span class="st">'Sequence'</span>]]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure every sequence is the same length</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.preprocessing.sequence <span class="im">import</span> pad_sequences</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>embedded_sequences_train <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_train, maxlen<span class="op">=</span>sequence_length)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>embedded_sequences_validation <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_validation, maxlen<span class="op">=</span>sequence_length)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>embedded_sequences_test <span class="op">=</span> pad_sequences(sequences<span class="op">=</span>embedded_sequences_test, maxlen<span class="op">=</span>sequence_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-outputid="05d93c24-1e0c-4140-9125-e7923f869340">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the needed layers and tensorflow model requirements</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Embedding, LSTM, Input, Concatenate, Bidirectional, Dropout</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we create a neural network with the manual embedding</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Input layer with the dimensionality of our embedded sequences</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>(sequence_length,), name<span class="op">=</span><span class="st">'Input'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Embed the sequnces in a 20 x 8 matrix</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>input_embedding <span class="op">=</span> Embedding(input_dim<span class="op">=</span><span class="bu">len</span>(AA_alphabet)<span class="op">+</span><span class="dv">2</span>, output_dim<span class="op">=</span><span class="dv">8</span>, name<span class="op">=</span><span class="st">'Sequence_Embedding'</span>)(inputs)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Throw the embedding into a Bi-directional LSTM layer with return sequence to get outputs for each input (https://keras.io/api/layers/recurrent_layers/lstm/)</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Bidirectional(LSTM(<span class="dv">32</span>, return_sequences<span class="op">=</span><span class="va">True</span>), name<span class="op">=</span><span class="st">'Bi_LSTM_1'</span>)(input_embedding)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding some dropout for regulatization purposes</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dropout(<span class="fl">0.25</span>, name<span class="op">=</span><span class="st">'LSTM_Dropout'</span>)(x)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding another Bi-directional LSTM layer without return Sequence</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Bidirectional(LSTM(<span class="dv">32</span>), name<span class="op">=</span><span class="st">'Bi_LSTM_2'</span>)(x)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an output layer with a single node and a linear regression activation function</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">"linear"</span>, name<span class="op">=</span><span class="st">'Output'</span>)(x)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model from sequence input to linear output</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs, output)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the model paramters</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="05d93c24-1e0c-4140-9125-e7923f869340" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the needed layers and tensorflow model requirements</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, Embedding, LSTM, Input, Concatenate, Bidirectional, Dropout</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> Input(shape<span class="op">=</span>(sequence_length,), name<span class="op">=</span><span class="st">'Input'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Embed the sequnces in a 20 x 8 matrix</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>input_embedding <span class="op">=</span> Embedding(input_dim<span class="op">=</span><span class="bu">len</span>(AA_alphabet)<span class="op">+</span><span class="dv">2</span>, output_dim<span class="op">=</span><span class="dv">8</span>, name<span class="op">=</span><span class="st">'Sequence_Embedding'</span>)(inputs)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Bidirectional(LSTM(<span class="dv">32</span>, return_sequences<span class="op">=</span><span class="va">True</span>), name<span class="op">=</span><span class="st">'Bi_LSTM_1'</span>)(input_embedding)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dropout(<span class="fl">0.25</span>, name<span class="op">=</span><span class="st">'LSTM_Dropout'</span>)(x)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Bidirectional(LSTM(<span class="dv">32</span>), name<span class="op">=</span><span class="st">'Bi_LSTM_2'</span>)(x)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">"linear"</span>, name<span class="op">=</span><span class="st">'Output'</span>)(x)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs, output)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: "model_1"
 _________________________________________________________________
@@ -579,13 +573,13 @@ Non-trainable params: 0
 _________________________________________________________________</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="7d2874e7-4342-4c41-e9fd-725f359eaf05">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiling the keras model with loss function, metrics and optimizer</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, metrics<span class="op">=</span>[<span class="st">'mae'</span>], optimizer<span class="op">=</span>tf.keras.optimizers.Adam(learning_rate<span class="op">=</span><span class="fl">0.005</span>))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>embedded_sequences_train, y<span class="op">=</span>train[<span class="st">'Retention time'</span>], epochs<span class="op">=</span>epochs, </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                    batch_size<span class="op">=</span>batch_size, validation_data<span class="op">=</span>(embedded_sequences_validation, validation[<span class="st">'Retention time'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="7d2874e7-4342-4c41-e9fd-725f359eaf05" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiling the keras model with loss function, metrics and optimizer</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">'mse'</span>, metrics<span class="op">=</span>[<span class="st">'mae'</span>], optimizer<span class="op">=</span>tf.keras.optimizers.Adam(learning_rate<span class="op">=</span><span class="fl">0.005</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>embedded_sequences_train, y<span class="op">=</span>train[<span class="st">'Retention time'</span>], epochs<span class="op">=</span>epochs, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                    batch_size<span class="op">=</span>batch_size, validation_data<span class="op">=</span>(embedded_sequences_validation, validation[<span class="st">'Retention time'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10
 983/983 [==============================] - 26s 19ms/step - loss: 0.0073 - mae: 0.0556 - val_loss: 0.0036 - val_mae: 0.0406
@@ -609,33 +603,33 @@ Epoch 10/10
 983/983 [==============================] - 13s 13ms/step - loss: 0.0021 - mae: 0.0276 - val_loss: 0.0025 - val_mae: 0.0347</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="dde65102-061f-408c-f2ab-37cb7e183649">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the training history </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'val_loss'</span>], <span class="st">'--'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Validation loss'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Training and validation loss across epochs'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="dde65102-061f-408c-f2ab-37cb7e183649" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the training history </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'val_loss'</span>], <span class="st">'--'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Validation loss'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Training and validation loss across epochs'</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="proteometools-manual-embedding_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="manual-prosit-rt_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="5051f092-57d8-4086-83d8-a37f7fd8da3d">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initially we trained on just one gradient, to transfer this model to external datasets, </span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we refine the model by using the model we just trained as a pre-trained model, and then further train it with the test/external dataset</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>embedded_sequences_test, y<span class="op">=</span>test_data[<span class="st">'Retention time'</span>], epochs<span class="op">=</span>epochs, batch_size<span class="op">=</span>batch_size)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The model can now be used for other datasets with the same gradient set-up</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We then plot the history of this model, and see the initial performance is much better, </span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as the model already has some gradient agnostic knowledge, and it simply has to learn the new gradients</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Training and validation loss of the refined model'</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="5051f092-57d8-4086-83d8-a37f7fd8da3d" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initially we trained on just one gradient, to transfer this model to external datasets, </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we refine the model by using the model we just trained as a pre-trained model, and then further train it with the test/external dataset</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>embedded_sequences_test, y<span class="op">=</span>test_data[<span class="st">'Retention time'</span>], epochs<span class="op">=</span>epochs, batch_size<span class="op">=</span>batch_size)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The model can now be used for other datasets with the same gradient set-up</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We then plot the history of this model, and see the initial performance is much better, </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as the model already has some gradient agnostic knowledge, and it simply has to learn the new gradients</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Training and validation loss of the refined model'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epochs'</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10
 306/306 [==============================] - 4s 12ms/step - loss: 0.0021 - mae: 0.0285
@@ -659,7 +653,7 @@ Epoch 10/10
 306/306 [==============================] - 4s 12ms/step - loss: 0.0017 - mae: 0.0262</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="proteometools-manual-embedding_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+<p><img src="manual-prosit-rt_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 

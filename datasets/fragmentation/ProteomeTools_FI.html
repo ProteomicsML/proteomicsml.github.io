@@ -78,10 +78,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../../static/custom-styles.css">
 <meta property="og:title" content="ProteomicsML - ProteomeTools">
-<meta property="og:description" content="The ProteomeTools project aims to derive molecular and digital tools from the human proteome to facilitate biomedical and life science research.">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="ProteomicsML">
 <meta name="twitter:title" content="ProteomicsML - ProteomeTools">
-<meta name="twitter:description" content="The ProteomeTools project aims to derive molecular and digital tools from the human proteome to facilitate biomedical and life science research.">
+<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -194,7 +194,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/fragmentation/proteometools-prosit.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with ProteomeTools data</a>
+  <a href="../../tutorials/fragmentation/manual-prosit-int.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with pre-annotated ProteomeTools data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">Raw file processing with PROSIT style annotation</a>
   </div>
 </li>
       </ul>
@@ -239,12 +244,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/retentiontime/dlomix-prosit.html" class="sidebar-item-text sidebar-link">DLOmix Prosit</a>
+  <a href="../../tutorials/retentiontime/dlomix-prosit-rt.html" class="sidebar-item-text sidebar-link">DLOmix embedding of Prosit model on ProteomeTools data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/retentiontime/proteometools-manual-embedding.html" class="sidebar-item-text sidebar-link">ProteomeTools: Manual embedding</a>
+  <a href="../../tutorials/retentiontime/manual-prosit-rt.html" class="sidebar-item-text sidebar-link">Manual embedding of Bi-LSTM model on ProteomeTools data</a>
   </div>
 </li>
       </ul>
@@ -345,7 +350,8 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#attributes" id="toc-attributes" class="nav-link active" data-scroll-target="#attributes">Attributes</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link active" data-scroll-target="#downloads">Downloads</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data description</a></li>
   <li><a href="#sample-protocol-description" id="toc-sample-protocol-description" class="nav-link" data-scroll-target="#sample-protocol-description">Sample protocol description</a></li>
   <li><a href="#data-analysis-protocol" id="toc-data-analysis-protocol" class="nav-link" data-scroll-target="#data-analysis-protocol">Data analysis protocol</a></li>
@@ -378,6 +384,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 </header>
 
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<p><a href="https://figshare.com/ndownloader/files/12506534"><img src="https://img.shields.io/badge/download-training%20dataset-008080?style=flat-square.png" class="img-fluid"></a><br> <a href="https://figshare.com/ndownloader/files/12785291"><img src="https://img.shields.io/badge/download-holdout%20dataset-008080?style=flat-square.png" class="img-fluid"></a></p>
+</section>
 <section id="attributes" class="level3">
 <h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
 <ul>
@@ -388,7 +398,8 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <li>ML publication: https://doi.org/10.1038/s41592-019-0426-7</li>
 <li>source dataset identifier: PXD004732</li>
 <li>species: Homo sapiens (human)</li>
-<li>size: Train (4.87 GB). Holdout (250 MB)</li>
+<li>size: Subset: Train (4.87 GB). Holdout (250 MB). Non-Tryptic:<br>
+</li>
 <li>format: hdf5</li>
 <li>columns:</li>
 <li>mass modifications: unmodified &amp; oxidation</li>
@@ -410,7 +421,9 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <section id="comments" class="level3">
 <h3 class="anchored" data-anchor-id="comments">Comments</h3>
 <ul>
-<li>Data on <a href="https://figshare.com/articles/dataset/ProteomeTools_-_Prosit_fragmentation_-_Data/6860261">FigShare</a></li>
+<li>Subset <a href="https://figshare.com/articles/dataset/ProteomeTools_-_Prosit_fragmentation_-_Data/6860261">FigShare</a></li>
+<li>Full <a href="https://figshare.com/articles/dataset/ProteomeTools_non_tryptic_-_Prosit_fragmentation_-_Data/12937092">FigShare</a></li>
+<li>Trained Model <a href="https://figshare.com/articles/dataset/Prosit_-_Model_-_Fragmentation/6965753">FigShare</a></li>
 </ul>
 
 
