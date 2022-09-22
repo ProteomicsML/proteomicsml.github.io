@@ -1,5 +1,17 @@
 [
   {
+    "listing": "/datasets/index.html",
+    "items": [
+      "/datasets/fragmentation/NIST.html",
+      "/datasets/fragmentation/ProteomeTools_FI.html",
+      "/datasets/ionmobility/Meier_TIMS.html",
+      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
+      "/datasets/retentiontime/DLOmix.html",
+      "/datasets/retentiontime/ProteomeTools_RT.html",
+      "/datasets/retentiontime/Sharma_HeLa_RT.html"
+    ]
+  },
+  {
     "listing": "/tutorials/index.html",
     "items": [
       "/tutorials/fragmentation/nist-1-parsing-spectral-library.html",
@@ -10,18 +22,6 @@
       "/tutorials/ionmobility/meier-tims-ccs.html",
       "/tutorials/retentiontime/dlomix-prosit-rt.html",
       "/tutorials/retentiontime/manual-prosit-rt.html"
-    ]
-  },
-  {
-    "listing": "/datasets/index.html",
-    "items": [
-      "/datasets/fragmentation/NIST.html",
-      "/datasets/fragmentation/ProteomeTools_FI.html",
-      "/datasets/ionmobility/Meier_TIMS.html",
-      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
-      "/datasets/retentiontime/DLOmix.html",
-      "/datasets/retentiontime/ProteomeTools_RT.html",
-      "/datasets/retentiontime/Sharma_HeLa_RT.html"
     ]
   }
 ]
