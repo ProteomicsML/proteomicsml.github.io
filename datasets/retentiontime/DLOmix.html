@@ -230,7 +230,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/proteinvisibility/Modeling protein detectability.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../../tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
   </div>
 </li>
       </ul>
@@ -352,6 +352,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
    
   <ul>
   <li><a href="#download" id="toc-download" class="nav-link active" data-scroll-target="#download">Download</a></li>
+  <li><a href="#dataset-descriptions" id="toc-dataset-descriptions" class="nav-link" data-scroll-target="#dataset-descriptions">Dataset Descriptions</a></li>
   <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data description</a></li>
   <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
@@ -387,6 +388,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="download">Download</h3>
 <p><a href="https://github.com/wilhelm-lab/dlomix/blob/develop/example_dataset/proteomTools_test.csv?raw=true"><img src="https://img.shields.io/badge/download-training%20dataset-008080?style=flat-square.png" class="img-fluid"></a><br> <a href="https://github.com/wilhelm-lab/dlomix/blob/develop/example_dataset/proteomTools_train.csv?raw=true"><img src="https://img.shields.io/badge/download-validation%20dataset-008080?style=flat-square.png" class="img-fluid"></a><br> <a href="https://github.com/wilhelm-lab/dlomix/blob/develop/example_dataset/proteomTools_train_val.csv?raw=true"><img src="https://img.shields.io/badge/download-train/val%20dataset-008080?style=flat-square.png" class="img-fluid"></a><br> <a href="https://github.com/wilhelm-lab/dlomix/blob/develop/example_dataset/proteomTools_val.csv?raw=true"><img src="https://img.shields.io/badge/download-testing%20dataset-008080?style=flat-square.png" class="img-fluid"></a><br></p>
 </section>
+<section id="dataset-descriptions" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-descriptions">Dataset Descriptions</h3>
+<p>This is a direct subset of the ProteomeTools dataset with computed iRTs instead of retention times. The total data contains ~27.200 peptides and is mainly useful for teaching purposes - Training: Containing 27.160 peptides - Validation: Containing 6.800 peptides - Testing: Containing 6.000 peptides - Train/val: Containing 27.200 peptides.</p>
+</section>
 <section id="attributes" class="level3">
 <h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
 <ul>
@@ -397,7 +402,6 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <li>ML publication: <unknown></unknown></li>
 <li>source dataset identifier: <unknown></unknown></li>
 <li>species: Homo sapiens (human)</li>
-<li>size: 27160 in train, 6800 in validation, 6000 in test, and 27200 in train/val</li>
 <li>format: CSV</li>
 <li>columns: peptide sequence, iRT calibrated retention time (~minutes)</li>
 <li>chromatography_column_type: <unknown></unknown></li>
