@@ -1224,71 +1224,73 @@ Length: 441, dtype: int64</code></pre>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>error_filter_perc_threshold <span class="op">=</span> <span class="bu">max</span>(retention_df[run_highest_overlap_score])<span class="op">*</span>error_filter_perc</span>
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over runs sorted by a penalty score</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx,align_name <span class="kw">in</span> (pbar :<span class="op">=</span> tqdm(<span class="bu">enumerate</span>(score_per_run.sort_values(ascending<span class="op">=</span><span class="va">True</span>)[<span class="dv">1</span>:].index))):</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update progressbar</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    pbar.set_description(<span class="ss">f"Processing </span><span class="sc">{</span>align_name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check overlap between peptidoforms</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    non_na_sel <span class="op">=</span> (retention_df[align_name].notna()) <span class="op">&amp;</span> (retention_df[run_highest_overlap_score].notna())</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Continue if insufficient overlapping peptides</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(retention_df[run_highest_overlap_score][non_na_sel].index) <span class="op">&lt;</span> min_overlap:</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check spread of overlapping peptidoforms, continue if not sufficient</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">len</span>(<span class="bu">set</span>(pd.cut(retention_df[align_name][non_na_sel], coverage_div, include_lowest <span class="op">=</span> <span class="va">True</span>))) <span class="op">/</span> coverage_div) <span class="op">&lt;</span> min_coverage:</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit the GAM</span></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    gam_model_cv <span class="op">=</span> LinearGAM(s(<span class="dv">0</span>, n_splines<span class="op">=</span>num_splines), constraints<span class="op">=</span>constraints, verbose<span class="op">=</span><span class="va">True</span>).fit(</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>                                                            retention_df[align_name][non_na_sel], </span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>                                                            retention_df[run_highest_overlap_score][non_na_sel])</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot results alignment</span></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> idx <span class="op">%</span> plot_res_every_n <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>        plot_performance(</span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>            retention_df,</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>            non_na_sel</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>        plot_residual(</span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>            non_na_sel</span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate errors and create filter that can be used in the second stage</span></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> <span class="bu">abs</span>(gam_model_cv.predict(retention_df[align_name][non_na_sel])<span class="op">-</span>retention_df[run_highest_overlap_score][non_na_sel])</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>    error_filter <span class="op">=</span> errors <span class="op">&lt;</span> error_filter_perc_threshold</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform a second stage GAM removing high error from previous fit</span></span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> perform_second_stage_robust:</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>        gam_model_cv <span class="op">=</span> LinearGAM(s(<span class="dv">0</span>, n_splines<span class="op">=</span>num_splines), constraints<span class="op">=</span>constraints, verbose<span class="op">=</span><span class="va">True</span>).fit(</span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>                                                                retention_df[align_name][non_na_sel][error_filter], </span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>                                                                retention_df[run_highest_overlap_score][non_na_sel][error_filter])</span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> idx <span class="op">%</span> plot_res_every_n <span class="op">==</span> <span class="dv">0</span>  <span class="kw">or</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>            plot_residual(</span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>            non_na_sel,</span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">"Residual plot second stage GAM"</span></span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write alignment to new matrix</span></span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>    retention_df_aligned.loc[retention_df[align_name].notna(),align_name] <span class="op">=</span> gam_model_cv.predict(retention_df.loc[retention_df[align_name].notna(),align_name])</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>    unique_peptides.extend(<span class="bu">list</span>(retention_df[retention_df[align_name].notna()].index))</span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>    keep_cols.append(align_name)</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create reference set based on aligned retention times</span></span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>    retention_df[<span class="st">"median_aligned"</span>] <span class="op">=</span> retention_df_aligned[keep_cols].median(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>    run_highest_overlap_score <span class="op">=</span> <span class="st">"median_aligned"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># For version 3.8 or later uncomment the for loop below and comment the other for loop; also uncomment the line after update progressbar</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">#for idx,align_name in (pbar := tqdm(enumerate(score_per_run.sort_values(ascending=True)[1:].index))):</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx,align_name <span class="kw">in</span> tqdm(<span class="bu">enumerate</span>(score_per_run.sort_values(ascending<span class="op">=</span><span class="va">True</span>)[<span class="dv">1</span>:].index)):</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update progressbar</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">#pbar.set_description(f"Processing {align_name}")</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check overlap between peptidoforms</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    non_na_sel <span class="op">=</span> (retention_df[align_name].notna()) <span class="op">&amp;</span> (retention_df[run_highest_overlap_score].notna())</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Continue if insufficient overlapping peptides</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(retention_df[run_highest_overlap_score][non_na_sel].index) <span class="op">&lt;</span> min_overlap:</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check spread of overlapping peptidoforms, continue if not sufficient</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">len</span>(<span class="bu">set</span>(pd.cut(retention_df[align_name][non_na_sel], coverage_div, include_lowest <span class="op">=</span> <span class="va">True</span>))) <span class="op">/</span> coverage_div) <span class="op">&lt;</span> min_coverage:</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit the GAM</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    gam_model_cv <span class="op">=</span> LinearGAM(s(<span class="dv">0</span>, n_splines<span class="op">=</span>num_splines), constraints<span class="op">=</span>constraints, verbose<span class="op">=</span><span class="va">True</span>).fit(</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>                                                            retention_df[align_name][non_na_sel], </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>                                                            retention_df[run_highest_overlap_score][non_na_sel])</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot results alignment</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> idx <span class="op">%</span> plot_res_every_n <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        plot_performance(</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>            retention_df,</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>            non_na_sel</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        plot_residual(</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>            non_na_sel</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate errors and create filter that can be used in the second stage</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>    errors <span class="op">=</span> <span class="bu">abs</span>(gam_model_cv.predict(retention_df[align_name][non_na_sel])<span class="op">-</span>retention_df[run_highest_overlap_score][non_na_sel])</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>    error_filter <span class="op">=</span> errors <span class="op">&lt;</span> error_filter_perc_threshold</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform a second stage GAM removing high error from previous fit</span></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> perform_second_stage_robust:</span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>        gam_model_cv <span class="op">=</span> LinearGAM(s(<span class="dv">0</span>, n_splines<span class="op">=</span>num_splines), constraints<span class="op">=</span>constraints, verbose<span class="op">=</span><span class="va">True</span>).fit(</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>                                                                retention_df[align_name][non_na_sel][error_filter], </span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>                                                                retention_df[run_highest_overlap_score][non_na_sel][error_filter])</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> idx <span class="op">%</span> plot_res_every_n <span class="op">==</span> <span class="dv">0</span>  <span class="kw">or</span> idx <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>            plot_residual(</span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>            run_highest_overlap_score,</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>            align_name,</span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>            non_na_sel,</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">"Residual plot second stage GAM"</span></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Write alignment to new matrix</span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>    retention_df_aligned.loc[retention_df[align_name].notna(),align_name] <span class="op">=</span> gam_model_cv.predict(retention_df.loc[retention_df[align_name].notna(),align_name])</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>    unique_peptides.extend(<span class="bu">list</span>(retention_df[retention_df[align_name].notna()].index))</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>    keep_cols.append(align_name)</span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create reference set based on aligned retention times</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>    retention_df[<span class="st">"median_aligned"</span>] <span class="op">=</span> retention_df_aligned[keep_cols].median(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>    run_highest_overlap_score <span class="op">=</span> <span class="st">"median_aligned"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Processing 20200319_SJ_QEx_LC1200_4_Sommerfeld_OC186_HPMC_50Asc_499: : 0it [00:00, ?it/s]</code></pre>
 </div>
