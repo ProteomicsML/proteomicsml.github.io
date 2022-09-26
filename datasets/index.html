@@ -64,6 +64,34 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-detectability-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: [],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-detectability-listing'] = new List('listing-detectability-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-fragmentation-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -106,34 +134,6 @@ ul.task-list li input[type="checkbox"] {
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-ionmobility-listing'] = new List('listing-ionmobility-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-proteinvisibility-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-proteinvisibility-listing'] = new List('listing-proteinvisibility-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -287,12 +287,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Detectability</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -322,22 +337,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Protein visibility</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Ion mobility</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -345,7 +345,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
   </div>
 </li>
       </ul>
@@ -435,17 +435,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">date: last-modified</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -478,7 +478,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <ul>
   <li><a href="#fragmentation" id="toc-fragmentation" class="nav-link active" data-scroll-target="#fragmentation">Fragmentation</a></li>
   <li><a href="#ion-mobility" id="toc-ion-mobility" class="nav-link" data-scroll-target="#ion-mobility">Ion mobility</a></li>
-  <li><a href="#protein-visibility" id="toc-protein-visibility" class="nav-link" data-scroll-target="#protein-visibility">Protein visibility</a></li>
+  <li><a href="#detectability" id="toc-detectability" class="nav-link" data-scroll-target="#detectability">Detectability</a></li>
   <li><a href="#retention-time" id="toc-retention-time" class="nav-link" data-scroll-target="#retention-time">Retention time</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/datasets/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -519,22 +519,22 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579435" data-listing-reading-time-sort="0.285" data-listing-title-sort="NIST Peptide libraries" data-listing-filename-sort="NIST.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106724" data-listing-reading-time-sort="0.285" data-listing-title-sort="NIST Peptide libraries" data-listing-filename-sort="NIST.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/fragmentation/NIST.html" class="title">NIST Peptide libraries</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579439" data-listing-reading-time-sort="0.95" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_FI.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106724" data-listing-reading-time-sort="0.94" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_FI.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/fragmentation/ProteomeTools_FI.html" class="title">ProteomeTools</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
 </tbody>
@@ -561,22 +561,22 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579467" data-listing-reading-time-sort="2.99" data-listing-title-sort="Meier et al. TIMS" data-listing-filename-sort="Meier_TIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106760" data-listing-reading-time-sort="2.965" data-listing-title-sort="Meier et al. TIMS" data-listing-filename-sort="Meier_TIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/ionmobility/Meier_TIMS.html" class="title">Meier et al.&nbsp;TIMS</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579467" data-listing-reading-time-sort="1.98" data-listing-title-sort="Van Puyvelde et al. TWIMS" data-listing-filename-sort="VanPuyvelde_TWIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106760" data-listing-reading-time-sort="1.98" data-listing-title-sort="Van Puyvelde et al. TWIMS" data-listing-filename-sort="VanPuyvelde_TWIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/ionmobility/VanPuyvelde_TWIMS.html" class="title">Van Puyvelde et al.&nbsp;TWIMS</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
 </tbody>
@@ -587,9 +587,9 @@ No matching items
 </div>
 </div>
 </section>
-<section id="protein-visibility" class="level2">
-<h2 class="anchored" data-anchor-id="protein-visibility">Protein visibility</h2>
-<div id="listing-proteinvisibility-listing" class="quarto-listing quarto-listing-container-table">
+<section id="detectability" class="level2">
+<h2 class="anchored" data-anchor-id="detectability">Detectability</h2>
+<div id="listing-detectability-listing" class="quarto-listing quarto-listing-container-table">
 
 <table class="quarto-listing-table table table-hover">
 <thead>
@@ -627,39 +627,40 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579467" data-listing-reading-time-sort="0.585" data-listing-title-sort="DLOmix" data-listing-filename-sort="DLOmix.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106764" data-listing-reading-time-sort="0.56" data-listing-title-sort="DLOmix" data-listing-filename-sort="DLOmix.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/retentiontime/DLOmix.html" class="title">DLOmix</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579551" data-listing-reading-time-sort="1.305" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106764" data-listing-reading-time-sort="1.24" data-listing-title-sort="PXD028248" data-listing-filename-sort="PXD028248.md" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td class="listing-title">
+<a href="../datasets/retentiontime/PXD028248.html" class="title">PXD028248</a>
+</td>
+<td class="listing-date">
+Sep 26, 2022
+</td>
+</tr>
+<tr data-index="2" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106852" data-listing-reading-time-sort="1.335" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/retentiontime/ProteomeTools_RT.html" class="title">ProteomeTools</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
+Sep 26, 2022
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1664112579000" data-listing-file-modified-sort="1664112579551" data-listing-reading-time-sort="1.035" data-listing-title-sort="Sharma et al. HeLa" data-listing-filename-sort="Sharma_HeLa_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-listing-date-sort="1664192106000" data-listing-file-modified-sort="1664192106852" data-listing-reading-time-sort="1.035" data-listing-title-sort="Sharma et al. HeLa" data-listing-filename-sort="Sharma_HeLa_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../datasets/retentiontime/Sharma_HeLa_RT.html" class="title">Sharma et al.&nbsp;HeLa</a>
 </td>
 <td class="listing-date">
-Sep 25, 2022
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1664112579467" data-listing-reading-time-sort="1.28" data-listing-title-sort="date: last-modified" data-listing-filename-sort="PXD028248.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/retentiontime/PXD028248.html" class="title">date: last-modified</a>
-</td>
-<td class="listing-date">
+Sep 26, 2022
 </td>
 </tr>
 </tbody>

@@ -21,9 +21,9 @@
       "/datasets/ionmobility/Meier_TIMS.html",
       "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
       "/datasets/retentiontime/DLOmix.html",
+      "/datasets/retentiontime/PXD028248.html",
       "/datasets/retentiontime/ProteomeTools_RT.html",
-      "/datasets/retentiontime/Sharma_HeLa_RT.html",
-      "/datasets/retentiontime/PXD028248.html"
+      "/datasets/retentiontime/Sharma_HeLa_RT.html"
     ]
   }
 ]

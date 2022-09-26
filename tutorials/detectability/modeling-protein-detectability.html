@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Eric Deutsch">
-<meta name="dcterms.date" content="2022-09-25">
+<meta name="dcterms.date" content="2022-09-26">
 
 <title>ProteomicsML - Modelling protein detectability with an MLP</title>
 <style>
@@ -236,12 +236,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Detectability</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link active">Modelling protein detectability with an MLP</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -271,30 +286,15 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Ion mobility</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Protein visibility</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link active">Modelling protein detectability with an MLP</a>
   </div>
 </li>
       </ul>
@@ -384,17 +384,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">date: last-modified</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -427,7 +427,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/tutorials/proteinvisibility/modeling-protein-detectability.ipynb" class="toc-action">View source</a></p><p><a href="https://github.dev/ProteomicsML/ProteomicsML/blob/main/tutorials/proteinvisibility/modeling-protein-detectability.ipynb" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/tutorials/detectability/modeling-protein-detectability.ipynb" class="toc-action">View source</a></p><p><a href="https://github.dev/ProteomicsML/ProteomicsML/blob/main/tutorials/detectability/modeling-protein-detectability.ipynb" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -458,7 +458,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 25, 2022</p>
+      <p class="date">September 26, 2022</p>
     </div>
   </div>
     
@@ -469,7 +469,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/proteinvisibility/_modeling-protein-detectability.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/detectability/_modeling-protein-detectability.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Open In Colab</figcaption><p></p>
 </figure>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tobias Greisager Rehfeldt">
-<meta name="dcterms.date" content="2022-09-25">
+<meta name="dcterms.date" content="2022-09-26">
 
 <title>ProteomicsML - DLOmix embedding of Prosit model on ProteomeTools data</title>
 <style>
@@ -234,12 +234,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Detectability</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -269,22 +284,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Protein visibility</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Ion mobility</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -292,7 +292,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
   </div>
 </li>
       </ul>
@@ -382,17 +382,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">date: last-modified</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -453,7 +453,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 25, 2022</p>
+      <p class="date">September 26, 2022</p>
     </div>
   </div>
     

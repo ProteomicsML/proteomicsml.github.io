@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robbin Bouwmeester">
-<meta name="dcterms.date" content="2022-09-25">
+<meta name="dcterms.date" content="2022-09-26">
 
 <title>ProteomicsML - Preparing a retention time data set for machine learning</title>
 <style>
@@ -239,12 +239,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Detectability</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -274,22 +289,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Protein visibility</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Ion mobility</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -297,7 +297,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
   </div>
 </li>
       </ul>
@@ -387,17 +387,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">date: last-modified</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,7 +468,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 25, 2022</p>
+      <p class="date">September 26, 2022</p>
     </div>
   </div>
     
@@ -484,7 +484,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </div>
 <section id="preparing-a-retention-time-data-set-for-machine-learning" class="level1">
 <h1>Preparing a retention time data set for machine learning</h1>
-<div class="cell" data-execution_count="1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip if pygam already installed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install pygam</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -499,7 +499,7 @@ Requirement already satisfied: tqdm in c:\users\robbin\anaconda3\envs\py310\lib\
 Requirement already satisfied: colorama in c:\users\robbin\anaconda3\envs\py310\lib\site-packages (from tqdm) (0.4.5)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -518,7 +518,7 @@ Requirement already satisfied: colorama in c:\users\robbin\anaconda3\envs\py310\
 <section id="reading-and-formatting-input-data" class="level2">
 <h2 class="anchored" data-anchor-id="reading-and-formatting-input-data">Reading and formatting input data</h2>
 <p>We will not need all the columns, define those that might be useful:</p>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sel_columns <span class="op">=</span> [</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Raw file'</span>, <span class="st">'Sequence'</span>, <span class="st">'Length'</span>, <span class="st">'Modifications'</span>, <span class="st">'Modified sequence'</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Retention time'</span>,<span class="st">'Retention length'</span>,<span class="st">'Calibrated retention time'</span>,</span>
@@ -530,16 +530,16 @@ Requirement already satisfied: colorama in c:\users\robbin\anaconda3\envs\py310\
 <pre class="pd.read_csv(&quot;evid_files/pxd028248_evidence_selected_columns.csv&quot;,sep=&quot;\t&quot;,low_memory=false)```"><code>
 Fill all the NA values with 0.0 and filter on only the most confident identificaitons (PEP &lt;= 0.001).
 
-::: {.cell execution_count=4}
+::: {.cell}
 ``` {.python .cell-code}
 evid_df = pd.read_csv("https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/retentiontime/PXD028248/PXD028248_evidence_selected_columns.zip?raw=true",compression="zip",low_memory=False)
 evid_df.fillna(0.0,inplace=True)
 evid_df = evid_df[evid_df["PEP"] &lt;= 0.001][sel_columns]</code></pre>
 <p>:::</p>
 <p>The file in a pandas dataframe looks like this:</p>
-<div class="cell" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>evid_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 
 <div>
 
@@ -758,7 +758,7 @@ evid_df = evid_df[evid_df["PEP"] &lt;= 0.001][sel_columns]</code></pre>
 </div>
 </div>
 <p>As you can see in this example there are many of the same peptidoforms (minus charge) for the different runs. We will want to create a single value for each peptidoform per run in a matrix instead of a single peptidoform+run combo per row.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>retention_dict <span class="op">=</span> {}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by the raw file</span></span>
@@ -770,7 +770,7 @@ evid_df = evid_df[evid_df["PEP"] &lt;= 0.001][sel_columns]</code></pre>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>retention_df <span class="op">=</span> pd.DataFrame(retention_dict)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>retention_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 
 <div>
 
@@ -1073,7 +1073,7 @@ evid_df = evid_df[evid_df["PEP"] &lt;= 0.001][sel_columns]</code></pre>
 </div>
 </div>
 <p>We can than have a look at the absence of each peptidoform in all runs (value = absence in that many runs):</p>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prevelence_peptides <span class="op">=</span> retention_df.isna().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prevelence_peptides)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1092,10 +1092,10 @@ Length: 49983, dtype: int64</code></pre>
 </div>
 </div>
 <p>We can penalize the absence the absence of highly abundant peptidoforms per run (lower = more abundant peptidoforms present) by taking the dot product of presence/absence in the matrix and the above absence scores:</p>
-<div class="cell" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>score_per_run <span class="op">=</span> retention_df.isna().astype(<span class="bu">int</span>).T.dot(prevelence_peptides)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>score_per_run.sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>20200319_SJ_QEx_LC1200_4_Sommerfeld_OC186_HPMC_50Asc_498     18417985
 20200319_SJ_QEx_LC1200_4_Sommerfeld_OC186_HPMC_50Asc_499     18633580
 20200319_SJ_QEx_LC1200_4_Sommerfeld_OC186_HPMC_50Asc_502     18802678
@@ -1111,7 +1111,7 @@ Length: 441, dtype: int64</code></pre>
 </div>
 </div>
 <p>We will use a single run to align all the first experiments against, this is the one with the lowest penalty score:</p>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>run_highest_overlap_score <span class="op">=</span> score_per_run.sort_values(ascending<span class="op">=</span><span class="va">True</span>).index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1129,7 +1129,7 @@ Length: 441, dtype: int64</code></pre>
 <li>Change the reference dataset to be the median of all aligned runs and the initial reference run</li>
 </ol>
 <p>In the next code block we will define two kinds of plots, first a performance scatter plot. Here we plot the retention time of the selected set against the reference set; before and after alignment. Next is the residual plot that subtracts the diagonal from the performance scatter plot and essentially shows the errors before and after alignment. The residual plot is generated for both the first and second stage GAM.</p>
-<div class="cell" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_performance(retention_df,run_highest_overlap_score,align_name,non_na_sel):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        plt.scatter(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                    retention_df[run_highest_overlap_score][non_na_sel],</span>
@@ -1199,7 +1199,7 @@ Length: 441, dtype: int64</code></pre>
 <span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>        plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#constraints = "monotonic_inc"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> <span class="st">"none"</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1344,9 +1344,9 @@ Length: 441, dtype: int64</code></pre>
 </div>
 </div>
 <p>The data points acquired looks as the following vector:</p>
-<div class="cell" data-execution_count="12">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>retention_df_aligned[keep_cols].median(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display">
 <pre><code>_(Acetyl (Protein N-term))ACGLVASNLNLKPGECLR_                           70.639004
 _(Acetyl (Protein N-term))AEEGIAAGGVM(Oxidation (M))DVNTALQEVLK_       118.580954
 _(Acetyl (Protein N-term))AGWNAYIDNLM(Oxidation (M))ADGTCQDAAIVGYK_    106.010118
@@ -1362,7 +1362,7 @@ Length: 49983, dtype: float64</code></pre>
 </div>
 </div>
 <p>If we look at the standard deviation we can see that this is still relatively large for some peptidoforms:</p>
-<div class="cell" data-execution_count="13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.hist(retention_df_aligned[keep_cols].std(axis<span class="op">=</span><span class="dv">1</span>),bins<span class="op">=</span><span class="dv">500</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Standard deviation retention time"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
@@ -1379,7 +1379,7 @@ Length: 49983, dtype: float64</code></pre>
 </div>
 </div>
 <p>In addition to the std there is another factor that can play a big role, the amount of times a peptidoform was observed:</p>
-<div class="cell" data-execution_count="14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.hist(retention_df_aligned[keep_cols].notna().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),bins<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Count peptidoforms across runs"</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
@@ -1396,7 +1396,7 @@ Length: 49983, dtype: float64</code></pre>
 </div>
 </div>
 <p>If we plot both values against each other we get the following plot (the lines indicate possible thresholds):</p>
-<div class="cell" data-execution_count="15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    retention_df_aligned[keep_cols].notna().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    retention_df_aligned[keep_cols].std(axis<span class="op">=</span><span class="dv">1</span>),</span>
@@ -1427,7 +1427,7 @@ Length: 49983, dtype: float64</code></pre>
 </div>
 </div>
 <p>If we set a threshold for a minimum of 5 observations and a maximum standard deviation of 2 we get the following final data set. Here we take the median for each peptidoform across all runs:</p>
-<div class="cell" data-execution_count="16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>min_observations <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>max_std <span class="op">=</span> <span class="fl">2.0</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1435,7 +1435,7 @@ Length: 49983, dtype: float64</code></pre>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>std_filter <span class="op">=</span> retention_df_aligned[keep_cols].std(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;</span> max_std</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>retention_df_aligned[keep_cols][(observation_filter) <span class="op">&amp;</span> (std_filter)].median(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display">
 <pre><code>_(Acetyl (Protein N-term))SDAAVDTSSEITTK_     28.451475
 _AADDTWEPFASGK_                               54.339311
 _AAGVNVEPFWPGLFAK_                           104.666562

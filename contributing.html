@@ -228,12 +228,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Fragmentation</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Detectability</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Fragmentation</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
@@ -263,22 +278,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Ion mobility</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Protein visibility</a>
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Ion mobility</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -286,7 +286,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/proteinvisibility/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  <a href="./tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
   </div>
 </li>
       </ul>
@@ -376,17 +376,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">date: last-modified</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./datasets/retentiontime/DLOmix.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/retentiontime/PXD028248.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,7 +468,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <ol type="1">
 <li><p>Title, filename, metadata, and subheadings</p>
 <ol type="a">
-<li><p>Tutorials are grouped by data type: <code>Fragmentation</code>, <code>Ion mobility</code>, <code>Protein visibility</code>, and <code>Retention time</code>. Place your tutorial notebook in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your tutorial is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
+<li><p>Tutorials are grouped by data type: <code>Detectability</code>, <code>Fragmentation</code>, <code>Ion mobility</code>, and <code>Retention time</code>. Place your tutorial notebook in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your tutorial is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
 <li><p>The filename should be an abbreviated version of the tutorial title, formatted in kebab case (lowercase with <code>-</code> replacing spaces), for instance <code>title-of-tutorial.ipynb</code>.</p></li>
 <li><p>The following front matter metadata items are required (see the <a href="https://quarto.org/docs/tools/jupyter-lab.html#yaml-front-matter">Quarto Documentation</a> for more info):</p>
 <ul>
@@ -561,7 +561,7 @@ Note
 </ol></li>
 <li><p>Title, filename, and metadata:</p>
 <ol type="a">
-<li><p>Datasets are grouped by data type: <code>Fragmentation</code>, <code>Ion mobility</code>, <code>Protein visibility</code>, or <code>Retention time</code>. Place your dataset and markdown description in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your dataset is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
+<li><p>Datasets are grouped by data type: <code>Fragmentation</code>, <code>Ion mobility</code>, <code>Detectability</code>, or <code>Retention time</code>. Place your dataset and markdown description in the appropriate directory in the repository. E.g., <code>tutorials/fragmentation</code>. If your dataset is part of a new data type group, please open a new <a href="https://github.com/ProteomicsML/ProteomicsML/discussions">discussion thread</a> first.</p></li>
 <li><p>The filename / directory name should be an abbreviated version of the dataset title, formatted in kebab case (lowercase with <code>-</code> replacing spaces), for instance <code>title-of-dataset.md</code> / <code>title-of-dataset/</code>.</p></li>
 <li><p>The following front matter metadata items are required (see the <a href="https://quarto.org/docs/tools/jupyter-lab.html#yaml-front-matter">Quarto Documentation</a> for more info):</p>
 <ul>
