@@ -46,7 +46,7 @@
     "href": "tutorials/fragmentation/preannotated_prosit.html#inspecting-data-distributions",
     "title": "Prosit-style GRU with pre-annotated ProteomeTools data",
     "section": "Inspecting data distributions",
-    "text": "Inspecting data distributions\n\ndf['precursor_charge'].hist()\n\n<matplotlib.axes._subplots.AxesSubplot at 0x7f7d1a6723d0>\n\n\n\n\n\n\ndf['collision_energy'].hist(bins=10)\n\n<matplotlib.axes._subplots.AxesSubplot at 0x7f7d08c72a10>\n\n\n\n\n\n\ndf['sequence_length'].hist(bins=30-7)\n\n<matplotlib.axes._subplots.AxesSubplot at 0x7f7d0875a450>"
+    "text": "Inspecting data distributions\n\ndf['precursor_charge'].hist()\n\n<matplotlib.axes._subplots.AxesSubplot>\n\n\n\n\n\n\ndf['collision_energy'].hist(bins=10)\n\n<matplotlib.axes._subplots.AxesSubplot>\n\n\n\n\n\n\ndf['sequence_length'].hist(bins=30-7)\n\n<matplotlib.axes._subplots.AxesSubplot>"
   },
   {
     "objectID": "tutorials/fragmentation/preannotated_prosit.html#dataset-preparation",
