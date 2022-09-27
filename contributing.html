@@ -591,12 +591,15 @@ Note
 </section>
 <section id="website-deployment" class="level2">
 <h2 class="anchored" data-anchor-id="website-deployment">Website deployment</h2>
-<p>When a pull request is merged with the <code>main</code> branch, the following GitHub Actions are triggered:</p>
-<ol type="1">
+<p>When a pull request has been approved by a reviewer, the following GitHub Actions are triggered:</p>
+<ul>
 <li><strong>Test website rendering</strong>: The full website is rendered to check that no errors occur. This action should already have been run successfully for the pull request that implemented the changes. Nevertheless, merging could also introduce new issues.</li>
-<li><strong>Update notebook copies</strong>: A script is run to make copies of all tutorial notebooks with all output removed. The filenames of these copies are prepended with an underscore and should be used to open the notebooks interactively, e.g., in Google Colab.</li>
+<li><strong>Update notebook copies</strong>: A script is run to make copies of all tutorial notebooks with all output removed. The filenames of these copies are prepended with an underscore and should be used to open the notebooks interactively, e.g., in Google Colab. This script adds a commit to the pull request branch, which can only be accepted once this action has run successfully.</li>
+</ul>
+<p>When a pull request is merged with the <code>main</code> branch, the following GitHub Action is triggered:</p>
+<ul>
 <li><strong>Publish website</strong>: Quarto is used to render the static website, which is then force-pushed to the <a href="https://github.com/ProteomicsML/proteomicsml.github.io">ProteomicsML/proteomicsml.github.io</a> repository. This repository is served on <a href="https://www.proteomicsml.org/">proteomicsml.org</a> through GitHub Pages.</li>
-</ol>
+</ul>
 
 
 </section>
