@@ -480,10 +480,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <p></p><figcaption class="figure-caption">Open In Colab</figcaption><p></p>
 </figure>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas sklearn tensorflow dlomix numpy matplotlib dlomix requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and normalize/standarize data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -495,7 +495,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> data[<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>):]</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[:<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="0f578cca-f06d-4057-8caa-3cebc7fa5511" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the internal dataset into training and validation</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We have to split the data based on Sequences, to make sure we dont have cross-over sequences in the training and validation splits.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>unique_sequences <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(data[<span class="st">'Sequence'</span>]))</span>
@@ -514,7 +514,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <pre><code>Training data points: 64428   Validation data points: 15572   Testing data points: 20000</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="73d6c9b2-04c2-4338-a23e-78df074a73fb" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>normalize <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> normalize:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalize</span></span>
@@ -543,13 +543,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   </code></pre>
 </div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>epochs<span class="op">=</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="4ed559e8-c4a7-463a-faaf-b395973f6a5a" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup data </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.data <span class="im">import</span> RetentionTimeDataset</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>train_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(train[<span class="st">'Sequence'</span>]), np.array(train[<span class="st">'Retention time'</span>])]), </span>
@@ -592,7 +592,7 @@ Non-trainable params: 0
 _________________________________________________________________</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="eddc884d-c858-44b8-eac5-609a8e0e6392" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.<span class="bu">eval</span>.rt_eval <span class="im">import</span> TimeDeltaMetric</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiling the keras model with loss function, metrics and optimizer</span></span>
@@ -622,23 +622,23 @@ Epoch 10/10
 981/981 [==============================] - 20s 21ms/step - loss: 0.0027 - mae: 0.0349 - timedelta: 0.0369 - val_loss: 0.0023 - val_mae: 0.0265 - val_timedelta: 0.0290</code></pre>
 </div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.reports <span class="im">import</span> RetentionTimeReport</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> RetentionTimeReport(output_path<span class="op">=</span><span class="st">"./output"</span>, history<span class="op">=</span>history)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="8f5ed1ec-04e6-443b-dfb7-50eee15e304d" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>report.plot_keras_metric(<span class="st">"loss"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="043529bc-b712-469b-b752-fa6bc8a1e8d7" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>report.plot_keras_metric(<span class="st">"timedelta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="baa23d90-0d27-4a6d-aeb2-5022ce6719b4" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_real <span class="op">=</span> np.concatenate([y <span class="cf">for</span> x, y <span class="kw">in</span> val_input], axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(validation[<span class="st">'Sequence'</span>][:<span class="bu">len</span>(y_real)])</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>report.plot_residuals(y_real, y_pred, <span class="bu">xrange</span><span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -646,7 +646,7 @@ Epoch 10/10
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="09cf789f-db60-49c0-c40b-fe60b69f4db3" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>test_input, epochs<span class="op">=</span>epochs, batch_size<span class="op">=</span>batch_size)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>

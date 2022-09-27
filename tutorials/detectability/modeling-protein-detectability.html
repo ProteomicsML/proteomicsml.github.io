@@ -489,10 +489,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <h1>Introduction</h1>
 <p>When subjecting whole cell lysates to mass spectrometry-based proteomics analysis, some proteins are easily detected while others are not seen. The proteins that are never detected are often colloquially called the dark proteome. There are many reasons for not detecting proteins. Some proteins may only be found in certain cell types or in certain developmental stages. Comprehensive accumulation of datasets from different cell types and developmental stages can overcome this limitation. Other reasons such as the physicochemical properties of the proteins may hinder detection. Here we explore the “light and dark proteome” based on proteins that are observed and not observed in the Arabidopsis PeptideAtlas, which has been assembled by search over 200 million MS/MS spectra from 100 different datasets.</p>
 <p>First we import some needed libraries</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install numpy, pandas, matplotlib, sklearn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -501,12 +501,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read input data and extract the columns to train on. We will attempt to train on the protein molecular weight, protein physicochemical properties gravy score (a measure of hydrophobicity), isoelectric point (pI), and then two metrics from RNA-seq analysis: the percentage of RNA-seq experiments that detect a transcript for the given protein, and the highest TPM (transcripts per million, i.e.&nbsp;abundance) in any one dataset.</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>proteins <span class="op">=</span> pd.read_csv(<span class="st">'http://www.peptideatlas.org/builds/arabidopsis/light_and_dark_protein_list.tsv'</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>learning_values <span class="op">=</span> proteins[ [<span class="st">'molecular_weight'</span>, <span class="st">'gravy'</span>, <span class="st">'pI'</span>, <span class="st">'rna_detected_percent'</span>, <span class="st">'highest_tpm'</span> ] ].copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Normalize the data to have ranges like 0 to 1</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>learning_values.loc[ :, <span class="st">'molecular_weight'</span>] <span class="op">=</span> learning_values[<span class="st">'molecular_weight'</span>] <span class="op">/</span> <span class="dv">100</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>learning_values.loc[ learning_values[ <span class="st">'molecular_weight'</span>] <span class="op">&gt;</span> <span class="dv">1</span>, <span class="st">'molecular_weight'</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>learning_values.loc[ :, <span class="st">'gravy'</span>] <span class="op">=</span> ( learning_values[<span class="st">'gravy'</span>] <span class="op">+</span> <span class="dv">2</span> ) <span class="op">/</span> <span class="dv">4</span></span>
@@ -517,17 +517,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>learning_values.loc[ learning_values[ <span class="st">'highest_tpm'</span>] <span class="op">&gt;</span> <span class="dv">1</span>, <span class="st">'highest_tpm'</span>] <span class="op">=</span> <span class="fl">1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Set the classifications to 0 and 1</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>classes <span class="op">=</span> proteins[<span class="st">'status'</span>].copy()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>classes[ classes <span class="op">==</span> <span class="st">'canonical'</span> ] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>classes[ classes <span class="op">==</span> <span class="st">'not observed'</span> ] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Split into 75% train and 25% test</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(learning_values, classes, test_size<span class="op">=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Train the classifier on the training set</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> MLPClassifier(solver<span class="op">=</span><span class="st">'lbfgs'</span>, max_iter<span class="op">=</span><span class="dv">1000</span>, hidden_layer_sizes<span class="op">=</span>(<span class="dv">100</span>,), alpha<span class="op">=</span><span class="fl">1e-4</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, <span class="bu">list</span>(y_train))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -538,17 +538,17 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
     https://scikit-learn.org/stable/modules/preprocessing.html
   self.n_iter_ = _check_optimize_result("lbfgs", opt_res, self.max_iter)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display">
 <pre><code>MLPClassifier(max_iter=1000, random_state=1, solver='lbfgs')</code></pre>
 </div>
 </div>
 <p>Predict for all the test set</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> clf.predict(X_test)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> clf.predict_proba(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make a ROC curve</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>probabilities_list <span class="op">=</span> <span class="bu">list</span>(probabilities[ :, <span class="dv">1</span>])</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(np.ravel(<span class="bu">list</span>(y_test)), np.ravel(probabilities_list))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
@@ -568,7 +568,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 </div>
 </div>
 <p>Predict for all protein and write out the table with learned results</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> clf.predict_proba(learning_values)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>proteins[<span class="st">'learned_canonical_prob'</span>] <span class="op">=</span> probabilities[ :, <span class="dv">1</span>]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>proteins.to_csv(<span class="st">'light_and_dark_protein_list_trained.tsv'</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

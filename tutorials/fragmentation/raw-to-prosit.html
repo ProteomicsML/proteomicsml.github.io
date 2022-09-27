@@ -488,7 +488,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <p>This notebook contains the simplest steps to turn any raw data into a format thats fragmentation prediction ready. This notebook retrieve a ProteomeTools file from PRIDE to make it as easy to copy as possible, but retrieving the files might take time.</p>
 <p>This method uses the MaxQuant file to get the modified sequence, charge, and scan number. It then uses fisher_py to interact with the raw files and retrieve the ms2 scans and the mass analyzer.</p>
 <p>The annotation pipeline comes from the TUM annotation github</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We need conda to interact with the raw file</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q condacolab</span>
@@ -498,11 +498,11 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fisher_py</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fundamentals<span class="op">@</span>git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>wilhelm<span class="op">-</span>lab<span class="op">/</span>spectrum_fundamentals<span class="op">@</span>proteomicsml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span><span class="dv">0</span><span class="er">1625b_GA1</span><span class="op">-</span>TUM_first_pool_1_01_01<span class="op">-</span>DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2.raw </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span>TUM_first_pool_1_01_01_DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2<span class="op">-</span>tryptic.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> zipfile <span class="im">import</span> ZipFile</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ZipFile(<span class="ss">f'TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip'</span>, <span class="st">'r'</span>) <span class="im">as</span> zip_file:</span>
@@ -510,7 +510,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Current PROSIT pipeline does not accomodate modified peptides, so we remove all of the oxidized peptides</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>msms <span class="op">=</span> msms[msms[<span class="st">'Modifications'</span>] <span class="op">==</span> <span class="st">'Unmodified'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fisher_py <span class="im">import</span> RawFile</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> RawFile(<span class="st">'01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the scan numbers from the msms file and save the scan + info in a dictionary</span></span>
@@ -531,7 +531,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  scan_collison_energy.append(NCEs[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We need to create a sub-set of the MaxQuant dataframe that we can insert into the annotation pipeline. For this we need the have 6 columns (with specific names): MODIFIED_SEQUENCE, PERCURSOR_CHARGE, MASS_ANALYZER, SCAN_NUMBER, MZ, INTENSITIES</p>
-<div class="cell" data-outputid="37923660-ecdd-4029-d470-80adc0d467d8" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>annotation_df <span class="op">=</span> pd.DataFrame(msms[[<span class="st">'Modified sequence'</span>, <span class="st">'Charge'</span>, <span class="st">'Scan number'</span>]].values, columns<span class="op">=</span>[<span class="st">'MODIFIED_SEQUENCE'</span>, <span class="st">'PRECURSOR_CHARGE'</span>, <span class="st">'SCAN_NUMBER'</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MZ'</span>] <span class="op">=</span> scan_mzs</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'INTENSITIES'</span>] <span class="op">=</span> scan_ints</span>
@@ -556,9 +556,9 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 </div>
 </div>
 <p>The annotation element contains the annotated intensities nad m/zs, along with the theoretical mass and removed peaks</p>
-<div class="cell" data-outputid="53574448-3b7b-42a6-b0b1-03977793ffb0" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>annotation </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-0b68d726-2a40-43d9-bc65-ab47f911ec71">
@@ -733,7 +733,7 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 </div>
 </div>
 <p>Now we need to combined the necessary information from MaxQuant and the annotation package into a DataFrame mimicing the one found in the “Prosit-style GRU with ProteomeTools data” found here (https://www.proteomicsml.org/tutorials/fragmentation/proteometools-prosit.html) for an easy handover</p>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PROSIT_ALHABET <span class="op">=</span> {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="dv">1</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="dv">2</span>,</span>
@@ -762,11 +762,11 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>collision_energy_aligned_normed <span class="op">=</span> annotation_df[<span class="st">'COLLISION_ENERGY'</span>]</span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>intensities_raw <span class="op">=</span> annotation[<span class="st">'INTENSITIES'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="b800c0a1-21d4-4612-e6ea-25ab0006c7ec" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(<span class="bu">zip</span>(sequence_integer, precursor_charge_onehot, collision_energy_aligned_normed, intensities_raw)), </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">'sequence_integer'</span>, <span class="st">'precursor_charge_onehot'</span>, <span class="st">'collision_energy'</span>, <span class="st">'intensities_raw'</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="76">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-b8d84316-a02c-4381-b961-e027c68c5da5">
