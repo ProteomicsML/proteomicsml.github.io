@@ -16,12 +16,12 @@
   {
     "listing": "/datasets/index.html",
     "items": [
-      "/datasets/fragmentation/NIST.html",
+      "/datasets/fragmentation/NIST_FI.html",
       "/datasets/fragmentation/ProteomeTools_FI.html",
       "/datasets/ionmobility/Meier_TIMS.html",
       "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
-      "/datasets/retentiontime/DLOmix.html",
-      "/datasets/retentiontime/PXD028248.html",
+      "/datasets/retentiontime/DLOmix_RT.html",
+      "/datasets/retentiontime/PXD028248_RT.html",
       "/datasets/retentiontime/ProteomeTools_RT.html",
       "/datasets/retentiontime/Sharma_HeLa_RT.html"
     ]
