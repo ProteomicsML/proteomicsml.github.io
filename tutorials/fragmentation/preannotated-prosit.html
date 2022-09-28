@@ -488,7 +488,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </div>
 <section id="download-and-prepare-training-data" class="level2">
 <h2 class="anchored" data-anchor-id="download-and-prepare-training-data">Download and prepare training data</h2>
-<div class="cell" data-outputid="14f1c5e1-da59-4436-dabb-66902ebf624c" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ProteomeTools data from Figshare</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>figshare.com<span class="op">/</span>ndownloader<span class="op">/</span>files<span class="op">/</span><span class="dv">12506534</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mv <span class="dv">12506534</span> prosit_2018_holdout.hdf5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -511,7 +511,7 @@ Saving to: ‘12506534’
 </code></pre>
 </div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -544,7 +544,7 @@ Saving to: ‘12506534’
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>PROSIT_INDEXED_ALPHABET <span class="op">=</span> {i: c <span class="cf">for</span> c, i <span class="kw">in</span> PROSIT_ALHABET.items()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the downloaded data to a dataframe</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> h5.File(<span class="st">'prosit_2018_holdout.hdf5'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  KEY_ARRAY <span class="op">=</span> [<span class="st">"sequence_integer"</span>, <span class="st">"precursor_charge_onehot"</span>, <span class="st">"intensities_raw"</span>]</span>
@@ -561,28 +561,28 @@ Saving to: ‘12506534’
 </section>
 <section id="inspecting-data-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="inspecting-data-distributions">Inspecting data distributions</h2>
-<div class="cell" data-outputid="ab5034ce-8f96-40cb-b669-9216222e05d0" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'precursor_charge'</span>].hist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7d1a6723d0&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="preannotated-prosit_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="d1043b4a-e1fa-4a45-d21d-dd0994fbd467" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'collision_energy'</span>].hist(bins<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7d08c72a10&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="preannotated-prosit_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="0a4b1312-41f7-463f-e2b0-6d0b2c2948ba" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sequence_length'</span>].hist(bins<span class="op">=</span><span class="dv">30</span><span class="op">-</span><span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7d0875a450&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="preannotated-prosit_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
@@ -591,7 +591,7 @@ Saving to: ‘12506534’
 </section>
 <section id="dataset-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-preparation">Dataset preparation</h2>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training, validation, and test</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> shuffle</span>
@@ -633,7 +633,7 @@ Saving to: ‘12506534’
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>df_train, df_validation, df_test <span class="op">=</span> split_dataframe(df, unique_column<span class="op">=</span><span class="st">'sequence_maxquant'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the training data</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>INPUT_COLUMNS <span class="op">=</span> (<span class="st">'sequence_integer'</span>, <span class="st">'precursor_charge_onehot'</span>, <span class="st">'collision_energy_aligned_normed'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>OUTPUT_COLUMN <span class="op">=</span> <span class="st">'intensities_raw'</span></span>
@@ -650,7 +650,7 @@ Saving to: ‘12506534’
 </section>
 <section id="model-setup-and-training" class="level2">
 <h2 class="anchored" data-anchor-id="model-setup-and-training">Model setup and training</h2>
-<div class="cell" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup model and trainig parameters</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>DIM_LATENT <span class="op">=</span> <span class="dv">124</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>DIM_EMBEDDING_IN <span class="op">=</span> <span class="bu">max</span>(PROSIT_ALHABET.values()) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># max value + zero for padding</span></span>
@@ -658,7 +658,7 @@ Saving to: ‘12506534’
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>EPOCHS <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>BATCH_SIZE <span class="op">=</span> <span class="dv">256</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="a9ef1434-a235-46cb-e2f5-2cd7b3d1da2f" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Input, Dense, GRU, Embedding, Multiply</span>
@@ -713,7 +713,7 @@ Non-trainable params: 0
 __________________________________________________________________________________________________</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="3fb519f5-ea3c-45c9-acea-8fa85ad8e452" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> masked_spectral_distance(true, pred):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This is the spectral angle implementation as used in Prosit</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># See https://github.com/kusterlab/prosit/blob/master/prosit/losses.py#L4-L16</span></span>
@@ -747,7 +747,7 @@ Epoch 5/5
 </section>
 <section id="model-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="model-evaluation">Model evaluation</h2>
-<div class="cell" data-outputid="b2e7f65c-dad7-462a-832a-9d93cf840d87" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the training history </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -763,13 +763,13 @@ Epoch 5/5
 <p><img src="preannotated-prosit_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="8c2cd5ab-2662-4f4d-ce97-7698e99ca313" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>test_spectral_angle <span class="op">=</span> model.evaluate(x_test, y_test)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>test_spectral_angle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2341/2341 [==============================] - 7s 3ms/step - loss: 0.3031</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display">
 <pre><code>0.3031081557273865</code></pre>
 </div>
 </div>
