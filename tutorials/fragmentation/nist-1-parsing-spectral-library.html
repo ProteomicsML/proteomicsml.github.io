@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ralf Gabriels">
-<meta name="dcterms.date" content="2022-09-28">
+<meta name="dcterms.date" content="2022-10-04">
 
 <title>ProteomicsML - NIST (part 1): Parsing the spectral library</title>
 <style>
@@ -85,25 +85,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -512,7 +493,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 28, 2022</p>
+      <p class="date">October 4, 2022</p>
     </div>
   </div>
   
@@ -528,7 +509,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>In bottom-up proteomics, a peptide fragmentation spectrum (MS2) is the most central source of information to identify a peptide (and the original protein by extend). In traditional peptide fragment spectrum identification workflows, only the presence and location (x-axis) of peaks in the spectrum are used to identify the peptide that generated the spectrum. The intensity of these peaks (y-axis) are, however, seldomly used in a comprehensive manner. At most, traditional approaches naively assume that higher intensity is always better. The lack of usage of peptide spectrum intensity patterns in the identification step is mainly due to their complexity. The location of certain peaks (e.g., b- and y-ions) are easily calculated based on their mass for any given peptide. Their intensity, however, follows complex yet predictable patterns that cannot be simply calculated. Nevertheless, they can be predicted with machine learning.</p>
-<p><span class="citation" data-cites="gabriels2019">(<a href="#ref-gabriels2019" role="doc-biblioref">Gabriels, Ralf and Martens, Lennart and Degroeve, Sven 2019</a>)</span></p>
+<p><span class="citation" data-cites="gabriels2019">(<a href="#ref-gabriels2019" role="doc-biblioref"><strong>gabriels2019?</strong></a>)</span></p>
 <p>In this tutorial you will learn the basic steps in developing a machine learning predictor for peptide fragmentation intensity prediction. The first chapter handles the preparation and parsing of training data and the second chapter first handles training a traditional machine learning model, and then a deep learning model.</p>
 <p>To avoid an overly complex tutorial, some aspects to intensity prediction are simplified or not handled. For example, the resulting models will only be able to predict singly charged b- and y-ions for unmodified peptides.</p>
 <div class="cell">
@@ -995,15 +976,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <p>Question: Why do we not apply <code>train_test_split()</code> directly on <code>spectrum_df</code>, but instead on <code>spectrum_df["sequence"].unique()</code>?</p>
 
 
-
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-gabriels2019" class="csl-entry" role="doc-biblioentry">
-Gabriels, Ralf and Martens, Lennart and Degroeve, Sven. 2019. <span>“<span class="nocase">Updated MS²PIP web server delivers fast and accurate MS² peak intensity prediction for multiple fragmentation methods, instruments and labeling techniques</span>.”</span> <em><span>NUCLEIC ACIDS RESEARCH</span></em> <span>47</span> (<span>W1</span>): W295–99.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
