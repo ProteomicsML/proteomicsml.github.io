@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-title','listing-author','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -316,7 +316,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
+  <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Preparing a spectral library for ML</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -406,7 +406,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/fragmentation/NIST_FI.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
+  <a href="../datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -487,9 +487,9 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#fragmentation" id="toc-fragmentation" class="nav-link active" data-scroll-target="#fragmentation">Fragmentation</a></li>
+  <li><a href="#detectability" id="toc-detectability" class="nav-link active" data-scroll-target="#detectability">Detectability</a></li>
+  <li><a href="#fragmentation" id="toc-fragmentation" class="nav-link" data-scroll-target="#fragmentation">Fragmentation</a></li>
   <li><a href="#ion-mobility" id="toc-ion-mobility" class="nav-link" data-scroll-target="#ion-mobility">Ion mobility</a></li>
-  <li><a href="#detectability" id="toc-detectability" class="nav-link" data-scroll-target="#detectability">Detectability</a></li>
   <li><a href="#retention-time" id="toc-retention-time" class="nav-link" data-scroll-target="#retention-time">Retention time</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/tutorials/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/tutorials/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -515,6 +515,45 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </header>
 
 <p>On ProteomicsML you will find detailed tutorials outlining how to work the latest state-of-the-art machine learning models, and even how to turn your own raw data into a suitable format. Explore all tutorials on ProteomicsML and click the “Open in Colab” badge to interact with the notebooks in a userfriendly coding environment.</p>
+<section id="detectability" class="level2">
+<h2 class="anchored" data-anchor-id="detectability">Detectability</h2>
+<div id="listing-detectability-listing" class="quarto-listing quarto-listing-container-table">
+
+<table class="quarto-listing-table table table-hover">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851640" data-listing-reading-time-sort="1.18" data-listing-title-sort="Modelling protein detectability with an MLP" data-listing-filename-sort="modeling-protein-detectability.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td class="listing-title">
+<a href="../tutorials/detectability/modeling-protein-detectability.html" class="title">Modelling protein detectability with an MLP</a>
+</td>
+<td class="listing-author">
+Eric Deutsch
+</td>
+<td class="listing-date">
+Oct 5, 2022
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
 <section id="fragmentation" class="level2">
 <h2 class="anchored" data-anchor-id="fragmentation">Fragmentation</h2>
 <div id="listing-fragmentation-listing" class="quarto-listing quarto-listing-container-table">
@@ -534,19 +573,19 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390390" data-listing-reading-time-sort="9.64" data-listing-title-sort="NIST (part 1): Parsing the spectral library" data-listing-filename-sort="nist-1-parsing-spectral-library.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="9.92" data-listing-title-sort="NIST (part 1): Preparing a spectral library for ML" data-listing-filename-sort="nist-1-parsing-spectral-library.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
-<a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="title">NIST (part 1): Parsing the spectral library</a>
+<a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="title">NIST (part 1): Preparing a spectral library for ML</a>
 </td>
 <td class="listing-author">
 Ralf Gabriels
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390390" data-listing-reading-time-sort="0.705" data-listing-title-sort="NIST (part 2): Traditional ML: Gradient boosting" data-listing-filename-sort="nist-2-traditional-ml-gradient-boosting.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="2.6" data-listing-title-sort="NIST (part 2): Traditional ML: Gradient boosting" data-listing-filename-sort="nist-2-traditional-ml-gradient-boosting.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="title">NIST (part 2): Traditional ML: Gradient boosting</a>
@@ -555,10 +594,10 @@ Oct 4, 2022
 Ralf Gabriels
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390390" data-listing-reading-time-sort="0.005" data-listing-title-sort="NIST (part 3): Deep learning: BiLSTM" data-listing-filename-sort="nist-3-deep-learning-lstm.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="0.005" data-listing-title-sort="NIST (part 3): Deep learning: BiLSTM" data-listing-filename-sort="nist-3-deep-learning-lstm.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="title">NIST (part 3): Deep learning: BiLSTM</a>
@@ -567,10 +606,10 @@ Oct 4, 2022
 Ralf Gabriels
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390390" data-listing-reading-time-sort="0.06" data-listing-title-sort="Prosit-style GRU with pre-annotated ProteomeTools data" data-listing-filename-sort="preannotated-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="0.06" data-listing-title-sort="Prosit-style GRU with pre-annotated ProteomeTools data" data-listing-filename-sort="preannotated-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/preannotated-prosit.html" class="title">Prosit-style GRU with pre-annotated ProteomeTools data</a>
@@ -579,10 +618,10 @@ Oct 4, 2022
 Siegfried Gessulat
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390390" data-listing-reading-time-sort="0.845" data-listing-title-sort="Raw file processing with PROSIT style annotation" data-listing-filename-sort="raw-to-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="4" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="0.835" data-listing-title-sort="Raw file processing with PROSIT style annotation" data-listing-filename-sort="raw-to-prosit.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/fragmentation/raw-to-prosit.html" class="title">Raw file processing with PROSIT style annotation</a>
@@ -591,7 +630,7 @@ Oct 4, 2022
 Tobias Greisager Rehfeldt
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
 </tbody>
@@ -621,7 +660,7 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390394" data-listing-reading-time-sort="7.72" data-listing-title-sort="Predicting CCS values for TIMS data" data-listing-filename-sort="meier-tims-ccs.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851644" data-listing-reading-time-sort="7.72" data-listing-title-sort="Predicting CCS values for TIMS data" data-listing-filename-sort="meier-tims-ccs.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="title">Predicting CCS values for TIMS data</a>
@@ -630,36 +669,9 @@ Date
 Robbin Bouwmeester
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="detectability" class="level2">
-<h2 class="anchored" data-anchor-id="detectability">Detectability</h2>
-<div id="listing-detectability-listing" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody class="list">
 </tbody>
 
 </table>
@@ -687,7 +699,7 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390394" data-listing-reading-time-sort="0.005" data-listing-title-sort="DLOmix embedding of Prosit model on ProteomeTools data" data-listing-filename-sort="dlomix-prosit-rt.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851648" data-listing-reading-time-sort="0.005" data-listing-title-sort="DLOmix embedding of Prosit model on ProteomeTools data" data-listing-filename-sort="dlomix-prosit-rt.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/retentiontime/dlomix-prosit-rt.html" class="title">DLOmix embedding of Prosit model on ProteomeTools data</a>
@@ -696,10 +708,10 @@ Date
 Tobias Greisager Rehfeldt
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390394" data-listing-reading-time-sort="0.005" data-listing-title-sort="Manual embedding of Bi-LSTM model on ProteomeTools data" data-listing-filename-sort="manual-prosit-rt.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851648" data-listing-reading-time-sort="0.005" data-listing-title-sort="Manual embedding of Bi-LSTM model on ProteomeTools data" data-listing-filename-sort="manual-prosit-rt.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/retentiontime/manual-prosit-rt.html" class="title">Manual embedding of Bi-LSTM model on ProteomeTools data</a>
@@ -708,10 +720,10 @@ Oct 4, 2022
 Tobias Greisager Rehfeldt
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1664922390000" data-listing-file-modified-sort="1664922390394" data-listing-reading-time-sort="3.38" data-listing-title-sort="Preparing a retention time data set for machine learning" data-listing-filename-sort="mq-evidence-to-ml.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-listing-date-sort="1664979851000" data-listing-file-modified-sort="1664979851648" data-listing-reading-time-sort="3.38" data-listing-title-sort="Preparing a retention time data set for machine learning" data-listing-filename-sort="mq-evidence-to-ml.ipynb" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td class="listing-title">
 <a href="../tutorials/retentiontime/mq-evidence-to-ml.html" class="title">Preparing a retention time data set for machine learning</a>
@@ -720,7 +732,7 @@ Oct 4, 2022
 Robbin Bouwmeester
 </td>
 <td class="listing-date">
-Oct 4, 2022
+Oct 5, 2022
 </td>
 </tr>
 </tbody>

@@ -83,6 +83,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -257,7 +276,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Parsing the spectral library</a>
+  <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Preparing a spectral library for ML</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -347,7 +366,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datasets/fragmentation/NIST_FI.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
+  <a href="./datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -530,7 +549,20 @@ Note
 <li><p>Sufficiently describe each code cell and each step in the workflow.</p></li>
 <li><p>Tutorials should ideally be linked to a single ProteomicsML dataset from the same group.</p></li>
 <li><p>While multiple tutorials can be added for a single data type, make sure that each tutorial is sufficiently different from the others in terms of methodology and/or datasets used.</p></li>
-<li><p>All original publications that describe the methodologies, datasets, or tools that are used in the tutorial should be properly cited following to scientific publishing conventions. [TODO: add methodology]</p></li>
+<li><p>All original publications that describe the methodologies, datasets, or tools that are used in the tutorial should be properly cited following scientific authoring conventions. To add a citation, add a bibtex entry to <code>references.bib</code> and use the Quarto citation tag. For example, <code>[@ProteomicsML2022]</code> renders to: <span class="citation" data-cites="ProteomicsML2022">(<a href="#ref-ProteomicsML2022" role="doc-biblioref">Rehfeldt et al. 2022</a>)</span>. More info can be found in the <a href="https://quarto.org/docs/authoring/footnotes-and-citations.html#bibliography-generation">Quarto documentation</a>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <a href="https://www.doi2bib.org/">doi2bib.org</a> to easily get bibtex entries for any given publication.</p>
+</div>
+</div></li>
 </ol></li>
 <li><p>Code cells and programming language</p>
 <ol type="a">
@@ -607,10 +639,15 @@ Note
 <p>When a pull request is merged with the <code>main</code> branch, the following GitHub Action is triggered:<br> <strong>Publish website</strong>: Quarto is used to render the static website, which is then force-pushed to the <a href="https://github.com/ProteomicsML/proteomicsml.github.io">ProteomicsML/proteomicsml.github.io</a> repository. This repository is served on <a href="https://www.proteomicsml.org/">proteomicsml.org</a> through GitHub Pages.</p>
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-ProteomicsML2022" class="csl-entry" role="doc-biblioentry">
+Rehfeldt, Tobias Greisager, Ralf Gabriels, Robbin Bouwmeester, Siegfried Gessulat, Benjamin Neely, Magnus Palmblad, Yasset Perez-Riverol, Tobias Schmidt, Juan Antonio Vizcaı́no, and Eric W. Deutsch. 2022. <span>“<span>ProteomicsML</span>: An Online Platform for Community-Curated Datasets and Tutorials for Machine Learning in Proteomics,”</span> October. <a href="https://doi.org/10.26434/chemrxiv-2022-2s6kx">https://doi.org/10.26434/chemrxiv-2022-2s6kx</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
