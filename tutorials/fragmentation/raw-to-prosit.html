@@ -481,86 +481,115 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/fragmentation/_raw_to_prosit.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
+<p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/fragmentation/_raw-to-prosit.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 <p>This notebook contains the simplest steps to turn any raw data into a format thats fragmentation prediction ready. This notebook retrieve a ProteomeTools file from PRIDE to make it as easy to copy as possible, but retrieving the files might take time.</p>
 <p>This method uses the MaxQuant file to get the modified sequence, charge, and scan number. It then uses fisher_py to interact with the raw files and retrieve the ms2 scans and the mass analyzer.</p>
 <p>The annotation pipeline comes from the TUM annotation github</p>
-<div class="cell">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We need conda to interact with the raw file</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q condacolab</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> condacolab</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>condacolab.install()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>conda install pythonnet</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fisher_py</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fundamentals<span class="op">@</span>git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>wilhelm<span class="op">-</span>lab<span class="op">/</span>spectrum_fundamentals<span class="op">@</span>proteomicsml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In order to interact with fisher raw files, we need to interact with the python .NET implementation.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This requires CONDA on all UNIX systems, and for this reason we need to install conda in the colab.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If this is not run on colab do not run this code block, but install conda in the given environment.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q condacolab</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> condacolab</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>condacolab.install()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span><span class="dv">0</span><span class="er">1625b_GA1</span><span class="op">-</span>TUM_first_pool_1_01_01<span class="op">-</span>DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2.raw </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span>TUM_first_pool_1_01_01_DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2<span class="op">-</span>tryptic.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>conda install pythonnet<span class="op">==</span><span class="fl">2.5.2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fisher_py<span class="op">==</span><span class="fl">1.0.10</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install fundamentals<span class="op">@</span>git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>wilhelm<span class="op">-</span>lab<span class="op">/</span>spectrum_fundamentals<span class="op">@</span>proteomicsml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> zipfile <span class="im">import</span> ZipFile</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ZipFile(<span class="ss">f'TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip'</span>, <span class="st">'r'</span>) <span class="im">as</span> zip_file:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  msms <span class="op">=</span> pd.read_csv(zip_file.<span class="bu">open</span>(<span class="st">'msms.txt'</span>), sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Current PROSIT pipeline does not accomodate modified peptides, so we remove all of the oxidized peptides</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>msms <span class="op">=</span> msms[msms[<span class="st">'Modifications'</span>] <span class="op">==</span> <span class="st">'Unmodified'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="74da1485-f5b8-45c7-ea26-f59f692bc6f3" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span><span class="dv">0</span><span class="er">1625b_GA1</span><span class="op">-</span>TUM_first_pool_1_01_01<span class="op">-</span>DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2.raw </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>ftp.pride.ebi.ac.uk<span class="op">/</span>pride<span class="op">/</span>data<span class="op">/</span>archive<span class="op">/</span><span class="dv">2017</span><span class="op">/</span><span class="dv">0</span><span class="er">2</span><span class="op">/</span>PXD004732<span class="op">/</span>TUM_first_pool_1_01_01_DDA<span class="op">-</span><span class="dv">1</span><span class="er">h</span><span class="op">-</span>R2<span class="op">-</span>tryptic.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2022-11-01 10:51:16--  https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD004732/01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw
+Resolving ftp.pride.ebi.ac.uk (ftp.pride.ebi.ac.uk)... 193.62.193.138
+Connecting to ftp.pride.ebi.ac.uk (ftp.pride.ebi.ac.uk)|193.62.193.138|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 687962554 (656M)
+Saving to: ‘01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw’
+
+01625b_GA1-TUM_firs 100%[===================&gt;] 656.09M   676KB/s    in 16m 45s 
+
+2022-11-01 11:08:02 (669 KB/s) - ‘01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw’ saved [687962554/687962554]
+
+--2022-11-01 11:08:02--  https://ftp.pride.ebi.ac.uk/pride/data/archive/2017/02/PXD004732/TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip
+Resolving ftp.pride.ebi.ac.uk (ftp.pride.ebi.ac.uk)... 193.62.193.138
+Connecting to ftp.pride.ebi.ac.uk (ftp.pride.ebi.ac.uk)|193.62.193.138|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15581179 (15M) [application/zip]
+Saving to: ‘TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip’
+
+TUM_first_pool_1_01 100%[===================&gt;]  14.86M   685KB/s    in 23s     
+
+2022-11-01 11:08:25 (671 KB/s) - ‘TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip’ saved [15581179/15581179]
+</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fisher_py <span class="im">import</span> RawFile</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> RawFile(<span class="st">'01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the scan numbers from the msms file and save the scan + info in a dictionary</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fisher_py.data.business <span class="im">import</span> Scan</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>scan_mzs <span class="op">=</span> []</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>scan_ints <span class="op">=</span> []</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>scan_mass_analyzers <span class="op">=</span> []</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>scan_collison_energy <span class="op">=</span> []</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> scan <span class="kw">in</span> msms[<span class="st">'Scan number'</span>]:</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  raw_scan <span class="op">=</span> Scan.from_file(raw._raw_file_access, scan)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  scan_mzs.append(np.array(raw_scan.preferred_masses))</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  scan_ints.append(np.array(raw_scan.preferred_intensities))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  scan_mass_analyzers.append(raw_scan.scan_type.split(<span class="st">' + '</span>)[<span class="dv">0</span>])</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  frag_infos <span class="op">=</span> [f.split(<span class="st">' '</span>)[<span class="dv">0</span>] <span class="cf">for</span> f <span class="kw">in</span> raw_scan.scan_type.split(<span class="st">'@'</span>)[<span class="dv">1</span>:]]</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  splits <span class="op">=</span> [[i <span class="cf">for</span> i, g <span class="kw">in</span> <span class="bu">enumerate</span>(f) <span class="cf">if</span> g.isnumeric()][<span class="dv">0</span>] <span class="cf">for</span> f <span class="kw">in</span> frag_infos]</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  NCEs <span class="op">=</span> [<span class="bu">float</span>(frag[split:]) <span class="cf">for</span> split, frag <span class="kw">in</span> <span class="bu">zip</span>(splits, frag_infos)]</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  scan_collison_energy.append(NCEs[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> zipfile <span class="im">import</span> ZipFile</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ZipFile(<span class="ss">f'TUM_first_pool_1_01_01_DDA-1h-R2-tryptic.zip'</span>, <span class="st">'r'</span>) <span class="im">as</span> zip_file:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  msms <span class="op">=</span> pd.read_csv(zip_file.<span class="bu">open</span>(<span class="st">'msms.txt'</span>), sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Current PROSIT pipeline does not accomodate modified peptides, so we remove all of the oxidized peptides</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>msms <span class="op">=</span> msms[msms[<span class="st">'Modifications'</span>] <span class="op">==</span> <span class="st">'Unmodified'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fisher_py <span class="im">import</span> RawFile</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> RawFile(<span class="st">'01625b_GA1-TUM_first_pool_1_01_01-DDA-1h-R2.raw'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the scan numbers from the msms file and save the scan + info in a dictionary</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fisher_py.data.business <span class="im">import</span> Scan</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scan_mzs <span class="op">=</span> []</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>scan_ints <span class="op">=</span> []</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>scan_mass_analyzers <span class="op">=</span> []</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>scan_collison_energy <span class="op">=</span> []</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> scan <span class="kw">in</span> msms[<span class="st">'Scan number'</span>]:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  raw_scan <span class="op">=</span> Scan.from_file(raw._raw_file_access, scan)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  scan_mzs.append(np.array(raw_scan.preferred_masses))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  scan_ints.append(np.array(raw_scan.preferred_intensities))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  scan_mass_analyzers.append(raw_scan.scan_type.split(<span class="st">' + '</span>)[<span class="dv">0</span>])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  frag_infos <span class="op">=</span> [f.split(<span class="st">' '</span>)[<span class="dv">0</span>] <span class="cf">for</span> f <span class="kw">in</span> raw_scan.scan_type.split(<span class="st">'@'</span>)[<span class="dv">1</span>:]]</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  splits <span class="op">=</span> [[i <span class="cf">for</span> i, g <span class="kw">in</span> <span class="bu">enumerate</span>(f) <span class="cf">if</span> g.isnumeric()][<span class="dv">0</span>] <span class="cf">for</span> f <span class="kw">in</span> frag_infos]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  NCEs <span class="op">=</span> [<span class="bu">float</span>(frag[split:]) <span class="cf">for</span> split, frag <span class="kw">in</span> <span class="bu">zip</span>(splits, frag_infos)]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  scan_collison_energy.append(NCEs[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We need to create a sub-set of the MaxQuant dataframe that we can insert into the annotation pipeline. For this we need the have 6 columns (with specific names): MODIFIED_SEQUENCE, PERCURSOR_CHARGE, MASS_ANALYZER, SCAN_NUMBER, MZ, INTENSITIES</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>annotation_df <span class="op">=</span> pd.DataFrame(msms[[<span class="st">'Modified sequence'</span>, <span class="st">'Charge'</span>, <span class="st">'Scan number'</span>]].values, columns<span class="op">=</span>[<span class="st">'MODIFIED_SEQUENCE'</span>, <span class="st">'PRECURSOR_CHARGE'</span>, <span class="st">'SCAN_NUMBER'</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MZ'</span>] <span class="op">=</span> scan_mzs</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'INTENSITIES'</span>] <span class="op">=</span> scan_ints</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MASS_ANALYZER'</span>] <span class="op">=</span> scan_mass_analyzers</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'COLLISION_ENERGY'</span>] <span class="op">=</span> scan_collison_energy</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fundamentals.mod_string <span class="im">import</span> maxquant_to_internal</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MODIFIED_SEQUENCE'</span>] <span class="op">=</span> maxquant_to_internal(annotation_df[<span class="st">'MODIFIED_SEQUENCE'</span>].values)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fundamentals.annotation.annotation <span class="im">import</span> annotate_spectra</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>annotation <span class="op">=</span> annotate_spectra(annotation_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="adc4ab6d-e03c-4154-f55f-34078a4ad6b4" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>annotation_df <span class="op">=</span> pd.DataFrame(msms[[<span class="st">'Modified sequence'</span>, <span class="st">'Charge'</span>, <span class="st">'Scan number'</span>]].values, columns<span class="op">=</span>[<span class="st">'MODIFIED_SEQUENCE'</span>, <span class="st">'PRECURSOR_CHARGE'</span>, <span class="st">'SCAN_NUMBER'</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MZ'</span>] <span class="op">=</span> scan_mzs</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'INTENSITIES'</span>] <span class="op">=</span> scan_ints</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MASS_ANALYZER'</span>] <span class="op">=</span> scan_mass_analyzers</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'COLLISION_ENERGY'</span>] <span class="op">=</span> scan_collison_energy</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fundamentals.mod_string <span class="im">import</span> maxquant_to_internal</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>annotation_df[<span class="st">'MODIFIED_SEQUENCE'</span>] <span class="op">=</span> maxquant_to_internal(annotation_df[<span class="st">'MODIFIED_SEQUENCE'</span>].values)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fundamentals.annotation.annotation <span class="im">import</span> annotate_spectra</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>annotation <span class="op">=</span> annotate_spectra(annotation_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2022-09-20 11:42:00,063 - INFO - fundamentals.annotation.annotation::annotate_spectra Removed count    13089.000000
-mean         0.007640
-std          0.090518
-min          0.000000
-25%          0.000000
-50%          0.000000
-75%          0.000000
-max          2.000000
+<pre><code>2022-11-01 11:49:04,339 - INFO - fundamentals.annotation.annotation::annotate_spectra Removed count    11970.00000
+mean         0.00802
+std          0.09287
+min          0.00000
+25%          0.00000
+50%          0.00000
+75%          0.00000
+max          2.00000
 Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 </div>
 </div>
 <p>The annotation element contains the annotated intensities nad m/zs, along with the theoretical mass and removed peaks</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>annotation </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div class="cell" data-outputid="16c282b8-f983-4e4b-c52b-a6153b65e390" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>annotation </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 
 
-  <div id="df-0b68d726-2a40-43d9-bc65-ab47f911ec71">
+  <div id="df-cb696be4-4b1b-4319-9f2e-85e94c98a2b1">
     <div class="colab-df-container">
       <div>
 
@@ -618,35 +647,35 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
       <td>...</td>
     </tr>
     <tr>
-      <th>13084</th>
+      <th>11965</th>
       <td>[0.009784486409648692, 0.0, -1.0, 0.0, 0.0, -1...</td>
       <td>[147.1424102783203, 0.0, -1.0, 0.0, 0.0, -1.0,...</td>
       <td>914.474935</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13085</th>
+      <th>11966</th>
       <td>[0.23857646569260368, 0.0, -1.0, 0.0, 0.0, -1....</td>
       <td>[147.11309814453125, 0.0, -1.0, 0.0, 0.0, -1.0...</td>
       <td>914.474935</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13086</th>
+      <th>11967</th>
       <td>[0.012048242613237779, 0.0, -1.0, 0.0, 0.0, -1...</td>
       <td>[147.1204376220703, 0.0, -1.0, 0.0, 0.0, -1.0,...</td>
       <td>914.474935</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13087</th>
+      <th>11968</th>
       <td>[0.39071905153057307, 0.0, -1.0, 0.0, 0.0, -1....</td>
       <td>[147.11328125, 0.0, -1.0, 0.0, 0.0, -1.0, 276....</td>
       <td>914.474935</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>13088</th>
+      <th>11969</th>
       <td>[0.02029996314040732, 0.0, -1.0, 0.0, 0.0, -1....</td>
       <td>[147.19485473632812, 0.0, -1.0, 0.0, 0.0, -1.0...</td>
       <td>914.474935</td>
@@ -654,9 +683,9 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
     </tr>
   </tbody>
 </table>
-<p>13089 rows × 4 columns</p>
+<p>11970 rows × 4 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-0b68d726-2a40-43d9-bc65-ab47f911ec71')" title="Convert this dataframe to an interactive table." style="display:none;">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-cb696be4-4b1b-4319-9f2e-85e94c98a2b1')" title="Convert this dataframe to an interactive table." style="display:none;">
         
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -704,12 +733,12 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 
       <script>
         const buttonEl =
-          document.querySelector('#df-0b68d726-2a40-43d9-bc65-ab47f911ec71 button.colab-df-convert');
+          document.querySelector('#df-cb696be4-4b1b-4319-9f2e-85e94c98a2b1 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-0b68d726-2a40-43d9-bc65-ab47f911ec71');
+          const element = document.querySelector('#df-cb696be4-4b1b-4319-9f2e-85e94c98a2b1');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -732,43 +761,43 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 </div>
 </div>
 <p>Now we need to combined the necessary information from MaxQuant and the annotation package into a DataFrame mimicing the one found in the “Prosit-style GRU with ProteomeTools data” found here (https://www.proteomicsml.org/tutorials/fragmentation/proteometools-prosit.html) for an easy handover</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PROSIT_ALHABET <span class="op">=</span> {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="dv">1</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="dv">2</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: <span class="dv">3</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: <span class="dv">4</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"F"</span>: <span class="dv">5</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G"</span>: <span class="dv">6</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"H"</span>: <span class="dv">7</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I"</span>: <span class="dv">8</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"K"</span>: <span class="dv">9</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"L"</span>: <span class="dv">10</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"M"</span>: <span class="dv">11</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"N"</span>: <span class="dv">12</span>,</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"P"</span>: <span class="dv">13</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Q"</span>: <span class="dv">14</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R"</span>: <span class="dv">15</span>,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S"</span>: <span class="dv">16</span>,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"T"</span>: <span class="dv">17</span>,</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"V"</span>: <span class="dv">18</span>,</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"W"</span>: <span class="dv">19</span>,</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Y"</span>: <span class="dv">20</span>,</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"M(ox)"</span>: <span class="dv">21</span>,</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>sequence_integer <span class="op">=</span> [[PROSIT_ALHABET[AA] <span class="cf">for</span> AA <span class="kw">in</span> sequence] <span class="cf">for</span> sequence <span class="kw">in</span> msms[<span class="st">'Sequence'</span>]]</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>precursor_charge_onehot <span class="op">=</span> pd.get_dummies(msms[<span class="st">'Charge'</span>]).values</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>collision_energy_aligned_normed <span class="op">=</span> annotation_df[<span class="st">'COLLISION_ENERGY'</span>]</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>intensities_raw <span class="op">=</span> annotation[<span class="st">'INTENSITIES'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PROSIT_ALHABET <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="dv">1</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="dv">2</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: <span class="dv">3</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: <span class="dv">4</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"F"</span>: <span class="dv">5</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G"</span>: <span class="dv">6</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"H"</span>: <span class="dv">7</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I"</span>: <span class="dv">8</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"K"</span>: <span class="dv">9</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"L"</span>: <span class="dv">10</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"M"</span>: <span class="dv">11</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"N"</span>: <span class="dv">12</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"P"</span>: <span class="dv">13</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Q"</span>: <span class="dv">14</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R"</span>: <span class="dv">15</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S"</span>: <span class="dv">16</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"T"</span>: <span class="dv">17</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"V"</span>: <span class="dv">18</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"W"</span>: <span class="dv">19</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Y"</span>: <span class="dv">20</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"M(ox)"</span>: <span class="dv">21</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>sequence_integer <span class="op">=</span> [[PROSIT_ALHABET[AA] <span class="cf">for</span> AA <span class="kw">in</span> sequence] <span class="cf">for</span> sequence <span class="kw">in</span> msms[<span class="st">'Sequence'</span>]]</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>precursor_charge_onehot <span class="op">=</span> pd.get_dummies(msms[<span class="st">'Charge'</span>]).values</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>collision_energy_aligned_normed <span class="op">=</span> annotation_df[<span class="st">'COLLISION_ENERGY'</span>]</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>intensities_raw <span class="op">=</span> annotation[<span class="st">'INTENSITIES'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(<span class="bu">zip</span>(sequence_integer, precursor_charge_onehot, collision_energy_aligned_normed, intensities_raw)), </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">'sequence_integer'</span>, <span class="st">'precursor_charge_onehot'</span>, <span class="st">'collision_energy'</span>, <span class="st">'intensities_raw'</span>])</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div class="cell" data-outputid="e06943c1-f074-41d4-9f9f-0e575054d167" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(<span class="bu">zip</span>(sequence_integer, precursor_charge_onehot, collision_energy_aligned_normed, intensities_raw)), </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">'sequence_integer'</span>, <span class="st">'precursor_charge_onehot'</span>, <span class="st">'collision_energy'</span>, <span class="st">'intensities_raw'</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
 
 
-  <div id="df-b8d84316-a02c-4381-b961-e027c68c5da5">
+  <div id="df-45bb76bb-a79c-42db-a860-0127c4f3d480">
     <div class="colab-df-container">
       <div>
 
@@ -826,35 +855,35 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
       <td>...</td>
     </tr>
     <tr>
-      <th>13084</th>
+      <th>11965</th>
       <td>[20, 20, 16, 8, 10, 4, 9]</td>
       <td>[0, 1, 0]</td>
       <td>35.0</td>
       <td>[0.009784486409648692, 0.0, -1.0, 0.0, 0.0, -1...</td>
     </tr>
     <tr>
-      <th>13085</th>
+      <th>11966</th>
       <td>[20, 20, 16, 8, 10, 4, 9]</td>
       <td>[0, 1, 0]</td>
       <td>28.0</td>
       <td>[0.23857646569260368, 0.0, -1.0, 0.0, 0.0, -1....</td>
     </tr>
     <tr>
-      <th>13086</th>
+      <th>11967</th>
       <td>[20, 20, 16, 8, 10, 4, 9]</td>
       <td>[0, 1, 0]</td>
       <td>35.0</td>
       <td>[0.012048242613237779, 0.0, -1.0, 0.0, 0.0, -1...</td>
     </tr>
     <tr>
-      <th>13087</th>
+      <th>11968</th>
       <td>[20, 20, 16, 8, 10, 4, 9]</td>
       <td>[0, 1, 0]</td>
       <td>28.0</td>
       <td>[0.39071905153057307, 0.0, -1.0, 0.0, 0.0, -1....</td>
     </tr>
     <tr>
-      <th>13088</th>
+      <th>11969</th>
       <td>[20, 20, 16, 8, 10, 4, 9]</td>
       <td>[0, 1, 0]</td>
       <td>35.0</td>
@@ -862,9 +891,9 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
     </tr>
   </tbody>
 </table>
-<p>13089 rows × 4 columns</p>
+<p>11970 rows × 4 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-b8d84316-a02c-4381-b961-e027c68c5da5')" title="Convert this dataframe to an interactive table." style="display:none;">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-45bb76bb-a79c-42db-a860-0127c4f3d480')" title="Convert this dataframe to an interactive table." style="display:none;">
         
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -912,12 +941,12 @@ Name: removed_peaks, dtype: float64 redundant peaks</code></pre>
 
       <script>
         const buttonEl =
-          document.querySelector('#df-b8d84316-a02c-4381-b961-e027c68c5da5 button.colab-df-convert');
+          document.querySelector('#df-45bb76bb-a79c-42db-a860-0127c4f3d480 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-b8d84316-a02c-4381-b961-e027c68c5da5');
+          const element = document.querySelector('#df-45bb76bb-a79c-42db-a860-0127c4f3d480');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
