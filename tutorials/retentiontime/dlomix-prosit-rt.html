@@ -479,11 +479,11 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <p><a href="https://colab.research.google.com/github/ProteomicsML/ProteomicsML/blob/main/tutorials/retentiontime/_dlomix-prosit-rt.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667845383735,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:2883,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="op">%%</span>capture</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas sklearn tensorflow dlomix numpy matplotlib requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667845384589,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:858,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and normalize/standarize data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -495,10 +495,10 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> data[<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>):]</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[:<span class="bu">int</span>(<span class="bu">len</span>(data)<span class="op">*</span><span class="fl">0.8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667845385285,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:702,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="1be5b3b1-8311-463d-8eac-772b822c28f0" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the internal dataset into training and validation</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We have to split the data based on Sequences, to make sure we dont have cross-over sequences in the training and validation splits.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>unique_sequences <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(data[<span class="st">'Sequence'</span>]))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>unique_sequences <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(data[<span class="st">'sequence'</span>]))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Shuffle the data to ensure unbiased data splitting</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> shuffle</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>shuffle(unique_sequences)</span>
@@ -506,28 +506,28 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> unique_sequences[<span class="dv">0</span>:<span class="bu">int</span>(<span class="bu">len</span>(unique_sequences) <span class="op">*</span> <span class="fl">0.8</span>)]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> unique_sequences[<span class="bu">int</span>(<span class="bu">len</span>(unique_sequences) <span class="op">*</span> <span class="fl">0.8</span>):]</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transfer the sequence split into data split</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> data[data[<span class="st">'Sequence'</span>].isin(train)]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> data[data[<span class="st">'Sequence'</span>].isin(validation)]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> data[data[<span class="st">'sequence'</span>].isin(train)]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> data[data[<span class="st">'sequence'</span>].isin(validation)]</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Training data points:'</span>, <span class="bu">len</span>(train),<span class="st">'  Validation data points:'</span>,  <span class="bu">len</span>(validation),<span class="st">'  Testing data points:'</span>,  <span class="bu">len</span>(test_data))</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we use test as an external dataset unlike the one used for training.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Training data points: 63220   Validation data points: 16780   Testing data points: 20000</code></pre>
+<pre><code>Training data points: 63955   Validation data points: 16045   Testing data points: 20000</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667845385286,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:7,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="88000bca-d702-47e1-c045-c15cc9d97cf9" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>normalize <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> normalize:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Normalize</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  train_val_min, train_val_max <span class="op">=</span> <span class="bu">min</span>(train[<span class="st">'Retention time'</span>].<span class="bu">min</span>(), validation[<span class="st">'Retention time'</span>].<span class="bu">min</span>()), <span class="bu">max</span>(train[<span class="st">'Retention time'</span>].<span class="bu">max</span>(), validation[<span class="st">'Retention time'</span>].<span class="bu">max</span>())</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  train[<span class="st">'Retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((train[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_min) <span class="op">/</span> (train_val_max <span class="op">-</span> train_val_min))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  validation[<span class="st">'Retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((validation[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_min) <span class="op">/</span> (train_val_max <span class="op">-</span> train_val_min))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  test_data[<span class="st">'Retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((test_data[<span class="st">'Retention time'</span>] <span class="op">-</span> test_data[<span class="st">'Retention time'</span>].<span class="bu">min</span>()) <span class="op">/</span> (test_data[<span class="st">'Retention time'</span>].<span class="bu">max</span>() <span class="op">-</span> test_data[<span class="st">'Retention time'</span>].<span class="bu">min</span>()))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  train_val_min, train_val_max <span class="op">=</span> <span class="bu">min</span>(train[<span class="st">'retention time'</span>].<span class="bu">min</span>(), validation[<span class="st">'retention time'</span>].<span class="bu">min</span>()), <span class="bu">max</span>(train[<span class="st">'retention time'</span>].<span class="bu">max</span>(), validation[<span class="st">'retention time'</span>].<span class="bu">max</span>())</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  train[<span class="st">'retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((train[<span class="st">'retention time'</span>] <span class="op">-</span> train_val_min) <span class="op">/</span> (train_val_max <span class="op">-</span> train_val_min))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  validation[<span class="st">'retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((validation[<span class="st">'retention time'</span>] <span class="op">-</span> train_val_min) <span class="op">/</span> (train_val_max <span class="op">-</span> train_val_min))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  test_data[<span class="st">'retention time'</span>] <span class="op">=</span> <span class="bu">list</span>((test_data[<span class="st">'retention time'</span>] <span class="op">-</span> test_data[<span class="st">'retention time'</span>].<span class="bu">min</span>()) <span class="op">/</span> (test_data[<span class="st">'retention time'</span>].<span class="bu">max</span>() <span class="op">-</span> test_data[<span class="st">'retention time'</span>].<span class="bu">min</span>()))</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Standardize</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  train_val_mean, train_val_std <span class="op">=</span> np.mean(<span class="bu">list</span>(train[<span class="st">'Retention time'</span>]) <span class="op">+</span> <span class="bu">list</span>(validation[<span class="st">'Retention time'</span>])), np.std(<span class="bu">list</span>(train[<span class="st">'Retention time'</span>]) <span class="op">+</span> <span class="bu">list</span>(validation[<span class="st">'Retention time'</span>]))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  train[<span class="st">'Retention time'</span>] <span class="op">=</span> (train[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  validation[<span class="st">'Retention time'</span>] <span class="op">=</span> (validation[<span class="st">'Retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  test_data[<span class="st">'Retention time'</span>] <span class="op">=</span> (test_data[<span class="st">'Retention time'</span>] <span class="op">-</span> np.mean(test_data[<span class="st">'Retention time'</span>])) <span class="op">/</span> np.std(test_data[<span class="st">'Retention time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  train_val_mean, train_val_std <span class="op">=</span> np.mean(<span class="bu">list</span>(train[<span class="st">'retention time'</span>]) <span class="op">+</span> <span class="bu">list</span>(validation[<span class="st">'retention time'</span>])), np.std(<span class="bu">list</span>(train[<span class="st">'retention time'</span>]) <span class="op">+</span> <span class="bu">list</span>(validation[<span class="st">'retention time'</span>]))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  train[<span class="st">'retention time'</span>] <span class="op">=</span> (train[<span class="st">'retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  validation[<span class="st">'retention time'</span>] <span class="op">=</span> (validation[<span class="st">'retention time'</span>] <span class="op">-</span> train_val_mean) <span class="op">/</span> train_val_std</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  test_data[<span class="st">'retention time'</span>] <span class="op">=</span> (test_data[<span class="st">'retention time'</span>] <span class="op">-</span> np.mean(test_data[<span class="st">'retention time'</span>])) <span class="op">/</span> np.std(test_data[<span class="st">'retention time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -543,22 +543,22 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   </code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667845385286,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:4,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>epochs<span class="op">=</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846014662,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:3375,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="09920864-eafc-4b20-d6f8-d745569c0b7c" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup data </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.data <span class="im">import</span> RetentionTimeDataset</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>train_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(train[<span class="st">'Sequence'</span>]), np.array(train[<span class="st">'Retention time'</span>])]), </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>train_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(train[<span class="st">'sequence'</span>]), np.array(train[<span class="st">'retention time'</span>])]), </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                        seq_length<span class="op">=</span>sequence_length, batch_size<span class="op">=</span>batch_size, test<span class="op">=</span><span class="va">False</span>).train_data</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>val_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(validation[<span class="st">'Sequence'</span>]), np.array(validation[<span class="st">'Retention time'</span>])]), </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>val_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(validation[<span class="st">'sequence'</span>]), np.array(validation[<span class="st">'retention time'</span>])]), </span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                        seq_length<span class="op">=</span>sequence_length, batch_size<span class="op">=</span>batch_size, test<span class="op">=</span><span class="va">False</span>).train_data</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>test_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(test_data[<span class="st">'Sequence'</span>]), np.array(test_data[<span class="st">'Retention time'</span>])]), </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>test_input <span class="op">=</span> RetentionTimeDataset(data_source<span class="op">=</span><span class="bu">tuple</span>([np.array(test_data[<span class="st">'sequence'</span>]), np.array(test_data[<span class="st">'retention time'</span>])]), </span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                        seq_length<span class="op">=</span>sequence_length, batch_size<span class="op">=</span>batch_size, test<span class="op">=</span><span class="va">False</span>).train_data</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup PROSIT model from DLOmix</span></span>
@@ -592,7 +592,7 @@ Non-trainable params: 0
 _________________________________________________________________</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846185099,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:170443,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="ba0c9d84-e93a-4008-e991-2906202313f4" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.<span class="bu">eval</span>.rt_eval <span class="im">import</span> TimeDeltaMetric</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiling the keras model with loss function, metrics and optimizer</span></span>
@@ -601,45 +601,45 @@ _________________________________________________________________</code></pre>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>train_input, epochs<span class="op">=</span>epochs, batch_size<span class="op">=</span>batch_size, validation_data<span class="op">=</span>val_input)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
-962/962 [==============================] - 37s 33ms/step - loss: 0.4140 - mae: 0.1056 - timedelta: 0.1070 - val_loss: 0.0054 - val_mae: 0.0489 - val_timedelta: 0.0461
+998/998 [==============================] - 26s 22ms/step - loss: 0.6175 - mae: 0.1161 - timedelta: 0.1140 - val_loss: 0.0040 - val_mae: 0.0427 - val_timedelta: 0.0484
 Epoch 2/5
-962/962 [==============================] - 22s 23ms/step - loss: 0.0048 - mae: 0.0489 - timedelta: 0.0481 - val_loss: 0.0036 - val_mae: 0.0379 - val_timedelta: 0.0329
+998/998 [==============================] - 21s 21ms/step - loss: 0.0055 - mae: 0.0526 - timedelta: 0.0522 - val_loss: 0.0038 - val_mae: 0.0428 - val_timedelta: 0.0467
 Epoch 3/5
-962/962 [==============================] - 28s 30ms/step - loss: 0.0039 - mae: 0.0427 - timedelta: 0.0429 - val_loss: 0.0027 - val_mae: 0.0323 - val_timedelta: 0.0284
+998/998 [==============================] - 21s 21ms/step - loss: 0.0047 - mae: 0.0474 - timedelta: 0.0464 - val_loss: 0.0039 - val_mae: 0.0459 - val_timedelta: 0.0480
 Epoch 4/5
-962/962 [==============================] - 22s 23ms/step - loss: 0.0034 - mae: 0.0393 - timedelta: 0.0386 - val_loss: 0.0034 - val_mae: 0.0369 - val_timedelta: 0.0343
+998/998 [==============================] - 21s 21ms/step - loss: 0.6041 - mae: 0.2064 - timedelta: 0.1935 - val_loss: 0.0537 - val_mae: 0.1940 - val_timedelta: 0.1972
 Epoch 5/5
-962/962 [==============================] - 22s 23ms/step - loss: 0.0032 - mae: 0.0372 - timedelta: 0.0360 - val_loss: 0.0033 - val_mae: 0.0363 - val_timedelta: 0.0334</code></pre>
+998/998 [==============================] - 21s 21ms/step - loss: 0.0544 - mae: 0.1961 - timedelta: 0.1900 - val_loss: 0.0536 - val_mae: 0.1943 - val_timedelta: 0.1967</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846185100,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:13,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlomix.reports <span class="im">import</span> RetentionTimeReport</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> RetentionTimeReport(output_path<span class="op">=</span><span class="st">"./output"</span>, history<span class="op">=</span>history)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846185101,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:12,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="d6bdd346-09f1-4e1d-9d62-6206876d25f1" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>report.plot_keras_metric(<span class="st">"loss"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846185514,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:423,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="13284969-3d3e-4b15-f507-4a897c67b30f" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>report.plot_keras_metric(<span class="st">"timedelta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846191431,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:5925,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="352d9bcf-eef5-468a-d64e-f99d8c998656" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_real <span class="op">=</span> np.concatenate([y <span class="cf">for</span> x, y <span class="kw">in</span> val_input], axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(validation[<span class="st">'Sequence'</span>][:<span class="bu">len</span>(y_real)])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(validation[<span class="st">'sequence'</span>][:<span class="bu">len</span>(y_real)])</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>report.plot_residuals(y_real, y_pred, <span class="bu">xrange</span><span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>514/514 [==============================] - 4s 3ms/step</code></pre>
+<pre><code>501/501 [==============================] - 3s 3ms/step</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1667846229617,&quot;user_tz&quot;:-60,&quot;elapsed&quot;:38194,&quot;user&quot;:{&quot;displayName&quot;:&quot;&quot;,&quot;userId&quot;:&quot;&quot;}}" data-outputid="0c5b4b99-c82e-439b-97ce-03c866e91163" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(x<span class="op">=</span>test_input, epochs<span class="op">=</span>epochs, batch_size<span class="op">=</span>batch_size)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="bu">range</span>(epochs), history.history[<span class="st">'loss'</span>], <span class="st">'-'</span>, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'Training loss'</span>)</span>
@@ -650,15 +650,15 @@ Epoch 5/5
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/5
-305/305 [==============================] - 6s 21ms/step - loss: 0.0029 - mae: 0.0360 - timedelta: 0.0398
+312/312 [==============================] - 6s 19ms/step - loss: 0.0560 - mae: 0.1987 - timedelta: 0.1993
 Epoch 2/5
-305/305 [==============================] - 6s 20ms/step - loss: 0.0028 - mae: 0.0351 - timedelta: 0.0353
+312/312 [==============================] - 6s 19ms/step - loss: 0.0559 - mae: 0.1986 - timedelta: 0.1987
 Epoch 3/5
-305/305 [==============================] - 6s 20ms/step - loss: 0.0027 - mae: 0.0346 - timedelta: 0.0348
+312/312 [==============================] - 6s 19ms/step - loss: 0.0559 - mae: 0.1985 - timedelta: 0.1988
 Epoch 4/5
-305/305 [==============================] - 6s 20ms/step - loss: 0.0027 - mae: 0.0343 - timedelta: 0.0338
+312/312 [==============================] - 6s 19ms/step - loss: 0.0559 - mae: 0.1985 - timedelta: 0.1991
 Epoch 5/5
-305/305 [==============================] - 7s 22ms/step - loss: 0.0027 - mae: 0.0345 - timedelta: 0.0348</code></pre>
+312/312 [==============================] - 6s 19ms/step - loss: 0.0559 - mae: 0.1985 - timedelta: 0.1982</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="dlomix-prosit-rt_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
