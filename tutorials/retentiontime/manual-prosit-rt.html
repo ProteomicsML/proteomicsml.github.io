@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tobias Greisager Rehfeldt">
-<meta name="dcterms.date" content="2022-11-01">
+<meta name="dcterms.date" content="2022-11-07">
 
 <title>ProteomicsML - Manual embedding of Bi-LSTM model on ProteomeTools data</title>
 <style>
@@ -464,7 +464,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 1, 2022</p>
+      <p class="date">November 7, 2022</p>
     </div>
   </div>
   
@@ -494,7 +494,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import and normalize the data</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/retentiontime/ProteomeTools/Small.csv.gz?raw=true'</span>, compression<span class="op">=</span><span class="st">'gzip'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/retentiontime/ProteomeTools/small.zip?raw=true'</span>, compression<span class="op">=</span><span class="st">'zip'</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># shuffle and split dataset into internal (80%) and external (20%) datasets</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(frac<span class="op">=</span><span class="dv">1</span>)</span>
