@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.proteomicsml.org/publication.html</loc>
-    <lastmod>2022-11-07T19:03:38.659Z</lastmod>
+    <lastmod>2022-11-11T14:54:56.493Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/index.html</loc>
-    <lastmod>2022-11-07T19:03:39.771Z</lastmod>
+    <lastmod>2022-11-11T14:54:57.297Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/index.html</loc>
-    <lastmod>2022-11-07T19:03:40.392Z</lastmod>
+    <lastmod>2022-11-11T14:54:57.833Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-1-parsing-spectral-library.html</loc>
-    <lastmod>2022-11-07T19:03:41.988Z</lastmod>
+    <lastmod>2022-11-11T14:54:59.117Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html</loc>
-    <lastmod>2022-11-07T19:03:42.892Z</lastmod>
+    <lastmod>2022-11-11T14:54:59.889Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/preannotated-prosit.html</loc>
-    <lastmod>2022-11-07T19:03:43.488Z</lastmod>
+    <lastmod>2022-11-11T14:55:00.413Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/nist-3-deep-learning-lstm.html</loc>
-    <lastmod>2022-11-07T19:03:44.008Z</lastmod>
+    <lastmod>2022-11-11T14:55:00.833Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/fragmentation/raw-to-prosit.html</loc>
-    <lastmod>2022-11-07T19:03:44.584Z</lastmod>
+    <lastmod>2022-11-11T14:55:01.353Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/ionmobility/meier-tims-ccs.html</loc>
-    <lastmod>2022-11-07T19:03:46.088Z</lastmod>
+    <lastmod>2022-11-11T14:55:02.681Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/detectability/modeling-protein-detectability.html</loc>
-    <lastmod>2022-11-07T19:03:46.664Z</lastmod>
+    <lastmod>2022-11-11T14:55:03.169Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/retentiontime/manual-prosit-rt.html</loc>
-    <lastmod>2022-11-07T19:03:48.216Z</lastmod>
+    <lastmod>2022-11-11T14:55:04.461Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/retentiontime/dlomix-prosit-rt.html</loc>
-    <lastmod>2022-11-07T19:03:48.804Z</lastmod>
+    <lastmod>2022-11-11T14:55:04.941Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/tutorials/retentiontime/mq-evidence-to-ml.html</loc>
-    <lastmod>2022-11-07T19:03:49.844Z</lastmod>
+    <lastmod>2022-11-11T14:55:05.857Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/code-of-conduct.html</loc>
-    <lastmod>2022-11-07T19:03:50.384Z</lastmod>
+    <lastmod>2022-11-11T14:55:06.309Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/contributing.html</loc>
-    <lastmod>2022-11-07T19:03:51.332Z</lastmod>
+    <lastmod>2022-11-11T14:55:07.177Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/index.html</loc>
-    <lastmod>2022-11-07T19:03:51.928Z</lastmod>
+    <lastmod>2022-11-11T14:55:07.677Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/fragmentation/nist.html</loc>
-    <lastmod>2022-11-07T19:03:52.452Z</lastmod>
+    <lastmod>2022-11-11T14:55:08.077Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/fragmentation/ProteomeTools_FI.html</loc>
-    <lastmod>2022-11-07T19:03:53.384Z</lastmod>
+    <lastmod>2022-11-11T14:55:08.893Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/ionmobility/Meier_TIMS.html</loc>
-    <lastmod>2022-11-07T19:03:53.912Z</lastmod>
+    <lastmod>2022-11-11T14:55:09.329Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/ionmobility/VanPuyvelde_TWIMS.html</loc>
-    <lastmod>2022-11-07T19:03:54.821Z</lastmod>
+    <lastmod>2022-11-11T14:55:10.101Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/ProteomeTools_RT.html</loc>
-    <lastmod>2022-11-07T19:03:56.193Z</lastmod>
+    <lastmod>2022-11-11T14:55:11.301Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/Sharma_HeLa_RT.html</loc>
-    <lastmod>2022-11-07T19:03:56.673Z</lastmod>
+    <lastmod>2022-11-11T14:55:11.713Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/DLOmix_RT.html</loc>
-    <lastmod>2022-11-07T19:03:57.217Z</lastmod>
+    <lastmod>2022-11-11T14:55:12.121Z</lastmod>
   </url>
   <url>
     <loc>https://www.proteomicsml.org/datasets/retentiontime/PXD028248_RT.html</loc>
-    <lastmod>2022-11-07T19:03:57.693Z</lastmod>
+    <lastmod>2022-11-11T14:55:12.521Z</lastmod>
   </url>
 </urlset>

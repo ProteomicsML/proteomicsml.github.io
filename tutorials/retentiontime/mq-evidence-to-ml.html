@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robbin Bouwmeester">
-<meta name="dcterms.date" content="2022-11-07">
+<meta name="dcterms.date" content="2022-11-11">
 
 <title>ProteomicsML - Preparing a retention time data set for machine learning</title>
 <style>
@@ -479,7 +479,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 7, 2022</p>
+      <p class="date">November 11, 2022</p>
     </div>
   </div>
   
@@ -531,16 +531,12 @@ Requirement already satisfied: colorama in c:\users\robbin\anaconda3\envs\py310\
 <h2 class="anchored" data-anchor-id="reading-and-formatting-input-data">Reading and formatting input data</h2>
 <p>We will not need all the columns, define those that might be useful:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sel_columns <span class="op">=</span> [</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Raw file'</span>, <span class="st">'Sequence'</span>, <span class="st">'Length'</span>, <span class="st">'Modifications'</span>, <span class="st">'Modified sequence'</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Retention time'</span>,<span class="st">'Retention length'</span>,<span class="st">'Calibrated retention time'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Calibrated retention time start'</span>, <span class="st">'Calibrated retention time finish'</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Retention time calibration'</span>, <span class="st">'Match time difference'</span>,<span class="st">"Intensity"</span>, <span class="st">"PEP"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sel_columns <span class="op">=</span> [<span class="st">'Raw file'</span>, <span class="st">'Sequence'</span>, <span class="st">'Modifications'</span>, <span class="st">'Modified sequence'</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Retention time'</span>,<span class="st">'Calibrated retention time'</span>, <span class="st">'PEP'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read the input files, here a csv. If you read the standard txt you need to modify the read_csv with:</p>
 <pre class="pd.read_csv(&quot;evid_files/pxd028248_evidence_selected_columns.csv&quot;,sep=&quot;\t&quot;,low_memory=false)```"><code>
-Fill all the NA values with 0.0 and filter on only the most confident identificaitons (PEP &lt;= 0.001).
+Fill all the NA values with 0.0 and filter on only the most confident identifications (PEP &lt;= 0.001).
 
 ::: {.cell}
 ``` {.python .cell-code}
