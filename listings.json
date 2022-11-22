@@ -17,6 +17,7 @@
   {
     "listing": "/datasets/index.html",
     "items": [
+      "/datasets/detectability/ArabidopsisLightDarkProteome.html",
       "/datasets/fragmentation/nist.html",
       "/datasets/fragmentation/ProteomeTools_FI.html",
       "/datasets/ionmobility/Meier_TIMS.html",

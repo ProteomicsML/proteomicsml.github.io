@@ -25,28 +25,28 @@
     "href": "tutorials/index.html#detectability",
     "title": "Tutorials",
     "section": "Detectability",
-    "text": "Detectability\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nModelling protein detectability with an MLP\n\n\nEric Deutsch\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Detectability\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nModelling protein detectability with an MLP\n\n\nEric Deutsch\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/index.html#fragmentation",
     "href": "tutorials/index.html#fragmentation",
     "title": "Tutorials",
     "section": "Fragmentation",
-    "text": "Fragmentation\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nNIST (part 1): Preparing a spectral library for ML\n\n\nRalf Gabriels\n\n\nNov 15, 2022\n\n\n\n\nNIST (part 2): Traditional ML: Gradient boosting\n\n\nRalf Gabriels\n\n\nNov 15, 2022\n\n\n\n\nNIST (part 3): Deep learning: BiLSTM\n\n\nRalf Gabriels\n\n\nNov 15, 2022\n\n\n\n\nProsit-style GRU with pre-annotated ProteomeTools data\n\n\nSiegfried Gessulat\n\n\nNov 15, 2022\n\n\n\n\nRaw file processing with PROSIT style annotation\n\n\nTobias Greisager Rehfeldt\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Fragmentation\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nNIST (part 1): Preparing a spectral library for ML\n\n\nRalf Gabriels\n\n\nNov 22, 2022\n\n\n\n\nNIST (part 2): Traditional ML: Gradient boosting\n\n\nRalf Gabriels\n\n\nNov 22, 2022\n\n\n\n\nNIST (part 3): Deep learning: BiLSTM\n\n\nRalf Gabriels\n\n\nNov 22, 2022\n\n\n\n\nProsit-style GRU with pre-annotated ProteomeTools data\n\n\nSiegfried Gessulat\n\n\nNov 22, 2022\n\n\n\n\nRaw file processing with PROSIT style annotation\n\n\nTobias Greisager Rehfeldt\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/index.html#ion-mobility",
     "href": "tutorials/index.html#ion-mobility",
     "title": "Tutorials",
     "section": "Ion mobility",
-    "text": "Ion mobility\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nPredicting CCS values for TIMS data\n\n\nRobbin Bouwmeester\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Ion mobility\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nPredicting CCS values for TIMS data\n\n\nRobbin Bouwmeester\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/index.html#retention-time",
     "href": "tutorials/index.html#retention-time",
     "title": "Tutorials",
     "section": "Retention time",
-    "text": "Retention time\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nDLOmix embedding of Prosit model on ProteomeTools data\n\n\nTobias Greisager Rehfeldt\n\n\nNov 15, 2022\n\n\n\n\nManual embedding of Bi-LSTM model on ProteomeTools data\n\n\nTobias Greisager Rehfeldt\n\n\nNov 15, 2022\n\n\n\n\nPreparing a retention time data set for machine learning\n\n\nRobbin Bouwmeester\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Retention time\n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\nDate\n\n\n\n\n\n\nDLOmix embedding of Prosit model on ProteomeTools data\n\n\nTobias Greisager Rehfeldt\n\n\nNov 22, 2022\n\n\n\n\nManual embedding of Bi-LSTM model on ProteomeTools data\n\n\nTobias Greisager Rehfeldt\n\n\nNov 22, 2022\n\n\n\n\nPreparing a retention time data set for machine learning\n\n\nRobbin Bouwmeester\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/fragmentation/nist-1-parsing-spectral-library.html#introduction",
@@ -256,28 +256,28 @@
     "href": "datasets/index.html#detectability",
     "title": "Datasets",
     "section": "Detectability",
-    "text": "Detectability\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Detectability\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nArabidopsis PeptideAtlas Light and Dark Proteome\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "datasets/index.html#fragmentation",
     "href": "datasets/index.html#fragmentation",
     "title": "Datasets",
     "section": "Fragmentation",
-    "text": "Fragmentation\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nNIST Peptide libraries\n\n\nNov 15, 2022\n\n\n\n\nProteomeTools\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Fragmentation\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nNIST Peptide libraries\n\n\nNov 22, 2022\n\n\n\n\nProteomeTools\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "datasets/index.html#ion-mobility",
     "href": "datasets/index.html#ion-mobility",
     "title": "Datasets",
     "section": "Ion mobility",
-    "text": "Ion mobility\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nMeier et al. TIMS\n\n\nNov 15, 2022\n\n\n\n\nVan Puyvelde et al. TWIMS\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Ion mobility\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nMeier et al. TIMS\n\n\nNov 22, 2022\n\n\n\n\nVan Puyvelde et al. TWIMS\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "datasets/index.html#retention-time",
     "href": "datasets/index.html#retention-time",
     "title": "Datasets",
     "section": "Retention time",
-    "text": "Retention time\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nDLOmix\n\n\nNov 15, 2022\n\n\n\n\nPXD028248\n\n\nNov 15, 2022\n\n\n\n\nProteomeTools\n\n\nNov 15, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Retention time\n\n\n\n\n\n\nTitle\n\n\nDate\n\n\n\n\n\n\nDLOmix\n\n\nNov 22, 2022\n\n\n\n\nPXD028248\n\n\nNov 22, 2022\n\n\n\n\nProteomeTools\n\n\nNov 22, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "datasets/fragmentation/nist.html",
@@ -306,6 +306,13 @@
     "title": "Van Puyvelde et al. TWIMS",
     "section": "",
     "text": "Downloads\n\n\n\n\n\n\n\nDataset Description\nThe data consists of 6.268 PSMs.\n\n\nAttributes\n\ntitle: A comprehensive LFQ benchmark dataset on modern day acquisition strategies in proteomics\ndataset tag: ionmobility/VanPuyvelde_TWIMS\ndata publication: Scientific Data\nmachine learning publication: \ndata source identifier: PXD028735\ndata type: ion mobility\nformat: TSV\ncolumns: Modified sequence, Charge, CCS, Ion Mobility, Ion Mobility Units, High Energy, Ion Mobility Offset\ninstrument: maXis, timsTOF Pro,\norganism: Homo sapiens (Human), Saccharomyces cerevisiae (Baker’s yeast), Escherichia coli (E. coli)\nfixed modifications: \nvariable modification:unmodified & oxidation & acetylation & carbamidomethyl\nionmobility type: TWIMS\ncss calibration compounds: \n\n\n\nSample Protocol\nFrom the original paper:\nMass spectrometry-compatible Human K562 (P/N: V6951) and Yeast (P/N: V7461) protein digest extracts were purchased from Promega (Madison, Wisconsin, United States). Lyophilised MassPrep Escherichia.coli digest standard (P/N:186003196) was purchased from Waters Corporation (Milford, Massachusetts, United States). The extracts were reduced with dithiothreitol (DTT), alkylated with iodoacetamide (IAA) and digested with sequencing grade Trypsin(-Lys C) by the respective manufacturers. The digested protein extracts were reconstituted in a mixture of 0.1% Formic acid (FA) in water (Biosolve B.V, Valkenswaard, The Netherlands) and spiked with iRT peptides (Biognosys, Schlieren, Switzerland) at a ratio of 1:20 v/v. Two master samples A and B were created similar to Navarro et al., each in triplicate, as shown in Fig. 1. Sample A was prepared by mixing Human, Yeast and E.coli at 65%, 30% and 5% weight for weight (w/w), respectively. Sample B was prepared by mixing Human, Yeast and E.coli protein digests at 65%, 15%, 20% w/w, respectively. The resulting samples have logarithmic fold changes (log2FCs) of 0, −1 and 2 for respectively Human, Yeast and E.coli. One sixth of each of the triplicate master batches of A and B were mixed to create a QC sample, containing 65% w/w Human, 22.5% w/w Yeast and 12.5% w/w E.coli.\n\n\nData Analysis Protocol\nFrom the original paper:\nAn M-class LC system (Waters Corporation, Milford, MA) was equipped with a 1.7 µm CSH 130 C18 300 µm × 100 mm column, operating at 5 µL/min with a column temperature of 55 °C. Mobile phase A was UPLC-grade water containing 0.1% (v/v) FA and 3% DMSO, mobile phase B was ACN containing 0.1% (v/v) FA. Peptides were separated using a linear gradient of 3−30% mobile phase B over 120 minutes. All experiments were conducted on a Synapt G2-Si mass spectrometer (Waters Corporation, Wilmslow, UK). The ESI Low Flow probe capillary voltage was 3 kV, sampling cone 60 V, source offset 60 V, source temperature 80 °C, desolvation temperature 350 °C, cone gas 80 L/hr, desolvation gas 350 L/hr, and nebulizer pressure 2.5 bar. A lock mass reference signal of GluFibrinopeptide B (m/z 785.8426) was sampled every 30 s.\n\n\nComments:"
+  },
+  {
+    "objectID": "datasets/detectability/ArabidopsisLightDarkProteome.html",
+    "href": "datasets/detectability/ArabidopsisLightDarkProteome.html",
+    "title": "Arabidopsis PeptideAtlas Light and Dark Proteome",
+    "section": "",
+    "text": "Downloads\n\n\n\nDataset Description\nThe dataset contains 32.674 rows totalling 3.3 MB from the Arabidopsis PeptideAtlas build (http://www.peptideatlas.org/builds/arabidopsis/) we have extracted all the “canonical” proteins, which have been observed with at least 2 uniquely mapping peptides of length 9+AA and providing at least 18AA of coverage. We have also extracted “not observed” proteins that have no peptide detections (that pass PeptideAtlas’s stringent thresholds) at all. Physicochemical properties and RNA-seq-based properties are also computed and provided in the dataset.\n\n\nAttributes\n\ntitle: Arabidopsis PeptideAtlas Light and Dark Proteome\ndataset tag: detectability/ArabidopsisLightDarkProteome\ndata publication: Plant Cell\nmachine learning publication: None\ndata source identifier: 52 PXDs as listed at PeptideAtlas\ndata type: protein detectability\nformat: TSV\ncolumns: protein_identifier, gene_symbol, chromosome, number_of_observations, molecular_weight, gravy_score, isoelectric_point, rna_detected_percent, highest_tpm, protein_description\ninstrument: various\norganism: Arabidopsis thaliana (arabidopsis)\nfixed modifications: various\nvariable modification: various\ndissociation method: CID and HCD\ncollision energy: various\nmass analyzer type: various\n\n\n\nSample Protocol\nNo sample protocol is known for the dataset\n\n\nData analysis protocol\n52 public datasets were downloaded from ProteomeXchange repositories, processed through the PeptideAtlas processing pipeline, and protein categories were computed based on the ensemble data, as described in van Wijk et al. 2021. The number of observations is the number of peptide-spectrum matches in the PeptideAtlas build based on a threshold that aims for a 1% false dicovery rate at the protein level. The molecular weight, gravy score (hydrophobicity), and isoelectric point (pI) are computed in Python via the Pyteomics library. The RNA-seq-based values are computed based on a re-analysis of over 5000 RNA-seq samples as described in Kearly et al. (submitted). The metrics are the percentage of RNA-seq samples with a positive detection of transcripts corresponding to the protein (a measure of how pervasive the transcripts are), and the highest RNA abundance in transcripts per million (TPM) in the highest sample (a measure of the highest possibly abundance at least under some conditions).\n\n\nComments\n\nNone"
   },
   {
     "objectID": "datasets/retentiontime/ProteomeTools_RT.html",

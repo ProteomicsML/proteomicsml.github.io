@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2022-11-22">
 
-<title>ProteomicsML - Datasets</title>
+<title>ProteomicsML - Arabidopsis PeptideAtlas Light and Dark Proteome</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../static/img/proteomicsml-icon.svg" rel="icon" type="image/svg+xml">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../static/img/proteomicsml-icon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,119 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-detectability-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-detectability-listing'] = new List('listing-detectability-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-fragmentation-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-fragmentation-listing'] = new List('listing-fragmentation-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-ionmobility-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-ionmobility-listing'] = new List('listing-ionmobility-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-retentiontime-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-retentiontime-listing'] = new List('listing-retentiontime-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VVRMZHT2W2"></script>
 
 <script type="text/javascript">
@@ -190,14 +76,13 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../static/css/custom-styles.css">
-<meta property="og:title" content="ProteomicsML - Datasets">
-<meta property="og:description" content="On ProteomicsML you will find datasets for beginners and experts in the field alike. Download, and explore the intricate nature of mass spectrometry data.">
+<link rel="stylesheet" href="../../static/css/custom-styles.css">
+<meta property="og:title" content="ProteomicsML - Arabidopsis PeptideAtlas Light and Dark Proteome">
+<meta property="og:description" content="The dataset contains 32.674 rows totalling 3.3 MB from the Arabidopsis PeptideAtlas build (http://www.peptideatlas.">
 <meta property="og:site-name" content="ProteomicsML">
-<meta name="twitter:title" content="ProteomicsML - Datasets">
-<meta name="twitter:description" content="On ProteomicsML you will find datasets for beginners and experts in the field alike. Download, and explore the intricate nature of mass spectrometry data.">
+<meta name="twitter:title" content="ProteomicsML - Arabidopsis PeptideAtlas Light and Dark Proteome">
+<meta name="twitter:description" content="The dataset contains 32.674 rows totalling 3.3 MB from the Arabidopsis PeptideAtlas build (http://www.peptideatlas.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -208,8 +93,8 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../static/img/proteomicsml-logo-inverse.svg" alt="ProteomicsML logo" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../static/img/proteomicsml-logo-inverse.svg" alt="ProteomicsML logo" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -218,29 +103,29 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page">
+    <a class="nav-link active" href="../../index.html" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../publication.html">
+    <a class="nav-link" href="../../publication.html">
  <span class="menu-text">Publication</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tutorials/index.html">
+    <a class="nav-link" href="../../tutorials/index.html">
  <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../datasets/index.html">
+    <a class="nav-link" href="../../datasets/index.html">
  <span class="menu-text">Datasets</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../contributing.html">
+    <a class="nav-link" href="../../contributing.html">
  <span class="menu-text">Contributing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../code-of-conduct.html">
+    <a class="nav-link" href="../../code-of-conduct.html">
  <span class="menu-text">Code of Conduct</span></a>
   </li>  
   <li class="nav-item compact">
@@ -260,7 +145,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Datasets</h1>
+      <h1 class="quarto-secondary-nav-title">Arabidopsis PeptideAtlas Light and Dark Proteome</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -275,17 +160,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../publication.html" class="sidebar-item-text sidebar-link">Publication</a>
+  <a href="../../publication.html" class="sidebar-item-text sidebar-link">Publication</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../tutorials/index.html" class="sidebar-item-text sidebar-link">Tutorials</a>
+            <a href="../../tutorials/index.html" class="sidebar-item-text sidebar-link">Tutorials</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -301,7 +186,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
+  <a href="../../tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">Modelling protein detectability with an MLP</a>
   </div>
 </li>
       </ul>
@@ -316,27 +201,27 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Preparing a spectral library for ML</a>
+  <a href="../../tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">NIST (part 1): Preparing a spectral library for ML</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="sidebar-item-text sidebar-link">NIST (part 2): Traditional ML: Gradient boosting</a>
+  <a href="../../tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="sidebar-item-text sidebar-link">NIST (part 2): Traditional ML: Gradient boosting</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="sidebar-item-text sidebar-link">NIST (part 3): Deep learning: BiLSTM</a>
+  <a href="../../tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="sidebar-item-text sidebar-link">NIST (part 3): Deep learning: BiLSTM</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/preannotated-prosit.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with pre-annotated ProteomeTools data</a>
+  <a href="../../tutorials/fragmentation/preannotated-prosit.html" class="sidebar-item-text sidebar-link">Prosit-style GRU with pre-annotated ProteomeTools data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">Raw file processing with PROSIT style annotation</a>
+  <a href="../../tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">Raw file processing with PROSIT style annotation</a>
   </div>
 </li>
       </ul>
@@ -351,7 +236,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
+  <a href="../../tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">Predicting CCS values for TIMS data</a>
   </div>
 </li>
       </ul>
@@ -366,17 +251,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/retentiontime/dlomix-prosit-rt.html" class="sidebar-item-text sidebar-link">DLOmix embedding of Prosit model on ProteomeTools data</a>
+  <a href="../../tutorials/retentiontime/dlomix-prosit-rt.html" class="sidebar-item-text sidebar-link">DLOmix embedding of Prosit model on ProteomeTools data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/retentiontime/manual-prosit-rt.html" class="sidebar-item-text sidebar-link">Manual embedding of Bi-LSTM model on ProteomeTools data</a>
+  <a href="../../tutorials/retentiontime/manual-prosit-rt.html" class="sidebar-item-text sidebar-link">Manual embedding of Bi-LSTM model on ProteomeTools data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/retentiontime/mq-evidence-to-ml.html" class="sidebar-item-text sidebar-link">Preparing a retention time data set for machine learning</a>
+  <a href="../../tutorials/retentiontime/mq-evidence-to-ml.html" class="sidebar-item-text sidebar-link">Preparing a retention time data set for machine learning</a>
   </div>
 </li>
       </ul>
@@ -385,7 +270,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../datasets/index.html" class="sidebar-item-text sidebar-link active">Datasets</a>
+            <a href="../../datasets/index.html" class="sidebar-item-text sidebar-link">Datasets</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -393,15 +278,15 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Detectability</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Detectability</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/detectability/ArabidopsisLightDarkProteome.html" class="sidebar-item-text sidebar-link">Arabidopsis PeptideAtlas Light and Dark Proteome</a>
+  <a href="../../datasets/detectability/ArabidopsisLightDarkProteome.html" class="sidebar-item-text sidebar-link active">Arabidopsis PeptideAtlas Light and Dark Proteome</a>
   </div>
 </li>
       </ul>
@@ -416,12 +301,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
+  <a href="../../datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">NIST Peptide libraries</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/fragmentation/ProteomeTools_FI.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  <a href="../../datasets/fragmentation/ProteomeTools_FI.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
   </div>
 </li>
       </ul>
@@ -436,12 +321,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/ionmobility/Meier_TIMS.html" class="sidebar-item-text sidebar-link">Meier et al.&nbsp;TIMS</a>
+  <a href="../../datasets/ionmobility/Meier_TIMS.html" class="sidebar-item-text sidebar-link">Meier et al.&nbsp;TIMS</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/ionmobility/VanPuyvelde_TWIMS.html" class="sidebar-item-text sidebar-link">Van Puyvelde et al.&nbsp;TWIMS</a>
+  <a href="../../datasets/ionmobility/VanPuyvelde_TWIMS.html" class="sidebar-item-text sidebar-link">Van Puyvelde et al.&nbsp;TWIMS</a>
   </div>
 </li>
       </ul>
@@ -456,17 +341,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/retentiontime/DLOmix_RT.html" class="sidebar-item-text sidebar-link">DLOmix</a>
+  <a href="../../datasets/retentiontime/DLOmix_RT.html" class="sidebar-item-text sidebar-link">DLOmix</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
+  <a href="../../datasets/retentiontime/ProteomeTools_RT.html" class="sidebar-item-text sidebar-link">ProteomeTools</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datasets/retentiontime/PXD028248_RT.html" class="sidebar-item-text sidebar-link">PXD028248</a>
+  <a href="../../datasets/retentiontime/PXD028248_RT.html" class="sidebar-item-text sidebar-link">PXD028248</a>
   </div>
 </li>
       </ul>
@@ -475,12 +360,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../contributing.html" class="sidebar-item-text sidebar-link">Contributing</a>
+  <a href="../../contributing.html" class="sidebar-item-text sidebar-link">Contributing</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../code-of-conduct.html" class="sidebar-item-text sidebar-link">Code of Conduct</a>
+  <a href="../../code-of-conduct.html" class="sidebar-item-text sidebar-link">Code of Conduct</a>
   </div>
 </li>
     </ul>
@@ -492,19 +377,21 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#detectability" id="toc-detectability" class="nav-link active" data-scroll-target="#detectability">Detectability</a></li>
-  <li><a href="#fragmentation" id="toc-fragmentation" class="nav-link" data-scroll-target="#fragmentation">Fragmentation</a></li>
-  <li><a href="#ion-mobility" id="toc-ion-mobility" class="nav-link" data-scroll-target="#ion-mobility">Ion mobility</a></li>
-  <li><a href="#retention-time" id="toc-retention-time" class="nav-link" data-scroll-target="#retention-time">Retention time</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link active" data-scroll-target="#downloads">Downloads</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">Dataset Description</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
+  <li><a href="#sample-protocol" id="toc-sample-protocol" class="nav-link" data-scroll-target="#sample-protocol">Sample Protocol</a></li>
+  <li><a href="#data-analysis-protocol" id="toc-data-analysis-protocol" class="nav-link" data-scroll-target="#data-analysis-protocol">Data analysis protocol</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments">Comments</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/datasets/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/detectability/ArabidopsisLightDarkProteome.md" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/datasets/detectability/ArabidopsisLightDarkProteome.md" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Datasets</h1>
+<h1 class="title d-none d-lg-block">Arabidopsis PeptideAtlas Light and Dark Proteome</h1>
 </div>
 
 
@@ -512,6 +399,12 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 22, 2022</p>
+    </div>
+  </div>
   
     
   </div>
@@ -519,175 +412,47 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 
 </header>
 
-<p>On ProteomicsML you will find datasets for beginners and experts in the field alike. Download, and explore the intricate nature of mass spectrometry data.</p>
-<section id="detectability" class="level2">
-<h2 class="anchored" data-anchor-id="detectability">Detectability</h2>
-<div id="listing-detectability-listing" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991515" data-listing-reading-time-sort="1.525" data-listing-title-sort="Arabidopsis PeptideAtlas Light and Dark Proteome" data-listing-filename-sort="ArabidopsisLightDarkProteome.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/detectability/ArabidopsisLightDarkProteome.html" class="title">Arabidopsis PeptideAtlas Light and Dark Proteome</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<p><a href="http://www.peptideatlas.org/builds/arabidopsis/light_and_dark_protein_list.tsv"><img src="https://img.shields.io/badge/download-training%20dataset-205380?style=flat-square.png" class="img-fluid"></a><br></p>
 </section>
-<section id="fragmentation" class="level2">
-<h2 class="anchored" data-anchor-id="fragmentation">Fragmentation</h2>
-<div id="listing-fragmentation-listing" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991515" data-listing-reading-time-sort="0.45" data-listing-title-sort="NIST Peptide libraries" data-listing-filename-sort="nist.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/fragmentation/nist.html" class="title">NIST Peptide libraries</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991515" data-listing-reading-time-sort="1.205" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_FI.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/fragmentation/ProteomeTools_FI.html" class="title">ProteomeTools</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="dataset-description" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-description">Dataset Description</h3>
+<p>The dataset contains 32.674 rows totalling 3.3 MB from the Arabidopsis PeptideAtlas build (http://www.peptideatlas.org/builds/arabidopsis/) we have extracted all the “canonical” proteins, which have been observed with at least 2 uniquely mapping peptides of length 9+AA and providing at least 18AA of coverage. We have also extracted “not observed” proteins that have no peptide detections (that pass PeptideAtlas’s stringent thresholds) at all. Physicochemical properties and RNA-seq-based properties are also computed and provided in the dataset.</p>
 </section>
-<section id="ion-mobility" class="level2">
-<h2 class="anchored" data-anchor-id="ion-mobility">Ion mobility</h2>
-<div id="listing-ionmobility-listing" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991567" data-listing-reading-time-sort="3.05" data-listing-title-sort="Meier et al. TIMS" data-listing-filename-sort="Meier_TIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/ionmobility/Meier_TIMS.html" class="title">Meier et al.&nbsp;TIMS</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991567" data-listing-reading-time-sort="2.045" data-listing-title-sort="Van Puyvelde et al. TWIMS" data-listing-filename-sort="VanPuyvelde_TWIMS.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/ionmobility/VanPuyvelde_TWIMS.html" class="title">Van Puyvelde et al.&nbsp;TWIMS</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="attributes" class="level3">
+<h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
+<ul>
+<li><strong>title</strong>: Arabidopsis PeptideAtlas Light and Dark Proteome</li>
+<li><strong>dataset tag</strong>: <code>detectability/ArabidopsisLightDarkProteome</code></li>
+<li><strong>data publication</strong>: <a href="https://doi.org/10.1093/plcell/koab211">Plant Cell</a></li>
+<li><strong>machine learning publication</strong>: None</li>
+<li><strong>data source identifier</strong>: 52 PXDs as listed at <a href="https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/buildDetails?atlas_build_id=510">PeptideAtlas</a></li>
+<li><strong>data type</strong>: protein detectability</li>
+<li><strong>format</strong>: TSV</li>
+<li><strong>columns</strong>: <code>protein_identifier</code>, <code>gene_symbol</code>, <code>chromosome</code>, <code>number_of_observations</code>, <code>molecular_weight</code>, <code>gravy_score</code>, <code>isoelectric_point</code>, <code>rna_detected_percent</code>, <code>highest_tpm</code>, <code>protein_description</code></li>
+<li><strong>instrument</strong>: various</li>
+<li><strong>organism</strong>: Arabidopsis thaliana (arabidopsis)</li>
+<li><strong>fixed modifications</strong>: various</li>
+<li><strong>variable modification</strong>: various</li>
+<li><strong>dissociation method</strong>: CID and HCD</li>
+<li><strong>collision energy</strong>: various</li>
+<li><strong>mass analyzer type</strong>: various</li>
+</ul>
 </section>
-<section id="retention-time" class="level2">
-<h2 class="anchored" data-anchor-id="retention-time">Retention time</h2>
-<div id="listing-retentiontime-listing" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991567" data-listing-reading-time-sort="1.17" data-listing-title-sort="DLOmix" data-listing-filename-sort="DLOmix_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/retentiontime/DLOmix_RT.html" class="title">DLOmix</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991599" data-listing-reading-time-sort="1.155" data-listing-title-sort="PXD028248" data-listing-filename-sort="PXD028248_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/retentiontime/PXD028248_RT.html" class="title">PXD028248</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1669075991000" data-listing-file-modified-sort="1669075991687" data-listing-reading-time-sort="1.29" data-listing-title-sort="ProteomeTools" data-listing-filename-sort="ProteomeTools_RT.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="../datasets/retentiontime/ProteomeTools_RT.html" class="title">ProteomeTools</a>
-</td>
-<td class="listing-date">
-Nov 22, 2022
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<section id="sample-protocol" class="level3">
+<h3 class="anchored" data-anchor-id="sample-protocol">Sample Protocol</h3>
+<p>No sample protocol is known for the dataset</p>
+</section>
+<section id="data-analysis-protocol" class="level3">
+<h3 class="anchored" data-anchor-id="data-analysis-protocol">Data analysis protocol</h3>
+<p>52 public datasets were downloaded from ProteomeXchange repositories, processed through the PeptideAtlas processing pipeline, and protein categories were computed based on the ensemble data, as described in <a href="https://doi.org/10.1093/plcell/koab211">van Wijk et al.&nbsp;2021</a>. The number of observations is the number of peptide-spectrum matches in the PeptideAtlas build based on a threshold that aims for a 1% false dicovery rate at the protein level. The molecular weight, gravy score (hydrophobicity), and isoelectric point (pI) are computed in Python via the Pyteomics library. The RNA-seq-based values are computed based on a re-analysis of over 5000 RNA-seq samples as described in Kearly et al.&nbsp;(submitted). The metrics are the percentage of RNA-seq samples with a positive detection of transcripts corresponding to the protein (a measure of how pervasive the transcripts are), and the highest RNA abundance in transcripts per million (TPM) in the highest sample (a measure of the highest possibly abundance at least under some conditions).</p>
+</section>
+<section id="comments" class="level3">
+<h3 class="anchored" data-anchor-id="comments">Comments</h3>
+<ul>
+<li>None</li>
+</ul>
 
 
 </section>
@@ -849,5 +614,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
