@@ -478,7 +478,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
   <li><a href="#annotate-the-peaks" id="toc-annotate-the-peaks" class="nav-link" data-scroll-target="#annotate-the-peaks">4.3 Annotate the peaks</a></li>
   <li><a href="#parse-the-relevant-peak-intensities-to-an-format-suitable-for-machine-learning" id="toc-parse-the-relevant-peak-intensities-to-an-format-suitable-for-machine-learning" class="nav-link" data-scroll-target="#parse-the-relevant-peak-intensities-to-an-format-suitable-for-machine-learning">4.4 Parse the relevant peak intensities to an format suitable for machine learning</a></li>
   </ul></li>
-  <li><a href="#parse-the-full-spectral-library" id="toc-parse-the-full-spectral-library" class="nav-link" data-scroll-target="#parse-the-full-spectral-library">5 Parse the full spectral library</a>
+  <li><a href="#parsing-the-full-spectral-library" id="toc-parsing-the-full-spectral-library" class="nav-link" data-scroll-target="#parsing-the-full-spectral-library">5 Parsing the full spectral library</a>
   <ul>
   <li><a href="#exploring-basic-spectral-library-statistics" id="toc-exploring-basic-spectral-library-statistics" class="nav-link" data-scroll-target="#exploring-basic-spectral-library-statistics">5.1 Exploring basic spectral library statistics</a>
   <ul class="collapse">
@@ -562,7 +562,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <p>To avoid an overly complex tutorial, some aspects to intensity prediction are simplified or not handled. For example, the resulting models will only be able to predict singly charged b- and y-ions for unmodified peptides.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing required python packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install rich numpy pandas matplotlib seaborn spectrum_utils<span class="op">==</span><span class="fl">0.3.5</span> sklearn <span class="op">--</span>quiet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install rich<span class="op">~=</span><span class="fl">12.5</span> numpy<span class="op">~=</span><span class="fl">1.21</span> pandas<span class="op">~=</span><span class="fl">1.3</span> matplotlib<span class="op">~=</span><span class="fl">3.5</span> seaborn<span class="op">~=</span><span class="fl">0.11</span> scikit<span class="op">-</span>learn<span class="op">~=</span><span class="fl">1.0</span> spectrum_utils<span class="op">==</span><span class="fl">0.3.5</span> <span class="op">--</span>quiet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -687,7 +687,7 @@ Num peaks: 117
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"a450fcfc3eed4598a051c9e5b05fbe62","version_major":2,"version_minor":0}
+{"model_id":"d12dba3639334233b1b5eeaa30df5608","version_major":2,"version_minor":0}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -794,7 +794,7 @@ Num peaks: 117
 </div>
 </div>
 </div>
-<p>The left-most column denotes the peak annotation. This tells us which ion generated the peak, according to the search engine or library generation software. Note that many peaks (highlighted with a question mark) are not annotated, even though the spectrum was confidently identified.</p>
+<p>The right-most column denotes the peak annotation. This tells us which ion generated the peak, according to the search engine or library generation software. Note that many peaks (highlighted with a question mark) are not annotated, even though the spectrum was confidently identified.</p>
 <p>Using the Python package <a href="https://spectrum-utils.readthedocs.io/">spectrum_utils</a> <span class="citation" data-cites="Bittremieux2019">(<a href="#ref-Bittremieux2019" role="doc-biblioref">Bittremieux 2019</a>)</span> , we can easily visualize the spectrum:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -813,7 +813,8 @@ Num peaks: 117
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        intensity<span class="op">=</span>spectrum[<span class="st">"intensity"</span>]</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.title(spectrum[<span class="st">"Name"</span>])</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="nist-1-parsing-spectral-library_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
@@ -905,7 +906,8 @@ Num peaks: 117
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        peptide<span class="op">=</span>spectrum[<span class="st">"sequence"</span>],</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ).annotate_peptide_fragments(<span class="dv">25</span>, <span class="st">"ppm"</span>)</span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.title(spectrum[<span class="st">"Name"</span>])</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="nist-1-parsing-spectral-library_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
@@ -959,17 +961,16 @@ Tip
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        peptide<span class="op">=</span>spectrum[<span class="st">"sequence"</span>]</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    ).annotate_peptide_fragments(<span class="dv">25</span>, <span class="st">"ppm"</span>)</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.title(spectrum[<span class="st">"Name"</span>])</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="nist-1-parsing-spectral-library_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Now, the spectrum indeed only contains singly charged b- and y-ions. Note the nice gausian-like distributions of equally-distanced b- and y-ions. This is a feature specific for this peptide spectrum. Can you guess why? Tip: Take a look at the peptide sequence.</p>
-<p>Currently, all peaks are listed together in single numpy arrays, sorted by m/z values. For training a machine learning model, we need the intensity values in a more suitable structure. As we are planning to only predict simple singly charged b- and y-ions, we can create two arrays — one for each ion type — with the ions sorted by ion number:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>parsed_intensity <span class="op">=</span> {</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b"</span>: [b1, b2, b3, b4 ... bN],</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: [y1, y2, y3, y4 ... yN]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Currently, all peaks are listed together in single numpy arrays, sorted by m/z values. For training a machine learning model, we need the intensity values in a more suitable structure. As we are planning to only predict simple singly charged b- and y-ions, we can create two arrays — one for each ion type — with the ions sorted by ion number. For example:</p>
+<pre><code>b: [b1, b2, b3, b4 ... bN]
+y: [y1, y2, y3, y4 ... yN]</code></pre>
 <p>where N is the total number of possible fragments for that peptide sequence. Quick question: What value will N have for our peptide with sequence <code>AAAAAAAAAAAAAAAGAGAGAK</code>?</p>
 <p>The following function builds upon the <code>filter_peaks</code> function to not only filter the correct ion types, but also order them properly:</p>
 <div class="cell">
@@ -1021,8 +1022,8 @@ Tip
 <p>Great! These values are now ready to be used as prediction targets for a machine learning algorithm.</p>
 </section>
 </section>
-<section id="parse-the-full-spectral-library" class="level2">
-<h2 class="anchored" data-anchor-id="parse-the-full-spectral-library">5 Parse the full spectral library</h2>
+<section id="parsing-the-full-spectral-library" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-the-full-spectral-library">5 Parsing the full spectral library</h2>
 <p>Now that all functions for spectrum preparation are written, we can parse the full spectral library. Let’s first explore some of the basic statistics of this library.</p>
 <section id="exploring-basic-spectral-library-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-basic-spectral-library-statistics">5.1 Exploring basic spectral library statistics</h3>
@@ -1051,7 +1052,7 @@ Tip
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    spectrum_list.append(spectrum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"66d6b8fc9bc146c29622d8d556766702","version_major":2,"version_minor":0}
+{"model_id":"f88291463e7e4b709f4a7952cd57b5a7","version_major":2,"version_minor":0}
 </script>
 </div>
 <div class="cell-output cell-output-display">
@@ -1566,7 +1567,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center"><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY 4.0</a> license.</small></div>
+      <div class="nav-footer-center"><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0</a> license.</small></div>
   </div>
 </footer>
 
