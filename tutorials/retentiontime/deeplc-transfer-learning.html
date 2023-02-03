@@ -506,7 +506,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install library for transfer learning</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install deeplcretrainer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import deeplc packages</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> deeplc <span class="im">import</span> DeepLC</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> deeplcretrainer <span class="im">import</span> deeplcretrainer</span>
@@ -528,7 +528,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain three models for deeplc</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://github.com/compomics/DeepLC/raw/master/deeplc/mods/full_hc_hela_hf_psms_aligned_1fd8363d9af9dcad3be7553c39396960.hdf5"</span>,</span>
@@ -544,13 +544,13 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://github.com/compomics/DeepLC/raw/master/deeplc/mods/full_hc_hela_hf_psms_aligned_cb975cfdd4105f97efa0b3afffe075cc.hdf5"</span>,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"full_hc_train_pxd001468_cb975cfdd4105f97efa0b3afffe075cc.hdf5"</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display">
 <pre><code>('full_hc_train_pxd001468_cb975cfdd4105f97efa0b3afffe075cc.hdf5',
- &lt;http.client.HTTPMessage at 0x2100ae50d90&gt;)</code></pre>
+ &lt;http.client.HTTPMessage&gt;)</code></pre>
 </div>
 </div>
 <p>In this tutorial you will learn how to apply transfer learning to DeepLC models. In previous versions of DeepLC the retention time was calibrated to the LC system that the researcher wants to apply the predictions to. This calibration was performed with either a piecewise linear function or in later versions with a GAM. However, this calibration works under the assumption the that elution order is preserved. Transfer learning has been shown to accurately model changes in chromatographic setup while requiring only a small number of peptides.</p>
-<div class="cell" data-execution_count="28">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the input csv file</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>combined_df <span class="op">=</span> pd.read_csv(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://github.com/ProteomicsML/ProteomicsML/raw/combined_datasets_retention_time/datasets/retentiontime/PRIDE_MQ/PRIDE_MQ.zip?raw=true"</span>,</span>
@@ -559,17 +559,17 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We have the following columns in the downloaded file:</p>
-<div class="cell" data-execution_count="29">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>combined_df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display">
 <pre><code>Index(['MQ_seq', 'seq', 'modifications', 'tr', 'project'], dtype='object')</code></pre>
 </div>
 </div>
 <p>In this file there are multiple projects, some of these have many peptides and retention times associated:</p>
-<div class="cell" data-execution_count="30">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>combined_counter <span class="op">=</span> Counter(combined_df[<span class="st">"project"</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>combined_counter.most_common()[<span class="dv">0</span>:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display">
 <pre><code>[('PXD028028_A_G_I', 148501),
  ('PXD020019', 98447),
  ('PXD010606_IB', 94779),
@@ -583,9 +583,9 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </div>
 </div>
 <p>The smallest projects in the data set still have over 20 000 peptides:</p>
-<div class="cell" data-execution_count="31">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>combined_counter.most_common()[<span class="op">-</span><span class="dv">10</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display">
 <pre><code>[('PXD024045', 21399),
  ('PXD005346_HeLa_pAA_Rep2', 21112),
  ('PXD020987_third_batch', 20890),
@@ -599,11 +599,11 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 </div>
 </div>
 <p>Lets select the project ‘PXD002549’ which is the project with the smallest number of peptides:</p>
-<div class="cell" data-execution_count="32">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> combined_df[combined_df[<span class="st">"project"</span>] <span class="op">==</span> combined_counter.most_common()[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From this project we take 90 % of the data for training and early stopping (5 % of this 90 %). The remaining 10 % is used for testing prediction accuracy on unseen peptides.</p>
-<div class="cell" data-execution_count="33">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_train <span class="op">=</span> df.sample(frac<span class="op">=</span><span class="fl">0.9</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> df.loc[df.index.difference(df_train.index)]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -614,7 +614,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <section id="calibration" class="level2">
 <h2 class="anchored" data-anchor-id="calibration">Calibration</h2>
 <p>In this section we will use calibration to predict retention times for our project</p>
-<div class="cell" data-execution_count="34">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code is not required in most cases, but here it is used to clear variables that might cause problems</span></span>
@@ -647,7 +647,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>cor_calib <span class="op">=</span> pearsonr(df_test[<span class="st">"tr"</span>],preds_calib)[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets plot the results! These were fitted with a pretrained model and those predictions were calibrated with a GAM model.</p>
-<div class="cell" data-execution_count="35">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"MAE: </span><span class="sc">{</span><span class="bu">round</span>(mae_calib,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> 95th percentile: </span><span class="sc">{</span><span class="bu">round</span>(perc95_calib,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> R: </span><span class="sc">{</span><span class="bu">round</span>(cor_calib,<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -662,7 +662,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <section id="new-train" class="level2">
 <h2 class="anchored" data-anchor-id="new-train">New train</h2>
 <p>There are quite a few data points so we might actually be able to train a model from the ground up. This means it starts with random parameters in the network and will change it accordingly to the training data.</p>
-<div class="cell" data-scrolled="true" data-execution_count="36">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code is not required in most cases, but here it is used to clear variables that might cause problems</span></span>
@@ -714,7 +714,7 @@ INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/t
 </div>
 </div>
 <p>Lets plot the results of the newly trained model. As you will see the results are slightly better than calibration. In most cases with less training data the calibration strategy will outperform a newly trained model. What strategy works best, calibration or newly trained, depends highly on the data set.</p>
-<div class="cell" data-execution_count="37">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"MAE: </span><span class="sc">{</span><span class="bu">round</span>(mae_newtrain,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> 95th percentile: </span><span class="sc">{</span><span class="bu">round</span>(perc95_newtrain,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> R: </span><span class="sc">{</span><span class="bu">round</span>(cor_newtrain,<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -729,7 +729,7 @@ INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/t
 <section id="transfer-learning" class="level2">
 <h2 class="anchored" data-anchor-id="transfer-learning">Transfer learning</h2>
 <p>Transfer learning is a proven strategy when making predictions for a smaller data set that does not have exactly the same objective. Instead of starting with random starting parameters the training starts with previously trained parameters. This means that it can use information from previously trained on data to obtain a better solution for the current data set.</p>
-<div class="cell" data-execution_count="38">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The following code is not required in most cases, but here it is used to clear variables that might cause problems</span></span>
@@ -781,7 +781,7 @@ INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/t
 <span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>cor_transflearn <span class="op">=</span> pearsonr(df_test[<span class="st">"tr"</span>],preds_transflearn)[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets have a look at the transfer learning results. As you can see in the following plot the performance is substantially higher compared to calibration or training a new model.</p>
-<div class="cell" data-execution_count="39">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"MAE: </span><span class="sc">{</span><span class="bu">round</span>(mae_transflearn,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> 95th percentile: </span><span class="sc">{</span><span class="bu">round</span>(perc95_transflearn,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> R: </span><span class="sc">{</span><span class="bu">round</span>(cor_transflearn,<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
