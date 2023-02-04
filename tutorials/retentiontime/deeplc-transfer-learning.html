@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Robbin Bouwmeester">
-<meta name="dcterms.date" content="2023-02-03">
+<meta name="dcterms.date" content="2023-02-04">
 
 <title>ProteomicsML - Transfer learning with DeepLC</title>
 <style>
@@ -485,7 +485,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2023</p>
+      <p class="date">February 4, 2023</p>
     </div>
   </div>
   
@@ -504,7 +504,8 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="transfer-learning-with-deeplc">Transfer learning with DeepLC</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install library for transfer learning</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install deeplcretrainer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install deeplc</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install deeplcretrainer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import deeplc packages</span></span>
@@ -662,6 +663,7 @@ gtag('config', 'G-VVRMZHT2W2', { 'anonymize_ip': true});
 <section id="new-train" class="level2">
 <h2 class="anchored" data-anchor-id="new-train">New train</h2>
 <p>There are quite a few data points so we might actually be able to train a model from the ground up. This means it starts with random parameters in the network and will change it accordingly to the training data.</p>
+<p><strong>This can be slow - in order to speed this process up go to edit on the top bar, select notebook settings and select GPU as a hardware accelerator</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -713,12 +715,12 @@ INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/t
 INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/task:0/device:GPU:0',)</code></pre>
 </div>
 </div>
-<p>Lets plot the results of the newly trained model. As you will see the results are slightly better than calibration. In most cases with less training data the calibration strategy will outperform a newly trained model. What strategy works best, calibration or newly trained, depends highly on the data set.</p>
+<p>Lets plot the results of the newly trained model. As you will see the results are very comparable to calibration. In most cases with less training data the calibration strategy will outperform a newly trained model. What strategy works best, calibration or newly trained, depends highly on the data set.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"MAE: </span><span class="sc">{</span><span class="bu">round</span>(mae_newtrain,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> 95th percentile: </span><span class="sc">{</span><span class="bu">round</span>(perc95_newtrain,<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> R: </span><span class="sc">{</span><span class="bu">round</span>(cor_newtrain,<span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_test[<span class="st">"tr"</span>],preds_calib,s<span class="op">=</span><span class="dv">1</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_test[<span class="st">"tr"</span>],preds_newtrain,s<span class="op">=</span><span class="dv">1</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">15</span>,<span class="dv">115</span>],[<span class="dv">15</span>,<span class="dv">115</span>],c<span class="op">=</span><span class="st">"grey"</span>)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -729,6 +731,7 @@ INFO:tensorflow:Using MirroredStrategy with devices ('/job:localhost/replica:0/t
 <section id="transfer-learning" class="level2">
 <h2 class="anchored" data-anchor-id="transfer-learning">Transfer learning</h2>
 <p>Transfer learning is a proven strategy when making predictions for a smaller data set that does not have exactly the same objective. Instead of starting with random starting parameters the training starts with previously trained parameters. This means that it can use information from previously trained on data to obtain a better solution for the current data set.</p>
+<p><strong>This can be slow - in order to speed this process up go to edit on the top bar, select notebook settings and select GPU as a hardware accelerator</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
