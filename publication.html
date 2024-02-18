@@ -31,7 +31,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -195,11 +214,11 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="static/css/custom-styles.css">
 <meta property="og:title" content="ProteomicsML - ProteomicsML: An Online Platform for Community-Curated Data Sets and Tutorials for Machine Learning in Proteomics">
-<meta property="og:description" content="Dataset acquisition and curation are often the hardest and most time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based LC-IM-MS datasets, due to the high-throughput data structure with high levels of noise and complexity between raw and machine learning-ready formats. While predictive proteomics is a field on the rise, when predicting peptide behavior in LC-IM-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based datasets and tutorials across most of the currently explored physico-chemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides datasets that are useful for comparing state-of-the-art (SOTA) machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available on proteomicsml.org and we welcome the entire proteomics community to contribute to the project at github.com/proteomicsml.">
+<meta property="og:description" content="Data set acquisition and curation are often the most difficult and time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based liquid chromatography (LC) coupled to mass spectrometry (MS) data sets, due to the high levels of data reduction that occur between raw data and machine learning-ready data. Since predictive proteomics is an emerging field, when predicting peptide behavior in LC-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based data sets and tutorials across most of the currently explored physicochemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides data sets that are useful for comparing state-of-the-art machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available at proteomicsml.org, and we welcome the entire proteomics community to contribute to the project at github.com/proteomicsml.">
 <meta property="og:image" content="https://www.proteomicsml.org/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta property="og:site-name" content="ProteomicsML">
 <meta name="twitter:title" content="ProteomicsML - ProteomicsML: An Online Platform for Community-Curated Data Sets and Tutorials for Machine Learning in Proteomics">
-<meta name="twitter:description" content="Dataset acquisition and curation are often the hardest and most time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based LC-IM-MS datasets, due to the high-throughput data structure with high levels of noise and complexity between raw and machine learning-ready formats. While predictive proteomics is a field on the rise, when predicting peptide behavior in LC-IM-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based datasets and tutorials across most of the currently explored physico-chemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides datasets that are useful for comparing state-of-the-art (SOTA) machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available on proteomicsml.org and we welcome the entire proteomics community to contribute to the project at github.com/proteomicsml.">
+<meta name="twitter:description" content="Data set acquisition and curation are often the most difficult and time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based liquid chromatography (LC) coupled to mass spectrometry (MS) data sets, due to the high levels of data reduction that occur between raw data and machine learning-ready data. Since predictive proteomics is an emerging field, when predicting peptide behavior in LC-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based data sets and tutorials across most of the currently explored physicochemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides data sets that are useful for comparing state-of-the-art machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available at proteomicsml.org, and we welcome the entire proteomics community to contribute to the project at github.com/proteomicsml.">
 <meta name="twitter:image" content="https://www.proteomicsml.org/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -303,54 +322,13 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Fragmentation</span></a>
+            <a href="./tutorials/retentiontime/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Retention time</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NIST (part 1): Preparing a spectral library for ML</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NIST (part 2): Traditional ML: Gradient boosting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/nist-3-deep-learning-lstm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NIST (part 3): Deep learning: BiLSTM</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/preannotated-prosit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prosit-style GRU with pre-annotated ProteomeTools data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Raw file processing with PROSIT style annotation</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
- <span class="menu-text">Retention time</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorials/retentiontime/deeplc-transfer-learning.html" class="sidebar-item-text sidebar-link">
@@ -379,8 +357,43 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Detectability</span></a>
+            <a href="./tutorials/fragmentation/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fragmentation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/nist-1-parsing-spectral-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NIST (part 1): Preparing a spectral library for ML</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NIST (part 2): Traditional ML: Gradient boosting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/preannotated-prosit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prosit-style GRU with pre-annotated ProteomeTools data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/fragmentation/raw-to-prosit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raw file processing with PROSIT style annotation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorials/ionmobility/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ion mobility</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -388,16 +401,16 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modelling protein detectability with an MLP</span></a>
+  <a href="./tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predicting CCS values for TIMS data</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
- <span class="menu-text">Ion mobility</span></a>
+            <a href="./tutorials/detectability/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detectability</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -405,8 +418,8 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/ionmobility/meier-tims-ccs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predicting CCS values for TIMS data</span></a>
+  <a href="./tutorials/detectability/modeling-protein-detectability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelling protein detectability with an MLP</span></a>
   </div>
 </li>
       </ul>
@@ -425,35 +438,12 @@ cookieconsent.run({
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
- <span class="menu-text">Fragmentation</span></a>
+ <span class="menu-text">Retention time</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NIST Peptide libraries</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./datasets/fragmentation/ProteomeTools_FI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ProteomeTools</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
- <span class="menu-text">Retention time</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datasets/retentiontime/DLOmix_RT.html" class="sidebar-item-text sidebar-link">
@@ -476,30 +466,36 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
- <span class="menu-text">Detectability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Fragmentation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datasets/detectability/ArabidopsisLightDarkProteome.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arabidopsis PeptideAtlas Light and Dark Proteome</span></a>
+  <a href="./datasets/fragmentation/nist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NIST Peptide libraries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/fragmentation/ProteomeTools_FI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ProteomeTools</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
  <span class="menu-text">Ion mobility</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datasets/ionmobility/Meier_TIMS.html" class="sidebar-item-text sidebar-link">
@@ -510,6 +506,23 @@ cookieconsent.run({
   <div class="sidebar-item-container"> 
   <a href="./datasets/ionmobility/VanPuyvelde_TWIMS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Van Puyvelde et al.&nbsp;TWIMS</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+ <span class="menu-text">Detectability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets/detectability/ArabidopsisLightDarkProteome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arabidopsis PeptideAtlas Light and Dark Proteome</span></a>
   </div>
 </li>
       </ul>
@@ -534,7 +547,19 @@ cookieconsent.run({
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-proteomicsml-platform" id="toc-the-proteomicsml-platform" class="nav-link" data-scroll-target="#the-proteomicsml-platform">The ProteomicsML Platform</a></li>
+  <li><a href="#data-sets-and-tutorials" id="toc-data-sets-and-tutorials" class="nav-link" data-scroll-target="#data-sets-and-tutorials">Data Sets and Tutorials</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#supporting-information" id="toc-supporting-information" class="nav-link" data-scroll-target="#supporting-information">Supporting Information</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/publication.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/publication.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -577,21 +602,163 @@ cookieconsent.run({
 <div>
   <div class="abstract">
     <div class="abstract-title">Abstract</div>
-    Dataset acquisition and curation are often the hardest and most time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based LC-IM-MS datasets, due to the high-throughput data structure with high levels of noise and complexity between raw and machine learning-ready formats. While predictive proteomics is a field on the rise, when predicting peptide behavior in LC-IM-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based datasets and tutorials across most of the currently explored physico-chemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides datasets that are useful for comparing state-of-the-art (SOTA) machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available on <a href="https://www.proteomicsml.org/">proteomicsml.org</a> and we welcome the entire proteomics community to contribute to the project at <a href="https://github.com/proteomicsml/">github.com/proteomicsml</a>.
+    Data set acquisition and curation are often the most difficult and time-consuming parts of a machine learning endeavor. This is especially true for proteomics-based liquid chromatography (LC) coupled to mass spectrometry (MS) data sets, due to the high levels of data reduction that occur between raw data and machine learning-ready data. Since predictive proteomics is an emerging field, when predicting peptide behavior in LC-MS setups, each lab often uses unique and complex data processing pipelines in order to maximize performance, at the cost of accessibility and reproducibility. For this reason we introduce ProteomicsML, an online resource for proteomics-based data sets and tutorials across most of the currently explored physicochemical peptide properties. This community-driven resource makes it simple to access data in easy-to-process formats, and contains easy-to-follow tutorials that allow new users to interact with even the most advanced algorithms in the field. ProteomicsML provides data sets that are useful for comparing state-of-the-art machine learning algorithms, as well as providing introductory material for teachers and newcomers to the field alike. The platform is freely available at <a href="https://www.proteomicsml.org/">proteomicsml.org</a>, and we welcome the entire proteomics community to contribute to the project at <a href="https://github.com/proteomicsml/">github.com/proteomicsml</a>.
   </div>
 </div>
 
 </header>
 
-<hr>
-<p>Published in the Third Special Issue on Software Tools and Resources of Journal of Proteome Research. Read the full publication:</p>
+<p>Published in the Third Special Issue on Software Tools and Resources of Journal of Proteome Research.</p>
 <blockquote class="blockquote">
 <p><strong>ProteomicsML: An Online Platform for Community-Curated Data Sets and Tutorials for Machine Learning in Proteomics</strong>.<br> Tobias G. Rehfeldt*, Ralf Gabriels*, Robbin Bouwmeester*, Siegfried Gessulat, Benjamin A. Neely, Magnus Palmblad, Yasset Perez-Riverol, Tobias Schmidt, Juan Antonio Vizcaı́no<sup>§</sup>, and Eric W. Deutsch<sup>§</sup>.<br> J. Proteome Res. 2023, 22, 2, 632–636. <a href="https://doi.org/10.1021/acs.jproteome.2c00629">doi:10.1021/acs.jproteome.2c00629</a>.</p>
 </blockquote>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Computational predictions of analyte behavior in the context of mass spectrometry (MS) data have been explored for nearly five decades, with early rudimentary predictions dating back to 1983. <span class="citation" data-cites="Von_Heijne1983-cu">(<a href="#ref-Von_Heijne1983-cu" role="doc-biblioref">Heijne 1983</a>)</span> With the rise of technology and computational power, machine learning (ML) approaches were introduced into the field of proteomics in 1998 <span class="citation" data-cites="Nielsen1999-ej">(<a href="#ref-Nielsen1999-ej" role="doc-biblioref">Nielsen, Brunak, and Heijne 1999</a>)</span> and ML-based models quickly overtook human accuracy. Since then, dozens of articles have described efforts to train models for a multitude of physicochemical properties associated with the field of high-throughput proteomics, as reviewed by Neely et al. <span class="citation" data-cites="neely2023">(<a href="#ref-neely2023" role="doc-biblioref">Neely et al. 2023</a>)</span> Some of the most-commonly studied properties are retention time and fragmentation spectrum intensities, while a large range of lesser explored properties exists as well. For an exhaustive review of the current undertakings, see Wen et al.&nbsp;and Bouwmeester et al. <span class="citation" data-cites="Wen2020-cp bouwmeester-gabriels2020">(<a href="#ref-Wen2020-cp" role="doc-biblioref">Wen et al. 2020</a>; <a href="#ref-bouwmeester-gabriels2020" role="doc-biblioref">Bouwmeester et al. 2020</a>)</span> While many of these efforts are still in the realm of basic exploratory research, ML approaches are increasingly being incorporated into mainstream tools and standalone predictive resources. <span class="citation" data-cites="Wen2020-cp Gessulat2019-rt Bouwmeester2021-cf Meyer2021-jm">(<a href="#ref-Wen2020-cp" role="doc-biblioref">Wen et al. 2020</a>; <a href="#ref-Gessulat2019-rt" role="doc-biblioref">Gessulat et al. 2019</a>; <a href="#ref-Bouwmeester2021-cf" role="doc-biblioref">Bouwmeester et al. 2021</a>; <a href="#ref-Meyer2021-jm" role="doc-biblioref">Meyer 2021</a>)</span></p>
+<p>When training any ML model, it is crucial to obtain suitable training and evaluation data sets. Likewise, in many fields of research where ML is applied, it is common to have a range of educational data sets, such as the MNIST (Modified National Institute of Standards and Technology) <span class="citation" data-cites="deng2012">(<a href="#ref-deng2012" role="doc-biblioref">Deng 2012</a>)</span> or <a href="https://archive.ics.uci.edu/ml/datasets/iris">IRIS</a> data sets, allowing newcomers to the field to easily learn common ML methodologies. Likewise, state-of-the-art models can use benchmark data sets such as <a href="https://www.image-net.org">ImageNet</a> or those available on the <a href="https://archive.ics.uci.edu">UCI Machine Learning Repository</a> to compare their predictive capabilities. Similar to the utility of benchmark data sets, such as the number of survivors on the Titanic, which has been modeled more than 54 000 times (<a href="https://www.kaggle.com/competitions/titanic">kaggle.com/competitions/titanic</a>), we seek to define proteomics data sets that can provide an entry point for ML modeling.</p>
+<p>Although there have been numerous efforts to explore the predictive capabilities of models, there are barriers that limit widespread adoption in the field of predictive proteomics. First, there are considerable difficulties in accessing data sets in a suitable form for ML applications. A substantial effort is required to prepare raw proteomics data sets into a format usable for ML, as this demands extensive knowledge of the multitude of proteomics file formats and postprocessing methods. MS data also has a tendency to be fraught with missing metadata, making it challenging to compare across data sets. Furthermore, most ML frameworks in proteomics implement dedicated postprocessing pipelines to prepare the files for ML algorithms. Recently, tools such as ppx <span class="citation" data-cites="Fondrie2021-nb">(<a href="#ref-Fondrie2021-nb" role="doc-biblioref">Fondrie, Bittremieux, and Noble 2021</a>)</span> and MS2AI <span class="citation" data-cites="Rehfeldt2021-iw">(<a href="#ref-Rehfeldt2021-iw" role="doc-biblioref">Rehfeldt et al. 2021</a>)</span> were created to facilitate this process, but they are still limited to certain use cases due to the complex nature of liquid chromatography coupled to mass spectrometry (LC-MS) data.</p>
+<p>Second, while some ML-ready data sets are available on platforms such as Kaggle <span class="citation" data-cites="Kaggle">(<a href="#ref-Kaggle" role="doc-biblioref">Kaggle.com, n.d.</a>)</span> or in supplementary tables of publications, they are often difficult to find and lack long-term maintenance and support postpublication. While there is no formal consensus in the field, there are certain data sets that are often used for training such as ProteomeTools. <span class="citation" data-cites="Zolg2017-ys">(<a href="#ref-Zolg2017-ys" role="doc-biblioref">Zolg et al. 2017</a>)</span> Nevertheless, there are no widely used data sets used to compare the performance of tools developed by different researchers, making it difficult for new algorithms to be evaluated and compared to older tools. This issue is only further exacerbated by individual groups relying on different pre- and postprocessing protocols, such as differences in normalization of measurements or in the implementation of model performance metrics.</p>
+<p>As an outcome of the 2022 Lorentz Center Workshop on Proteomics and Machine Learning (Leiden, The Netherlands, March 2022), we have created a web platform to facilitate the application of ML approaches to the field of MS-based proteomics. The resource is intended to provide a central focal point for curating and disseminating data sets that are ready to use for ML research, and to encourage new entrants into the field through expert-driven tutorials. Here we describe how ProteomicsML has been developed using commonly available tools and designed for future ease of maintenance. We provide a brief overview of the data sets that are currently available at ProteomicsML and how it can be expanded in the future with more data. We also describe the initial set of tutorials that can be used as an introduction to the field of ML in proteomics.</p>
+</section>
+<section id="the-proteomicsml-platform" class="level1">
+<h1>The ProteomicsML Platform</h1>
+<p>The primary entry point for the resource is the ProteomicsML web site (<a href="https://www.proteomicsml.org/">www.proteomicsml.org</a>). It contains general introductory data sets that are already preprocessed and ready for training or evaluation, and contains educational resources in the form of tutorials for those new to ML in proteomics. The code base for the Web site is maintained via a <a href="https://github.com/ProteomicsML/ProteomicsML">GitHub repository</a>, and is therefore easy to maintain and amenable to outside contributions from the community. On the GitHub repository, researchers can open pull requests (proposals for adding or changing information) for new data sets or tutorials. These pull requests are then reviewed by the maintainers, currently the authors of this paper, in line with the guidelines in the contributing section of the ProteomicsML Web site. Data sets and tutorials hosted as part of the GitHub repository fall under the CC BY 4.0 license, as indicated on both the repository and the Web site. The PRIDE database infrastructure <span class="citation" data-cites="Perez-Riverol2022-ak">(<a href="#ref-Perez-Riverol2022-ak" role="doc-biblioref">Perez-Riverol et al. 2022</a>)</span> is also used to store larger data sets on an FTP server dedicated to ProteomicsML.</p>
+<p>A key goal of ProteomicsML is to advance with the field, which is why we provide a platform with detailed documentation, including a contributing guide on how to upload data sets and tutorials for specific ML workflows or algorithms. After curation by the maintainers, the contributions have to pass a build test in order to maintain integrity of the platform, and, if passed, are automatically published on the Web site and are freely accessible to other researchers.</p>
+<p>For many LC-MS properties, such as retention time and fragmentation intensity, well-performing ML models have already been published. We aim to provide suitable data sets and tutorials to easily reproduce these results in an educational fashion. All data sets on the platform are organized by data type, and should ideally be provided in a simple data format that is suitable for direct import into ML toolkits. Each data type can contain one or more data sets for different purposes, and each data set should be sufficiently annotated with metadata (e.g., its origin, how it was processed, and the relevant literature citations). Along with well-annotated data sets, the platform provides users with in-depth tutorials on how to download, import, handle, and train various ML models. Many of the LC-MS data types require certain, sometimes complex, preprocessing steps in order to be fully compatible with ML frameworks. For this reason, we believe it is crucial to provide guidelines on these processes to ultimately lower the entry barriers for new users to the field. Tutorials on ProteomicsML can be attribute- or data set-specific, allowing new tutorial submissions to focus on either the direct interactions with specific ML models or methodologies, or on a certain aspect of data preprocessing.</p>
+<p>Often when new modeling approaches are published, they are accompanied by data sets with novel pre- and postprocessing steps. Using ProteomicsML, the new data can be uploaded to the site along with a unified metadata entry and an accompanying tutorial that improves reproducibility of the work and facilitates benchmarking by the community.</p>
+</section>
+<section id="data-sets-and-tutorials" class="level1">
+<h1>Data Sets and Tutorials</h1>
+<p>The original raw data for proteomics data sets currently included in ProteomicsML have already been made publicly available through ProteomeXchange, <span class="citation" data-cites="Deutsch2020-og">(<a href="#ref-Deutsch2020-og" role="doc-biblioref">Deutsch et al. 2020</a>)</span> mostly via the PRIDE database. <span class="citation" data-cites="Perez-Riverol2022-ak">(<a href="#ref-Perez-Riverol2022-ak" role="doc-biblioref">Perez-Riverol et al. 2022</a>)</span> Here, the data hosted at ProteomicsML are provided in an ML-ready format, with links to original metadata and raw files for full provenance. Even though the data sets at ProteomicsML do not contain raw files, we do provide users with extensive tutorials on how to process raw data into ML-ready formats. ProteomicsML currently contains data sets and tutorials for fragmentation intensity, ion mobility (IM), retention time, and protein detectability. More data types can easily be added in the future, as the platform evolves along with the field.</p>
+<ol type="1">
+<li><p>Retention time. Due to retention time playing a major role in modern peptide identification workflows, it is one of the most explored properties in predictive proteomics. <span class="citation" data-cites="Wen2020-cp">(<a href="#ref-Wen2020-cp" role="doc-biblioref">Wen et al. 2020</a>)</span> While some data sets for predicting retention time already exists, such as the publicly available data set from Kaggle <a href="https://www.kaggle.com/datasets/kirillpe/proteomics-retention-time-prediction">kaggle.com/datasets/kirillpe/proteomics-retention-time-prediction</a> and the <a href="https://github.com/wilhelm-lab/dlomix/">DLOmix data sets</a>, we have also compiled new multitiered ML-ready data sets from the ProteomeTools synthetic peptide library, <span class="citation" data-cites="Zolg2017-ys">(<a href="#ref-Zolg2017-ys" role="doc-biblioref">Zolg et al. 2017</a>)</span> in three specific sizes: 100 000 data points (small), well suited for new practitioners; (ii) 250 000 data points (medium), and (iii) 1 million data points (large), well suited for larger-scale ML training or benchmarking. As amino acid modifications can complicate the application of ML in proteomics, these three tiers do not contain any modified peptides except for carbamidomethylation of cysteine. Nevertheless, to train models for more real-life applications, we have also included an additional data set tier containing 200 000 oxidized peptides, as well as a mixed data set containing 200 000 oxidized and 200 000 unmodified peptides. These data sets require minimal data preparation, although we still provide two distinct tutorials on methods to incorporate these data sets into deep learning (DL)-based models. In addition to preprocessed data, we also provide a detailed tutorial that combines and aligns retention times between runs from MaxQuant evidence files. <span class="citation" data-cites="tyanova2016-ma">(<a href="#ref-tyanova2016-ma" role="doc-biblioref">Tyanova, Temu, and Cox 2016</a>)</span> The output of this tutorial is a fully ML-ready file for retention time prediction.</p></li>
+<li><p>Fragmentation intensity. While it is easy to calculate the m/z values of theoretical peptide spectra, fragment ion peak intensities follow complex patterns that can be hard to predict. Nevertheless, these intensities can play a key role in accurate peptide identification. <span class="citation" data-cites="C_Silva2019-yy">(<a href="#ref-C_Silva2019-yy" role="doc-biblioref">C Silva et al. 2019</a>)</span> For this reason, fragment ion intensity prediction is likely the second most explored topic for prediction purposes, for which comprehensive data sets and tutorials exist within ProteomicsML. As there are many attributes of peptides that affect their fragmentation patterns, the preprocessing steps of fragmentation data are more complex, and can be substantially different from lab to lab. For this reason, we have composed two separate tutorials, one that mimics the Prosit <span class="citation" data-cites="Gessulat2019-rt">(<a href="#ref-Gessulat2019-rt" role="doc-biblioref">Gessulat et al. 2019</a>)</span> data processing approach on the ProteomeTools <span class="citation" data-cites="Zolg2017-ys">(<a href="#ref-Zolg2017-ys" role="doc-biblioref">Zolg et al. 2017</a>)</span> data sets, which consists of 745 000 annotated spectra, and one that mimics the MS2PIP data process on a consensus human spectral library from the National Institute of Standards and Technology, which consists of 270 440 annotated spectra. <span class="citation" data-cites="Gabriels2019-gx">(<a href="#ref-Gabriels2019-gx" role="doc-biblioref">Gabriels, Martens, and Degroeve 2019</a>)</span> For data sets in this category it is difficult to provide a simple format with unified columns, as the handling and preprocessing steps differ significantly from model to model. Currently, there is one tutorial available on ProteomicsML describing the data processing pipeline from raw file to Prosit-style annotation, and we believe that with future additions we can provide users with tutorials for additional processing approaches.</p></li>
+<li><p>Ion mobility. Ion mobility is a technique to separate ionized analytes based on their size, shape, and physicochemical properties. <span class="citation" data-cites="Dodds2019-oi">(<a href="#ref-Dodds2019-oi" role="doc-biblioref">Dodds and Baker 2019</a>)</span> Techniques for ion mobility are generally based on propelling or trapping ions with an electric field in an ion mobility cell. Peptides are then separated by colliding them with an inert gas without fragmentation. Indeed, peptides with a larger area to collide will be more affected by the collisions, resulting in a higher measured collisional cross section (CCS). Historically, most methods predicting ion mobility were based on molecular dynamics models that calculate the CCS from first-principles in physics. <span class="citation" data-cites="Larriba-Andaluz2020-kc">(<a href="#ref-Larriba-Andaluz2020-kc" role="doc-biblioref">Larriba-Andaluz and Prell 2020</a>)</span> Lately the field has generated multiple ML and DL approaches for both peptide and metabolite CCS prediction. <span class="citation" data-cites="Zhou2017-ee Broeckling2021-ks Meier2021-ig">(<a href="#ref-Zhou2017-ee" role="doc-biblioref">Zhou, Xiong, and Zhu 2017</a>; <a href="#ref-Broeckling2021-ks" role="doc-biblioref">Broeckling et al. 2021</a>; <a href="#ref-Meier2021-ig" role="doc-biblioref">Meier et al. 2021</a>)</span> The tutorials made available in ProteomicsML use both trapping (trapped ion mobility, <span class="citation" data-cites="Michelmann2015-nu">(<a href="#ref-Michelmann2015-nu" role="doc-biblioref">Michelmann et al. 2015</a>)</span> TIMS) and propelling ion mobility (traveling wave ion mobility, <span class="citation" data-cites="Shvartsburg2008-ir">(<a href="#ref-Shvartsburg2008-ir" role="doc-biblioref">Shvartsburg and Smith 2008</a>)</span> TWIMS) data, where the large TIMS data set was sourced from Meier et al. <span class="citation" data-cites="Meier2021-ig">(<a href="#ref-Meier2021-ig" role="doc-biblioref">Meier et al. 2021</a>)</span> (718 917 data points) and the TWIMS data was sourced from Puyvelde et al. <span class="citation" data-cites="Van_Puyvelde2022-nv">(<a href="#ref-Van_Puyvelde2022-nv" role="doc-biblioref">Van Puyvelde et al. 2022</a>)</span> (6268 data points). The tutorial is a walkthrough for training various model types, ranging from simple linear models to more complex nonlinear models (e.g., DL-based networks) showing advantages and disadvantages of various learning algorithms for CCS prediction.</p></li>
+<li><p>Protein detectability. Modern proteomics methods and instrumentation are now routinely detecting and quantifying the majority of proteins thought to be encoded by the genome of a given species. <span class="citation" data-cites="Hebert2014-tc">(<a href="#ref-Hebert2014-tc" role="doc-biblioref">Hebert et al. 2014</a>)</span> Yet even after gathering enormous amounts of data, there is always a subset of proteins that remains refractory to detection. For example, even though tremendous effort has been focused on the human proteome, the fraction of unobserved proteins has been pushed just below 10%. <span class="citation" data-cites="Adhikari2020-vu Omenn2021-qc">(<a href="#ref-Adhikari2020-vu" role="doc-biblioref">Adhikari et al. 2020</a>; <a href="#ref-Omenn2021-qc" role="doc-biblioref">Omenn et al. 2021</a>)</span> It remains unclear why certain proteins remain undetected, although ML has been applied to explore which properties most strongly influence detectability (as reviewed within). <span class="citation" data-cites="Dincer2022-re">(<a href="#ref-Dincer2022-re" role="doc-biblioref">Dincer et al. 2022</a>)</span> One can compute a set of properties for a proteome and then train a model using those properties based on real world observations of the proteins that are detected and the proteins that are not detected. The model can be trained to learn which properties separate the detected from the undetected. Such a model has further utility to highlight proteins with properties that should sort them into the detected group, yet are not, as well as proteins that should belong to the undetected group, and yet they are detected. To facilitate this we have included the <a href="http://www.peptideatlas.org/builds/arabidopsis/">Arabidopsis PeptideAtlas data set</a>, which is based on an extensive study of a single proteome. <span class="citation" data-cites="Van_Wijk2021-fp">(<a href="#ref-Van_Wijk2021-fp" role="doc-biblioref">Wijk et al. 2021</a>)</span> This data set is based on the 2021 build, which has 52 data sets reprocessed to yield 40 million peptide-spectrum matches and a good overall coverage of the Arabidopsis thaliana proteome. Proteins in the data set are categorized as either “canonical”, having the strongest evidence of detection, or “not observed”, for which no peptides are identified. Along with these class labels, the data set contains various protein properties such as molecular weight, hydrophobicity, and isoelectric point, which could be crucial for classification purposes. The data set has an accompanying tutorial that illustrates how to analyze the data with a classification model for the observability of peptides.</p></li>
+</ol>
+<p>Overall, these initial data set submissions and tutorials leave room for future expansion, until the community resource contains data sets for all properties previously and currently being explored in the field of proteomics. It is also open for user submissions, allowing researchers to upload their data in a standardized fashion, along with in-depth tutorials on their data handling and ML methodologies, resulting in more reproducible science. Our expectation is that this will shape the future of predictive proteomics, in favor of being more accessible, standardized, and reproducible.</p>
+<p>Additionally, we have compiled a list of proteomics publications that utilize ML, along with a list of ProteomeXchange data sets used by each of the publications (Supplementary Table 1). Each of these ProteomeXchange data sets have been given a set of tags to indicate the nature of the usage in the publications (e.g., benchmarking, retention time, deep learning, etc.) as shown in <a href="https://github.com/PRIDE-Utilities/pride-ontology/blob/master/pride-annotations/projects-proteomicsML.csv">Supplementary Table 2</a>. Furthermore, these tags have also been added to the respective PRIDE data sets, which allows the tags to be easily searched, and for users to compile their ideal data set, if ProteomicsML does not already contain one.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>We have presented ProteomicsML, a comprehensive resource of data sets and tutorials for every ML practitioner in the field of MS-based proteomics. ProteomicsML contains multiple data sets on a range of LC-MS peptide properties, allowing computational proteomics researchers to compare new algorithms to state-of-the-art models, as well as providing newcomers to the field with an accessible starting point, without requiring immediate in-depth knowledge of the entire proteomics analysis pipeline. We believe that this resource will aid the next generation of ML practitioners, and provide a stepping stone for more open and more reproducible science in the field.</p>
+</section>
+<section id="supporting-information" class="level1">
+<h1>Supporting Information</h1>
+<p>The Supporting Information is available free of charge at <a href="https://pubs.acs.org/doi/10.1021/acs.jproteome.2c00629">pubs.acs.org/doi/10.1021/acs.jproteome.2c00629</a>.</p>
+<ul>
+<li><p>Supplementary Table 1: Proteomics ML publications along with links to the ProteomeXchange data sets used for training or testing (XLSX)</p></li>
+<li><p>Supplementary Table 2: Public ProteomeXchange data sets that have been used for ML training or benchmarking (XLSX)</p></li>
+</ul>
+</section>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<p>The authors declare the following competing financial interest(s): Tobias Schmidt and Siegfried Gessulat are employees of MSAID. MSAID makes ML-based software modules that are sold as part of Proteome Discoverer and also offers contract research. All other authors declare no competing financial interest.</p>
+<p>Identification of certain commercial equipment, instruments, software, or materials does not imply recommendation or endorsement by the National Institute of Standards and Technology (NIST), nor does it imply that the products identified are necessarily the best available for the proposed purpose.</p>
+</section>
+<section id="acknowledgments" class="level1">
+<h1>Acknowledgments</h1>
+<p>We thank Wassim Gabriel and Mathias Wilhelm for consultations on the Prosit annotation pipeline. The 2022 Lorentz Center workshop on Proteomics and Machine Learning was funded by the Dutch Research Council (NWO) with generous support from the Leiden University Medical Center, Thermo Fisher Scientific and Journal of Proteome Research (ACS). We also thank the staff at the Lorentz Center for helping make the hybrid workshop a success in pandemic times. T.G.R. acknowledges funding from the Velux Foundation [00028116]. R.G. acknowledges funding from the Research Foundation Flanders (FWO) [12B7123N]. R.B. acknowledges funding from the Vlaams Agentschap Innoveren en Ondernemen [HBC.2020.2205]. J.A.V. acknowledges funding from EMBL core funding, Wellcome [grant 223745/Z/21/Z], EU H2020 [823839], and BBSRC [BB/S01781X/1; BB/V018779/1]. E.W.D. acknowledges funding from the National Institutes of Health [R01 GM087221; R24 GM127667; U19 AG023122], and from the National Science Foundation [DBI-1933311; IOS-1922871].</p>
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Adhikari2020-vu" class="csl-entry" role="listitem">
+Adhikari, Subash, Edouard C Nice, Eric W Deutsch, Lydie Lane, Gilbert S Omenn, Stephen R Pennington, Young-Ki Paik, et al. 2020. <span>“A High-Stringency Blueprint of the Human Proteome.”</span> <em>Nat. Commun.</em> 11 (1): 5301. <a href="https://doi.org/10.1038/s41467-020-19045-9">https://doi.org/10.1038/s41467-020-19045-9</a>.
+</div>
+<div id="ref-Bouwmeester2021-cf" class="csl-entry" role="listitem">
+Bouwmeester, Robbin, Ralf Gabriels, Niels Hulstaert, Lennart Martens, and Sven Degroeve. 2021. <span>“<span>DeepLC</span> Can Predict Retention Times for Peptides That Carry as-yet Unseen Modifications.”</span> <em>Nat. Methods</em> 18 (11): 1363–69. <a href="https://doi.org/10.1038/s41592-021-01301-5">https://doi.org/10.1038/s41592-021-01301-5</a>.
+</div>
+<div id="ref-bouwmeester-gabriels2020" class="csl-entry" role="listitem">
+Bouwmeester, Robbin, Ralf Gabriels, Tim Van Den Bossche, Lennart Martens, and Sven Degroeve. 2020. <span>“The Age of Data-Driven Proteomics: How Machine Learning Enables Novel Workflows.”</span> <em>PROTEOMICS</em> 20 (21-22): 1900351. https://doi.org/<a href="https://doi.org/10.1002/pmic.201900351">https://doi.org/10.1002/pmic.201900351</a>.
+</div>
+<div id="ref-Broeckling2021-ks" class="csl-entry" role="listitem">
+Broeckling, Corey D, Linxing Yao, Giorgis Isaac, Marisa Gioioso, Valentin Ianchis, and Johannes P C Vissers. 2021. <span>“Application of Predicted Collisional Cross Section to Metabolome Databases to Probabilistically Describe the Current and Future Ion Mobility Mass Spectrometry.”</span> <em>J. Am. Soc. Mass Spectrom.</em> 32 (3): 661–69. <a href="https://doi.org/10.1021/jasms.0c00375">https://doi.org/10.1021/jasms.0c00375</a>.
+</div>
+<div id="ref-C_Silva2019-yy" class="csl-entry" role="listitem">
+C Silva, Ana S, Robbin Bouwmeester, Lennart Martens, and Sven Degroeve. 2019. <span>“Accurate Peptide Fragmentation Predictions Allow Data Driven Approaches to Replace and Improve Upon Proteomics Search Engine Scoring Functions.”</span> <em>Bioinformatics</em> 35 (24): 5243–48. <a href="https://doi.org/10.1093/bioinformatics/btz383">https://doi.org/10.1093/bioinformatics/btz383</a>.
+</div>
+<div id="ref-deng2012" class="csl-entry" role="listitem">
+Deng, Li. 2012. <span>“The MNIST Database of Handwritten Digit Images for Machine Learning Research [Best of the Web].”</span> <em>IEEE Signal Processing Magazine</em> 29 (6): 141–42. <a href="https://doi.org/10.1109/MSP.2012.2211477">https://doi.org/10.1109/MSP.2012.2211477</a>.
+</div>
+<div id="ref-Deutsch2020-og" class="csl-entry" role="listitem">
+Deutsch, Eric W, Nuno Bandeira, Vagisha Sharma, Yasset Perez-Riverol, Jeremy J Carver, Deepti J Kundu, David Garcı́a-Seisdedos, et al. 2020. <span>“The <span>ProteomeXchange</span> Consortium in 2020: Enabling ’Big Data’ Approaches in Proteomics.”</span> <em>Nucleic Acids Res.</em> 48 (D1): D1145–52. <a href="https://doi.org/10.1093/nar/gkz984">https://doi.org/10.1093/nar/gkz984</a>.
+</div>
+<div id="ref-Dincer2022-re" class="csl-entry" role="listitem">
+Dincer, Ayse B., Yang Lu, Devin K. Schweppe, Sewoong Oh, and William Stafford Noble. 2022. <span>“Reducing Peptide Sequence Bias in Quantitative Mass Spectrometry Data with Machine Learning.”</span> <em>Journal of Proteome Research</em> 21 (7): 1771–82. <a href="https://doi.org/10.1021/acs.jproteome.2c00211">https://doi.org/10.1021/acs.jproteome.2c00211</a>.
+</div>
+<div id="ref-Dodds2019-oi" class="csl-entry" role="listitem">
+Dodds, James N, and Erin S Baker. 2019. <span>“Ion Mobility Spectrometry: Fundamental Concepts, Instrumentation, Applications, and the Road Ahead.”</span> <em>J. Am. Soc. Mass Spectrom.</em> 30 (11): 2185–95. <a href="https://doi.org/10.1007/s13361-019-02288-2">https://doi.org/10.1007/s13361-019-02288-2</a>.
+</div>
+<div id="ref-Fondrie2021-nb" class="csl-entry" role="listitem">
+Fondrie, William E, Wout Bittremieux, and William S Noble. 2021. <span>“<span class="nocase">ppx</span>: Programmatic Access to Proteomics Data Repositories.”</span> <em>J. Proteome Res.</em> 20 (9): 4621–24. <a href="https://doi.org/10.1021/acs.jproteome.1c00454">https://doi.org/10.1021/acs.jproteome.1c00454</a>.
+</div>
+<div id="ref-Gabriels2019-gx" class="csl-entry" role="listitem">
+Gabriels, Ralf, Lennart Martens, and Sven Degroeve. 2019. <span>“Updated MS²PIP Web Server Delivers Fast and Accurate MS² Peak Intensity Prediction for Multiple Fragmentation Methods, Instruments and Labeling Techniques.”</span> <em>Nucleic Acids Res.</em> 47 (W1): W295–99. <a href="https://doi.org/10.1093/nar/gkz299">https://doi.org/10.1093/nar/gkz299</a>.
+</div>
+<div id="ref-Gessulat2019-rt" class="csl-entry" role="listitem">
+Gessulat, Siegfried, Tobias Schmidt, Daniel Paul Zolg, Patroklos Samaras, Karsten Schnatbaum, Johannes Zerweck, Tobias Knaute, et al. 2019. <span>“Prosit: Proteome-Wide Prediction of Peptide Tandem Mass Spectra by Deep Learning.”</span> <em>Nat. Methods</em> 16 (6): 509–18. <a href="https://doi.org/10.1038/s41592-019-0426-7">https://doi.org/10.1038/s41592-019-0426-7</a>.
+</div>
+<div id="ref-Hebert2014-tc" class="csl-entry" role="listitem">
+Hebert, Alexander S, Alicia L Richards, Derek J Bailey, Arne Ulbrich, Emma E Coughlin, Michael S Westphall, and Joshua J Coon. 2014. <span>“The One Hour Yeast Proteome.”</span> <em>Mol. Cell. Proteomics</em> 13 (1): 339–47. <a href="https://doi.org/10.1074/mcp.M113.034769">https://doi.org/10.1074/mcp.M113.034769</a>.
+</div>
+<div id="ref-Von_Heijne1983-cu" class="csl-entry" role="listitem">
+Heijne, G von. 1983. <span>“Patterns of Amino Acids Near Signal-Sequence Cleavage Sites.”</span> <em>Eur. J. Biochem.</em> 133 (1): 17–21. <a href="https://doi.org/10.1111/j.1432-1033.1983.tb07424.x">https://doi.org/10.1111/j.1432-1033.1983.tb07424.x</a>.
+</div>
+<div id="ref-Kaggle" class="csl-entry" role="listitem">
+Kaggle.com. n.d. <em>Kaggle</em>. <a href="https://www.kaggle.com/datasets?search=proteomics">https://www.kaggle.com/datasets?search=proteomics</a>.
+</div>
+<div id="ref-Larriba-Andaluz2020-kc" class="csl-entry" role="listitem">
+Larriba-Andaluz, Carlos, and James S Prell. 2020. <span>“Fundamentals of Ion Mobility in the Free Molecular Regime. Interlacing the Past, Present and Future of Ion Mobility Calculations.”</span> <em>Int. Rev. Phys. Chem.</em> 39 (4): 569–623. <a href="https://doi.org/10.1080/0144235X.2020.1826708">https://doi.org/10.1080/0144235X.2020.1826708</a>.
+</div>
+<div id="ref-Meier2021-ig" class="csl-entry" role="listitem">
+Meier, Florian, Niklas D Köhler, Andreas-David Brunner, Jean-Marc H Wanka, Eugenia Voytik, Maximilian T Strauss, Fabian J Theis, and Matthias Mann. 2021. <span>“Deep Learning the Collisional Cross Sections of the Peptide Universe from a Million Experimental Values.”</span> <em>Nat. Commun.</em> 12 (1): 1185. <a href="https://doi.org/10.1038/s41467-021-21352-8">https://doi.org/10.1038/s41467-021-21352-8</a>.
+</div>
+<div id="ref-Meyer2021-jm" class="csl-entry" role="listitem">
+Meyer, Jesse G. 2021. <span>“Deep Learning Neural Network Tools for Proteomics.”</span> <em>Cell Rep Methods</em> 1 (2): 100003. <a href="https://doi.org/10.1016/j.crmeth.2021.100003">https://doi.org/10.1016/j.crmeth.2021.100003</a>.
+</div>
+<div id="ref-Michelmann2015-nu" class="csl-entry" role="listitem">
+Michelmann, Karsten, Joshua A Silveira, Mark E Ridgeway, and Melvin A Park. 2015. <span>“Fundamentals of Trapped Ion Mobility Spectrometry.”</span> <em>J. Am. Soc. Mass Spectrom.</em> 26 (1): 14–24. <a href="https://doi.org/10.1007/s13361-014-0999-4">https://doi.org/10.1007/s13361-014-0999-4</a>.
+</div>
+<div id="ref-neely2023" class="csl-entry" role="listitem">
+Neely, Benjamin A., Viktoria Dorfer, Lennart Martens, Isabell Bludau, Robbin Bouwmeester, Sven Degroeve, Eric W. Deutsch, et al. 2023. <span>“Toward an Integrated Machine Learning Model of a Proteomics Experiment.”</span> <em>Journal of Proteome Research</em> 22 (3): 681–96. <a href="https://doi.org/10.1021/acs.jproteome.2c00711">https://doi.org/10.1021/acs.jproteome.2c00711</a>.
+</div>
+<div id="ref-Nielsen1999-ej" class="csl-entry" role="listitem">
+Nielsen, H, S Brunak, and G von Heijne. 1999. <span>“Machine Learning Approaches for the Prediction of Signal Peptides and Other Protein Sorting Signals.”</span> <em>Protein Eng.</em> 12 (1): 3–9. <a href="https://doi.org/10.1093/protein/12.1.3">https://doi.org/10.1093/protein/12.1.3</a>.
+</div>
+<div id="ref-Omenn2021-qc" class="csl-entry" role="listitem">
+Omenn, Gilbert S, Lydie Lane, Christopher M Overall, Young-Ki Paik, Ileana M Cristea, Fernando J Corrales, Cecilia Lindskog, et al. 2021. <span>“Progress Identifying and Analyzing the Human Proteome: 2021 Metrics from the <span>HUPO</span> Human Proteome Project.”</span> <em>J. Proteome Res.</em> 20 (12): 5227–40. <a href="https://doi.org/10.1021/acs.jproteome.1c00590">https://doi.org/10.1021/acs.jproteome.1c00590</a>.
+</div>
+<div id="ref-Perez-Riverol2022-ak" class="csl-entry" role="listitem">
+Perez-Riverol, Yasset, Jingwen Bai, Chakradhar Bandla, David Garcı́a-Seisdedos, Suresh Hewapathirana, Selvakumar Kamatchinathan, Deepti J Kundu, et al. 2022. <span>“The <span>PRIDE</span> Database Resources in 2022: A Hub for Mass Spectrometry-Based Proteomics Evidences.”</span> <em>Nucleic Acids Res.</em> 50 (D1): D543–52. <a href="https://doi.org/10.1093/nar/gkab1038">https://doi.org/10.1093/nar/gkab1038</a>.
+</div>
+<div id="ref-Rehfeldt2021-iw" class="csl-entry" role="listitem">
+Rehfeldt, Tobias Greisager, Konrad Krawczyk, Mathias Bøgebjerg, Veit Schwämmle, and Richard Röttger. 2021. <span>“<span>MS2AI</span>: Automated Repurposing of Public Peptide <span>LC-MS</span> Data for Machine Learning Applications.”</span> <em>Bioinformatics</em>, October. <a href="https://doi.org/10.1021/acs.analchem.9b01262">https://doi.org/10.1021/acs.analchem.9b01262</a>.
+</div>
+<div id="ref-Shvartsburg2008-ir" class="csl-entry" role="listitem">
+Shvartsburg, Alexandre A, and Richard D Smith. 2008. <span>“Fundamentals of Traveling Wave Ion Mobility Spectrometry.”</span> <em>Anal. Chem.</em> 80 (24): 9689–99. <a href="https://doi.org/10.1021/ac8016295">https://doi.org/10.1021/ac8016295</a>.
+</div>
+<div id="ref-tyanova2016-ma" class="csl-entry" role="listitem">
+Tyanova, Stefka, Tikira Temu, and Juergen Cox. 2016. <span>“The MaxQuant Computational Platform for Mass Spectrometry-Based Shotgun Proteomics.”</span> <em>Nature Protocols</em> 11 (12): 2301–19. <a href="https://doi.org/10.1038/nprot.2016.136">https://doi.org/10.1038/nprot.2016.136</a>.
+</div>
+<div id="ref-Van_Puyvelde2022-nv" class="csl-entry" role="listitem">
+Van Puyvelde, Bart, Simon Daled, Sander Willems, Ralf Gabriels, Anne Gonzalez de Peredo, Karima Chaoui, Emmanuelle Mouton-Barbosa, et al. 2022. <span>“A Comprehensive <span>LFQ</span> Benchmark Dataset on Modern Day Acquisition Strategies in Proteomics.”</span> <em>Sci Data</em> 9 (1): 126. <a href="https://doi.org/10.1038/s41597-022-01216-6">https://doi.org/10.1038/s41597-022-01216-6</a>.
+</div>
+<div id="ref-Wen2020-cp" class="csl-entry" role="listitem">
+Wen, Bo, Wen-Feng Zeng, Yuxing Liao, Zhiao Shi, Sara R Savage, Wen Jiang, and Bing Zhang. 2020. <span>“Deep Learning in Proteomics.”</span> <em>Proteomics</em> 20 (21-22). <a href="https://doi.org/10.1002/pmic.201900335">https://doi.org/10.1002/pmic.201900335</a>.
+</div>
+<div id="ref-Van_Wijk2021-fp" class="csl-entry" role="listitem">
+Wijk, Klaas J van, Tami Leppert, Qi Sun, Sascha S Boguraev, Zhi Sun, Luis Mendoza, and Eric W Deutsch. 2021. <span>“The Arabidopsis <span>PeptideAtlas</span>: Harnessing Worldwide Proteomics Data to Create a Comprehensive Community Proteomics Resource.”</span> <em>Plant Cell</em> 33 (11): 3421–53. <a href="https://doi.org/10.1093/plcell/koab211">https://doi.org/10.1093/plcell/koab211</a>.
+</div>
+<div id="ref-Zhou2017-ee" class="csl-entry" role="listitem">
+Zhou, Zhiwei, Xin Xiong, and Zheng-Jiang Zhu. 2017. <span>“<span>MetCCS</span> Predictor: A Web Server for Predicting Collision Cross-Section Values of Metabolites in Ion Mobility-Mass Spectrometry Based Metabolomics.”</span> <em>Bioinformatics</em> 33 (14): 2235–37. <a href="https://doi.org/10.1093/bioinformatics/btx140">https://doi.org/10.1093/bioinformatics/btx140</a>.
+</div>
+<div id="ref-Zolg2017-ys" class="csl-entry" role="listitem">
+Zolg, Daniel P, Mathias Wilhelm, Karsten Schnatbaum, Johannes Zerweck, Tobias Knaute, Bernard Delanghe, Derek J Bailey, et al. 2017. <span>“Building <span>ProteomeTools</span> Based on a Complete Synthetic Human Proteome.”</span> <em>Nat. Methods</em> 14 (3): 259–62. <a href="https://doi.org/10.1038/nmeth.4153">https://doi.org/10.1038/nmeth.4153</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -845,7 +1012,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0</a> license.</small><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ProteomicsML/ProteomicsML/blob/main/publication.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ProteomicsML/ProteomicsML/edit/main/publication.qmd" class="toc-action">Edit this page</a></p></div></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-center"><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0</a> license.</small><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
