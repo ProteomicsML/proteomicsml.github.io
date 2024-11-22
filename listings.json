@@ -1,15 +1,8 @@
 [
   {
-    "listing": "/datasets/index.html",
+    "listing": "/tutorials/ionmobility/index.html",
     "items": [
-      "/datasets/detectability/ArabidopsisLightDarkProteome.html",
-      "/datasets/fragmentation/nist.html",
-      "/datasets/fragmentation/ProteomeTools_FI.html",
-      "/datasets/ionmobility/Meier_TIMS.html",
-      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
-      "/datasets/retentiontime/DLOmix_RT.html",
-      "/datasets/retentiontime/PXD028248_RT.html",
-      "/datasets/retentiontime/ProteomeTools_RT.html"
+      "/tutorials/ionmobility/meier-tims-ccs.html"
     ]
   },
   {
@@ -19,15 +12,6 @@
       "/tutorials/retentiontime/manual-prosit-rt.html",
       "/tutorials/retentiontime/mq-evidence-to-ml.html",
       "/tutorials/retentiontime/deeplc-transfer-learning.html"
-    ]
-  },
-  {
-    "listing": "/tutorials/fragmentation/index.html",
-    "items": [
-      "/tutorials/fragmentation/nist-1-parsing-spectral-library.html",
-      "/tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html",
-      "/tutorials/fragmentation/preannotated-prosit.html",
-      "/tutorials/fragmentation/raw-to-prosit.html"
     ]
   },
   {
@@ -46,15 +30,31 @@
     ]
   },
   {
-    "listing": "/tutorials/ionmobility/index.html",
-    "items": [
-      "/tutorials/ionmobility/meier-tims-ccs.html"
-    ]
-  },
-  {
     "listing": "/tutorials/detectability/index.html",
     "items": [
       "/tutorials/detectability/modeling-protein-detectability.html"
+    ]
+  },
+  {
+    "listing": "/tutorials/fragmentation/index.html",
+    "items": [
+      "/tutorials/fragmentation/nist-1-parsing-spectral-library.html",
+      "/tutorials/fragmentation/nist-2-traditional-ml-gradient-boosting.html",
+      "/tutorials/fragmentation/preannotated-prosit.html",
+      "/tutorials/fragmentation/raw-to-prosit.html"
+    ]
+  },
+  {
+    "listing": "/datasets/index.html",
+    "items": [
+      "/datasets/detectability/ArabidopsisLightDarkProteome.html",
+      "/datasets/fragmentation/nist.html",
+      "/datasets/fragmentation/ProteomeTools_FI.html",
+      "/datasets/ionmobility/Meier_TIMS.html",
+      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
+      "/datasets/retentiontime/DLOmix_RT.html",
+      "/datasets/retentiontime/PXD028248_RT.html",
+      "/datasets/retentiontime/ProteomeTools_RT.html"
     ]
   }
 ]
