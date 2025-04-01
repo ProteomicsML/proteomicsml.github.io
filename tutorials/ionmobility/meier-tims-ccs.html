@@ -621,7 +621,7 @@ cookieconsent.run({
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Ion mobility is a technique to separate ionized analytes based on their size, shape, and physicochemical properties. Initially the techniques for ion mobility propelled the ions with an electric field through a cell with inert gas. The ions collide with the inert gas without fragmentation. Separation is achieved by propelling the ions faster or slower in the electric field (i.e., based on their charge) and are slowed down by the collisions with the gas (i.e., based on shape and size). Trapped ion mobility (TIMS) reverses this operation by trapping the ions in an electric field and forcing them forward by collision with the gas. From any of the different ion mobility techniques you are able to derive the collisional cross section (CCS) in Angstrom squared. In this notebook you can follow a short tutorial on how to train a Machine Learning model for the prediction of these CCS values.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -666,11 +666,11 @@ cookieconsent.run({
 <section id="data-reading-and-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-reading-and-preparation">Data reading and preparation</h2>
 <p>Read the training data from <a href="https://doi.org/10.1038/s41467-021-21352-8">Meier et al.</a></p>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ccs_df <span class="op">=</span> pd.read_csv(<span class="st">"https://github.com/ProteomicsML/ProteomicsML/blob/main/datasets/ionmobility/Meier_IM_CCS/combined_sm.zip?raw=true"</span>, compression<span class="op">=</span><span class="st">"zip"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Execute the cell below to read a smaller data set from <a href="https://www.nature.com/articles/s41597-022-01216-6">Van Puyvelde et al.</a>. Remove all the “#” to read this smaller data set. On for example colab it is recommended to load this smaller data set. Please do note that the description is based on the larger data set. It is expected that more complex models do not benefit at the same rate from the smaller data set (e.g., the deep learning network). Hans Vissers from Waters analyzed this traveling wave IM data:</p>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ccs_df = pd.read_csv(</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    "https://github.com/ProteomicsML/ProteomicsML/raw/main/datasets/ionmobility/VanPuyvelde_TWIMS_CCS/TWIMSpeptideCCS.tsv.gz",</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    compression="gzip",</span></span>
@@ -679,9 +679,9 @@ cookieconsent.run({
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A small summarization of the data that was just read:</p>
-<div class="cell" data-outputid="73b1c4be-0a61-441d-d96e-b21f60733eac" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ccs_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 
   <div id="df-74dccc94-bc82-4375-ae3a-ed5a16d30de7" class="colab-df-container">
     <div>
@@ -974,9 +974,9 @@ cookieconsent.run({
   </div>
 </div>
 </div>
-<div class="cell" data-outputid="d60c424c-9d61-46b7-b743-1cc8dfb97ccd" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ccs_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 
   <div id="df-3200f379-ea47-49fa-b951-b2e6b6677fa9" class="colab-df-container">
     <div>
@@ -1371,7 +1371,7 @@ cookieconsent.run({
 </div>
 </div>
 <p>Prepare the data to not contain any "_" characters or modifications in between [ ]:</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Strip "_" from sequence</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ccs_df[<span class="st">"sequence"</span>] <span class="op">=</span> ccs_df[<span class="st">"Modified sequence"</span>].<span class="bu">str</span>.strip(<span class="st">"_"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1379,13 +1379,13 @@ cookieconsent.run({
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ccs_df[<span class="st">"sequence"</span>] <span class="op">=</span> ccs_df[<span class="st">"sequence"</span>].<span class="bu">str</span>.replace(<span class="vs">r"[\(\[].*?[\)\]]"</span>, <span class="st">""</span>, regex<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Count the occurence of amino acids, those that did not get detected; replace with 0</p>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply counter to each sequence, fill NA with 0.0, make matrix from counts</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_matrix_count <span class="op">=</span> pd.DataFrame(ccs_df[<span class="st">"sequence"</span>].<span class="bu">apply</span>(Counter).to_dict()).fillna(<span class="fl">0.0</span>).T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="a6c07e47-ea3e-44d2-8721-825afd37f6dc" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_matrix_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 
   <div id="df-6c552b9b-26b3-4677-b107-17401911579d" class="colab-df-container">
     <div>
@@ -1936,7 +1936,7 @@ cookieconsent.run({
 </div>
 </div>
 <p>A fairly rudimentary technique is to use the volume of each amino acid and sum these volumes:</p>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_predicted_ccs(row):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    vol_sum <span class="op">=</span> <span class="bu">sum</span>([vol_dict[k] <span class="op">*</span> v <span class="cf">for</span> k, v <span class="kw">in</span> row.to_dict().items()])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vol_sum</span>
@@ -1945,7 +1945,7 @@ cookieconsent.run({
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ccs_df[<span class="st">"predicted_CCS_vol_based"</span>] <span class="op">=</span> X_matrix_count.<span class="bu">apply</span>(to_predicted_ccs, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lets see the results:</p>
-<div class="cell" data-outputid="c3701140-dad8-454b-8df8-636d5a53912a" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
@@ -1980,7 +1980,7 @@ cookieconsent.run({
 </section>
 <section id="training-a-linear-regression-model-for-ccs-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="training-a-linear-regression-model-for-ccs-prediction">Training a linear regression model for CCS prediction</h2>
-<div class="cell" data-execution_count="11">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1989,7 +1989,7 @@ cookieconsent.run({
 <p>$ Y = _0 + _1 X$</p>
 <p>Where <span class="math inline">\(Y\)</span> is a vector (/list) of all CCS values and X a matrix (/2-dimensional list) of all the amino acids counts. The intercept and weights of each features are learned so the predicted value (<span class="math inline">\(\hat{Y}\)</span>) is close to the observed outcome (<span class="math inline">\(Y\)</span>). What is considered close and how this closeness between predictions and observations are minimized is not further discussed here. However, there is a rich amount of information available on the internet (e.g., https://www.coursera.org/learn/machine-learning and scikit-learn in particular at https://scikit-learn.org/stable/.</p>
 <p>First, we will split the matrix into 90% training peptides and 10% testing peptides. These testing peptides are very valuable in estimating model performance. Since the model has not seen these sequences before it cannot overfit on these particular examples.</p>
-<div class="cell" data-execution_count="12">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all the index identifiers</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>all_idx <span class="op">=</span> <span class="bu">list</span>(X_matrix_count.index)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
@@ -2010,7 +2010,7 @@ cookieconsent.run({
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>X_matrix_count_test <span class="op">=</span> X_matrix_count.loc[test_idx, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s start training the models. Although we could encode the charge as a feature here we separate all models to counter any charge to composition specific patterns.</p>
-<div class="cell" data-outputid="0064efab-10e9-416f-d91f-20819413c02a" data-execution_count="13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a model object</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>linear_model_z2 <span class="op">=</span> LinearRegression()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2032,7 +2032,7 @@ cookieconsent.run({
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>X_matrix_count_train.loc[ccs_df_train[<span class="st">"Charge"</span>] <span class="op">==</span> <span class="dv">4</span>, :],</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ccs_df_train.loc[ccs_df_train[<span class="st">"Charge"</span>] <span class="op">==</span> <span class="dv">4</span>, <span class="st">"CCS"</span>],</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display">
 <style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -2452,7 +2452,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Now we can have a look at the coefficients <span class="math inline">\(\beta_1\)</span> learned. These should be highly correlated with the previous experimentally determined volumetric observations for each amino acid:</p>
-<div class="cell" data-outputid="117d9ae1-d317-47e2-8423-a14cf84d21b9" data-execution_count="14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot the coefficients of each amino acid against their experimentally determined volumes</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(linear_model_z2.coef_, [vol_dict[v] <span class="cf">for</span> v <span class="kw">in</span> X_matrix_count.columns])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2474,7 +2474,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>Observations are very similar. There are differences that could be cause by a multitude of reasons. For example, the difference between volumetric observations in the CCS cell is different or being part of a polypeptide chain changes the volume of the amino acid.</p>
 <p>Next we will plot the predictions of the test set and compare them with observational data. Note that we apply each charge model separately.</p>
-<div class="cell" data-outputid="51730add-735a-4a4c-a0af-5cae9aa83145" data-execution_count="15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
@@ -2532,7 +2532,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>It is clear that the predictions and observations are on the diagonal. This means that they are very similar. However, there are still some differences between observations and predictions.</p>
 <p>In the previous example, we trained models for charge state separately. This is slightly inconvenient and other charge states might still be able to provide useful training examples. As long as the model corrects for the right charge state of course. In the next example we add charge state to the feature matrix. The linear model should be (partially…) able to account for the charge states of peptides.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new copy of feature matrix and add charge as a feature</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train <span class="op">=</span> X_matrix_count_train.copy()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_train[<span class="st">"Charge"</span>]</span>
@@ -2540,7 +2540,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test <span class="op">=</span> X_matrix_count_test.copy()</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_test[<span class="st">"Charge"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="56b9cabc-9eeb-4228-e0c2-5d48ead3e653" data-execution_count="17">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the linear model, but this time with the charge as a feature</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>linear_model <span class="op">=</span> LinearRegression()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2548,7 +2548,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>X_matrix_count_charge_train,</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ccs_df_train.loc[:,<span class="st">"CCS"</span>]</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display">
 <style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -2967,7 +2967,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </a></style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div>
 </div>
 </div>
-<div class="cell" data-outputid="ca11a31d-e345-4553-d66b-16f7c49f9bd6" data-execution_count="18">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
@@ -3022,10 +3022,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="training-an-rf-non-linear-regression-model-for-ccs-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="training-an-rf-non-linear-regression-model-for-ccs-prediction">Training an RF (non-linear) regression model for CCS prediction</h2>
 <p>In this section we will fit a random forest (RF) regression model. We hope to fit some of the non-linear relations present in the data. The RF algorithm fits multiple decision trees, but what makes these trees different is the random selection of instances (peptides) and/or features (amino acid count). The predictions between the forest of trees can be averaged to obtain a single prediction per peptide (instead of multiple for the same peptide). Later we will see that the algorithm might actually not be suitable for fitting this type of data.</p>
-<div class="cell" data-execution_count="19">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new copy of feature matrix and add charge as a feature</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train <span class="op">=</span> X_matrix_count_train.copy()</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_train[<span class="st">"Charge"</span>]</span>
@@ -3033,13 +3033,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test <span class="op">=</span> X_matrix_count_test.copy()</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_test[<span class="st">"Charge"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="437c1d75-0bc3-4810-c2dd-395526610c1b" data-execution_count="21">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a RF object, note the hyperparameters that the model will follow</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rf_model <span class="op">=</span> RandomForestRegressor(max_depth<span class="op">=</span><span class="dv">20</span>, n_estimators<span class="op">=</span><span class="dv">50</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the RF model</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>rf_model.fit(X<span class="op">=</span>X_matrix_count_charge_train, y<span class="op">=</span>ccs_df_train.loc[:, <span class="st">"CCS"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display">
 <style>#sk-container-id-3 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -3458,7 +3458,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </a></style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestRegressor(max_depth=20, n_estimators=50, n_jobs=-1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(max_depth=20, n_estimators=50, n_jobs=-1)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div class="cell" data-outputid="629dad70-871e-4d26-d141-c0cc38569ba0" data-execution_count="22">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
@@ -3515,10 +3515,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="training-a-xgboost-non-linear-regression-model-for-ccs-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="training-a-xgboost-non-linear-regression-model-for-ccs-prediction">Training a XGBoost (non-linear) regression model for CCS prediction</h2>
 <p>In this section we will fit a XGBoost regression model. This algorithm works by training a sequence of underfitted models. Each model in the sequence receives the output of the previous decision tree models. This combination of trees allows to fit the data well without greatly overfitting it.</p>
-<div class="cell" data-execution_count="23">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBRegressor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a new copy of feature matrix and add charge as a feature</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train <span class="op">=</span> X_matrix_count_train.copy()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_train[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_train[<span class="st">"Charge"</span>]</span>
@@ -3526,13 +3526,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test <span class="op">=</span> X_matrix_count_test.copy()</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>X_matrix_count_charge_test[<span class="st">"charge"</span>] <span class="op">=</span> ccs_df_test[<span class="st">"Charge"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="71e89d48-3da6-47cf-bb1c-8d2699d07bca" data-execution_count="25">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the XGB object</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>xgb_model <span class="op">=</span> XGBRegressor(max_depth<span class="op">=</span><span class="dv">12</span>, n_estimators<span class="op">=</span><span class="dv">250</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the XGB model</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>xgb_model.fit(X_matrix_count_charge_train, ccs_df_train.loc[:, <span class="st">"CCS"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display">
 <style>#sk-container-id-4 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
@@ -3971,7 +3971,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
              num_parallel_tree=None, random_state=None, ...)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div class="cell" data-outputid="f5d0f046-bec7-40e0-a2a8-275e5d3b0fd4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
@@ -4028,13 +4028,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <h2 class="anchored" data-anchor-id="training-a-deep-learning-lstm-model-for-ccs-prediction">Training a deep learning LSTM model for CCS prediction</h2>
 <p>The deviation on the diagonal has been decreased significantly. But… A decision tree based algorithm is usually not the best for a regression model. Since the target data is continuous a model that can respect this structure is likely to perform better. Furthermore, up till now we simply counted amino acids, but structure is important. So to get the most out of the data we need to use the exact positions of amino acids.</p>
 <p>Also… We have a lot of data, so it makes sense to use deep learning (DL). DL models are usually capable of learning more complex relations than traditional algorithms. Furthormore, for traditional ML algorithms we usually need to engineer features, while DL can usually work directly from raw data. DL is able to construct its own features.</p>
-<div class="cell" data-execution_count="27">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Dense, concatenate, Input, Bidirectional, LSTM</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As mentioned before, we want to use features that can also tell us something about the potential structure of the peptide. This means we need to take the sequence of the peptide into account and not just the amino acid counts. For this we will use a ‘one-hot encoding’, in this matrix each position in the peptide are the columns (number of columns equals the length of the peptide) and each amino acid per position has its own row (for the standard amino acids this is 20). So as a result we create a matrix that is the length of the peptide by the amount of unique amino acids in the whole data set. For each position we indicate the presence with a ‘1’ and absence with ‘0’. As a result the sum of each columnn is ‘1’ and the sum of the whole matrix equals the length of the peptide.</p>
-<div class="cell" data-execution_count="28">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aa_seq_to_one_hot(seq, padding_length<span class="op">=</span><span class="dv">60</span>):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Although padding is not needed for an LSTM, we might need it if we for example apply a CNN</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate how much padding is needed</span></span>
@@ -4058,13 +4058,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matrix_hc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="29">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the one-hot matrices and stack them</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Result is a 3D matrix where the first dimension is each peptide, and then the last two dims are the one-hot matrix</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>one_hot_encoded_train <span class="op">=</span> np.stack(ccs_df_train[<span class="st">"sequence"</span>].<span class="bu">apply</span>(aa_seq_to_one_hot).values)</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>one_hot_encoded_test <span class="op">=</span> np.stack(ccs_df_test[<span class="st">"sequence"</span>].<span class="bu">apply</span>(aa_seq_to_one_hot).values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="45fd02ad-82b2-4d7d-c1fa-f991c62bf995" data-execution_count="30">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    epochs <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    num_lstm <span class="op">=</span> <span class="dv">12</span></span>
@@ -4133,7 +4133,7 @@ Epoch 10/10
 4550/4550 ━━━━━━━━━━━━━━━━━━━━ 60s 13ms/step - loss: 332.4285 - val_loss: 378.3260</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="fce56e11-783f-4e7f-f897-ba79d27a3f44" data-execution_count="31">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict CCS values test set</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ccs_df_test[<span class="st">"LSTM_predictions"</span>] <span class="op">=</span> model.predict(</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    (one_hot_encoded_test, ccs_df_test.loc[:, <span class="st">"Charge"</span>])</span>
@@ -4142,7 +4142,7 @@ Epoch 10/10
 <pre><code>2247/2247 ━━━━━━━━━━━━━━━━━━━━ 11s 5ms/step</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="de6de8b0-5517-4f49-f2b3-3c5d0d9de87d" data-execution_count="32">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ccs_df.index) <span class="op">&lt;</span> <span class="fl">1e4</span>:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    set_alpha <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    set_size <span class="op">=</span> <span class="dv">3</span></span>
