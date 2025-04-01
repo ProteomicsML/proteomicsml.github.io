@@ -1,17 +1,15 @@
 [
   {
-    "listing": "/tutorials/ionmobility/index.html",
+    "listing": "/datasets/index.html",
     "items": [
-      "/tutorials/ionmobility/meier-tims-ccs.html"
-    ]
-  },
-  {
-    "listing": "/tutorials/retentiontime/index.html",
-    "items": [
-      "/tutorials/retentiontime/dlomix-prosit-rt.html",
-      "/tutorials/retentiontime/manual-prosit-rt.html",
-      "/tutorials/retentiontime/mq-evidence-to-ml.html",
-      "/tutorials/retentiontime/deeplc-transfer-learning.html"
+      "/datasets/detectability/ArabidopsisLightDarkProteome.html",
+      "/datasets/fragmentation/nist.html",
+      "/datasets/fragmentation/ProteomeTools_FI.html",
+      "/datasets/ionmobility/Meier_TIMS.html",
+      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
+      "/datasets/retentiontime/DLOmix_RT.html",
+      "/datasets/retentiontime/PXD028248_RT.html",
+      "/datasets/retentiontime/ProteomeTools_RT.html"
     ]
   },
   {
@@ -30,9 +28,9 @@
     ]
   },
   {
-    "listing": "/tutorials/detectability/index.html",
+    "listing": "/tutorials/ionmobility/index.html",
     "items": [
-      "/tutorials/detectability/modeling-protein-detectability.html"
+      "/tutorials/ionmobility/meier-tims-ccs.html"
     ]
   },
   {
@@ -45,16 +43,18 @@
     ]
   },
   {
-    "listing": "/datasets/index.html",
+    "listing": "/tutorials/detectability/index.html",
     "items": [
-      "/datasets/detectability/ArabidopsisLightDarkProteome.html",
-      "/datasets/fragmentation/nist.html",
-      "/datasets/fragmentation/ProteomeTools_FI.html",
-      "/datasets/ionmobility/Meier_TIMS.html",
-      "/datasets/ionmobility/VanPuyvelde_TWIMS.html",
-      "/datasets/retentiontime/DLOmix_RT.html",
-      "/datasets/retentiontime/PXD028248_RT.html",
-      "/datasets/retentiontime/ProteomeTools_RT.html"
+      "/tutorials/detectability/modeling-protein-detectability.html"
+    ]
+  },
+  {
+    "listing": "/tutorials/retentiontime/index.html",
+    "items": [
+      "/tutorials/retentiontime/dlomix-prosit-rt.html",
+      "/tutorials/retentiontime/manual-prosit-rt.html",
+      "/tutorials/retentiontime/mq-evidence-to-ml.html",
+      "/tutorials/retentiontime/deeplc-transfer-learning.html"
     ]
   }
 ]
